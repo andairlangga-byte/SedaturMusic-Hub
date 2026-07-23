@@ -2,201 +2,325 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SEDATUR Rawamangun</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sedatur Rawamangun</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-body{
+
+*{
 margin:0;
-font-family:system-ui, Arial;
-background:#0f172a;
-color:#e5e7eb;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
 scroll-behavior:smooth;
 }
 
-/* NAV */
-nav{
-position:sticky;
+body{
+background:#f8fafc;
+color:#222;
+}
+
+header{
+position:fixed;
 top:0;
-background:#111827;
+left:0;
+width:100%;
+background:#fff;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+padding:15px 8%;
 display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:10px;
-padding:12px;
-border-bottom:1px solid #1f2937;
+justify-content:space-between;
+align-items:center;
 z-index:1000;
 }
 
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:700;
+font-size:20px;
+}
+
+.logo img{
+width:45px;
+height:45px;
+}
+
 nav a{
-color:#e5e7eb;
+margin-left:25px;
 text-decoration:none;
-padding:8px 12px;
-border-radius:8px;
-font-size:14px;
+color:#333;
+font-weight:500;
+transition:.3s;
 }
 
 nav a:hover{
-background:#1a73e8;
+color:#d4a017;
 }
 
-/* HERO */
 .hero{
+padding:140px 8% 90px;
 text-align:center;
-padding:70px 20px;
-background:linear-gradient(135deg,#1a73e8,#0ea5e9);
+background:white;
+}
+
+.hero img{
+width:140px;
+margin-bottom:20px;
 }
 
 .hero h1{
-margin:0;
-font-size:36px;
+font-size:46px;
+margin-bottom:10px;
 }
 
 .hero p{
-opacity:0.9;
-}
-
-/* SECTION */
-.container{
-max-width:1000px;
+max-width:650px;
 margin:auto;
-padding:20px;
+line-height:1.8;
+color:#555;
 }
 
-/* CARD */
-.card{
-background:#111827;
-padding:20px;
-border-radius:15px;
-margin-bottom:20px;
-border:1px solid #1f2937;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:15px;
-}
-
-.item img{
-width:100%;
-height:160px;
-object-fit:cover;
-border-radius:12px;
-}
-
-/* BUTTON */
-button{
-background:#1a73e8;
+.btn{
+display:inline-block;
+margin-top:35px;
+padding:14px 30px;
+background:#111;
 color:white;
-border:none;
-padding:10px 15px;
-border-radius:10px;
-cursor:pointer;
+text-decoration:none;
+border-radius:50px;
+transition:.3s;
 }
 
-button:hover{
-background:#0f5bd3;
+.btn:hover{
+background:#d4a017;
 }
 
-/* SECTION TITLE */
-h2{
-margin-top:0;
-border-left:4px solid #1a73e8;
-padding-left:10px;
+section{
+padding:80px 8%;
 }
+
+.title{
+text-align:center;
+font-size:34px;
+margin-bottom:40px;
+}
+
+.about{
+max-width:900px;
+margin:auto;
+text-align:center;
+line-height:1.9;
+color:#555;
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+transition:.3s;
+text-align:center;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h3{
+margin:15px 0;
+}
+
+footer{
+background:#111;
+color:white;
+text-align:center;
+padding:35px;
+margin-top:40px;
+}
+
+footer a{
+color:#f4c542;
+text-decoration:none;
+}
+
+@media(max-width:768px){
+
+header{
+padding:15px 5%;
+}
+
+nav{
+display:none;
+}
+
+.hero h1{
+font-size:34px;
+}
+
+}
+
 </style>
 
 </head>
 
 <body>
 
-<!-- NAV -->
+<header>
+
+<div class="logo">
+
+<img src="assets/logo.png">
+
+<span>SEDATUR</span>
+
+</div>
+
 <nav>
+
 <a href="#home">Home</a>
-<a href="#tentang">Tentang</a>
-<a href="#visi">Visi Misi</a>
-<a href="#kegiatan">Kegiatan</a>
-<a href="#event">Event</a>
-<a href="#trip">Trip</a>
-<a href="#galeri">Galeri</a>
-<a href="#dukungan">Dukungan</a>
-<a href="#changelog">Changelog</a>
+
+<a href="#about">Tentang</a>
+
+<a href="#feature">Fitur</a>
+
+<a href="#contact">Kontak</a>
+
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-<h1>SEDATUR Rawamangun</h1>
-<p>Komunitas Anak Muda</p>
-</div>
+</header>
 
-<div class="container">
+<section class="hero" id="home">
 
-<!-- HOME -->
-<section id="home" class="card">
-<h2>Home</h2>
-<p>🟡 GANTI: Intro utama SEDATUR (kayak di Durable homepage).</p>
-<button>Join Sekarang</button>
+<img src="assets/logo.png">
+
+<h1>SEDATUR RAWAMANGUN</h1>
+
+<p>
+
+Sistem Edukasi dan Tanggap Rawamangun yang bertujuan menjadi media informasi serta pelaporan masyarakat secara cepat, mudah, dan transparan.
+
+</p>
+
+<a href="#" class="btn">
+
+Segera Hadir
+
+</a>
+
 </section>
 
-<!-- TENTANG -->
-<section id="tentang" class="card">
-<h2>Tentang Kami</h2>
-<p>🟡 GANTI: penjelasan komunitas SEDATUR.</p>
-</section>
+<section id="about">
 
-<!-- VISI MISI -->
-<section id="visi" class="card">
-<h2>Visi & Misi</h2>
-<p>🟡 GANTI: visi dan misi komunitas.</p>
-</section>
+<h2 class="title">
 
-<!-- KEGIATAN -->
-<section id="kegiatan" class="card">
-<h2>Kegiatan</h2>
-<p>🟡 GANTI: kegiatan rutin komunitas.</p>
-</section>
+Tentang Sedatur
 
-<!-- EVENT -->
-<section id="event" class="card">
-<h2>Event</h2>
-<p>🟡 GANTI: event terbaru SEDATUR.</p>
-</section>
+</h2>
 
-<!-- TRIP -->
-<section id="trip" class="card">
-<h2>Sedatur Trip</h2>
-<p>🟡 GANTI: dokumentasi perjalanan.</p>
-</section>
+<div class="about">
 
-<!-- GALERI -->
-<section id="galeri" class="card">
-<h2>Galeri</h2>
+Sedatur Rawamangun merupakan platform informasi dan pelayanan masyarakat yang dikembangkan untuk mempermudah penyampaian laporan serta meningkatkan kolaborasi demi lingkungan yang lebih baik.
 
-<div class="grid">
-<div class="item"><img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644"></div>
-<div class="item"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac"></div>
 </div>
 
 </section>
 
-<!-- DUKUNGAN -->
-<section id="dukungan" class="card">
-<h2>Dukungan</h2>
-<p>🟡 GANTI: cara mendukung komunitas.</p>
-</section>
+<section id="feature">
 
-<!-- CHANGELOG -->
-<section id="changelog" class="card">
-<h2>Changelog</h2>
-<p>🟡 GANTI: update perubahan website.</p>
-</section>
+<h2 class="title">
+
+Fitur Unggulan
+
+</h2>
+
+<div class="features">
+
+<div class="card">
+
+<h3>📄 Pelaporan</h3>
+
+<p>Sistem pelaporan online yang mudah digunakan.</p>
 
 </div>
+
+<div class="card">
+
+<h3>🖼️ Galeri</h3>
+
+<p>Dokumentasi kegiatan dan informasi visual.</p>
+
+</div>
+
+<div class="card">
+
+<h3>📅 Event</h3>
+
+<p>Informasi kegiatan dan agenda terbaru.</p>
+
+</div>
+
+<div class="card">
+
+<h3>🔍 Tracking</h3>
+
+<p>Melacak status laporan secara transparan.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2 class="title">
+
+Hubungi Kami
+
+</h2>
+
+<div class="about">
+
+Instagram : @sedaturrawamangun
+
+<br><br>
+
+Facebook : Sedatur Rawamangun
+
+<br><br>
+
+Email : sedatur@email.com
+
+</div>
+
+</section>
+
+<footer>
+
+<img src="assets/logo.png" width="60">
+
+<br><br>
+
+© 2026 Sedatur Rawamangun
+
+<br><br>
+
+Dibangun untuk pelayanan masyarakat.
+
+</footer>
 
 </body>
 </html>
