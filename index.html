@@ -4,140 +4,71 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Sedatur Music Hub</title>
-
-<link rel="manifest" href="manifest.json">
-
-<meta name="theme-color" content="#7c3aed">
-
 
 <style>
 
 *{
 box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
+font-family:Arial,sans-serif;
 }
-
 
 body{
 
 margin:0;
-padding-bottom:120px;
+min-height:100vh;
 
-background:
-radial-gradient(circle at top,#7c3aed55,transparent 40%),
-linear-gradient(180deg,#020617,#000);
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:#0f172a;
 
 color:white;
-
-}
-
-
-
-/* HEADER */
-
-header{
-
-text-align:center;
-
-padding:30px 20px;
-
-}
-
-
-.logo{
-
-width:110px;
-
-height:110px;
-
-border-radius:50%;
-
-object-fit:cover;
-
-box-shadow:0 0 40px #7c3aed;
-
-}
-
-
-
-header h1{
-
-margin:15px 0 5px;
-
-font-size:30px;
-
-}
-
-
-header p{
-
-color:#94a3b8;
-
-}
-
-
-
-/* CONTAINER */
-
-.container{
-
-max-width:700px;
-
-margin:auto;
 
 padding:20px;
 
 }
 
 
-
-/* PLAYER */
-
 .player{
 
-background:#ffffff12;
+width:100%;
+max-width:400px;
 
-backdrop-filter:blur(20px);
-
-border:1px solid #ffffff20;
-
-border-radius:30px;
+background:#1e293b;
 
 padding:25px;
+
+border-radius:25px;
 
 text-align:center;
 
 }
 
 
+.logo{
 
-.cover{
+width:220px;
+height:220px;
 
-width:260px;
-
-height:260px;
-
-border-radius:25px;
+border-radius:20px;
 
 object-fit:cover;
-
-box-shadow:0 20px 50px #000;
 
 }
 
 
 
-#title{
+h1{
 
 font-size:25px;
 
 margin:20px 0 5px;
 
 }
-
 
 
 #artist{
@@ -158,212 +89,28 @@ margin-top:20px;
 
 
 
-/* SEARCH */
+button{
 
-.search{
+border:0;
 
-margin-top:25px;
+background:#facc15;
 
-}
+padding:12px 20px;
 
-
-
-.search input{
-
-width:100%;
-
-padding:15px 20px;
+margin:15px 5px 0;
 
 border-radius:30px;
 
-border:none;
-
-outline:none;
-
-font-size:16px;
-
-}
-
-
-
-/* PLAYLIST */
-
-.playlist{
-
-margin-top:20px;
-
-}
-
-
-
-.song{
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
-
-padding:15px;
-
-background:#ffffff10;
-
-border-radius:20px;
-
-margin-bottom:12px;
+font-size:20px;
 
 cursor:pointer;
 
-transition:.3s;
-
 }
 
-
-
-.song:hover{
-
-background:#7c3aed55;
-
-transform:translateX(5px);
-
-}
-
-
-
-.song img{
-
-width:65px;
-
-height:65px;
-
-border-radius:15px;
-
-object-fit:cover;
-
-}
-
-
-
-.song-info{
-
-flex:1;
-
-}
-
-
-.song-title{
-
-font-weight:bold;
-
-font-size:17px;
-
-}
-
-
-.song-artist{
-
-color:#94a3b8;
-
-font-size:14px;
-
-}
-
-
-
-/* MINI PLAYER */
-
-.mini-player{
-
-position:fixed;
-
-bottom:15px;
-
-left:15px;
-
-right:15px;
-
-background:#111827ee;
-
-backdrop-filter:blur(20px);
-
-border-radius:25px;
-
-padding:12px;
-
-display:flex;
-
-align-items:center;
-
-gap:10px;
-
-box-shadow:0 10px 30px #000;
-
-z-index:99;
-
-}
-
-
-
-.mini-player button{
-
-width:45px;
-
-height:45px;
-
-border:none;
-
-border-radius:50%;
-
-background:#7c3aed;
-
-color:white;
-
-font-size:18px;
-
-}
-
-
-
-.mini-info{
-
-flex:1;
-
-overflow:hidden;
-
-}
-
-
-
-#miniTitle{
-
-font-weight:bold;
-
-}
-
-
-
-#miniArtist{
-
-color:#94a3b8;
-
-font-size:13px;
-
-}
-
-
-
-footer{
-
-text-align:center;
-
-padding:30px;
-
-color:#64748b;
-
-}
 
 
 </style>
+
 
 </head>
 
@@ -371,31 +118,15 @@ color:#64748b;
 <body>
 
 
-<header>
-
-<img src="logo.png" class="logo">
-
-<h1>🎧 Sedatur Music Hub</h1>
-
-<p>Music Center Sedatur Rawamangun</p>
-
-</header>
-
-
-
-
-<div class="container">
-
-
 <div class="player">
 
 
-<img src="logo.png" id="cover" class="cover">
+<img id="cover" class="logo" src="logo.png">
 
 
-<h2 id="title">
-Pilih Lagu
-</h2>
+<h1 id="title">
+Loading...
+</h1>
 
 
 <p id="artist">
@@ -407,134 +138,51 @@ Sedatur Music
 <audio id="audio" controls></audio>
 
 
-</div>
 
+<div>
 
+<button onclick="prev()">⏮</button>
 
-<div class="search">
-
-<input 
-id="search"
-placeholder="Cari lagu atau artis...">
-
-</div>
-
-
-
-<div class="playlist" id="playlist">
-
-Memuat playlist...
+<button onclick="next()">⏭</button>
 
 </div>
 
 
 
 </div>
-
-
-
-
-
-<!-- MINI PLAYER -->
-
-<div class="mini-player">
-
-
-<button onclick="prevSong()">
-⏮
-</button>
-
-
-<button onclick="togglePlay()">
-▶️
-</button>
-
-
-<button onclick="nextSong()">
-⏭
-</button>
-
-
-
-<div class="mini-info">
-
-<div id="miniTitle">
-Sedatur Music
-</div>
-
-
-<div id="miniArtist">
--
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-
-<footer>
-
-© 2026 Sedatur Music Hub
-
-</footer>
-
 
 
 
 <script>
 
-let songs = [];
-let current = 0;
+
+let playlist=[];
+
+let index=0;
 
 
-const audio = document.getElementById("audio");
+const audio=document.getElementById("audio");
 
-const title = document.getElementById("title");
-const artist = document.getElementById("artist");
-const cover = document.getElementById("cover");
+const title=document.getElementById("title");
 
-const playlist = document.getElementById("playlist");
+const artist=document.getElementById("artist");
 
-const miniTitle = document.getElementById("miniTitle");
-const miniArtist = document.getElementById("miniArtist");
+const cover=document.getElementById("cover");
 
 
 
 
-// LOAD PLAYLIST.JSON
+// LOAD JSON
 
-fetch("playlist.json?v=1")
+fetch("playlist.json")
 
-.then(res => res.json())
+.then(res=>res.json())
 
-.then(data => {
+.then(data=>{
 
-songs = data;
+playlist=data;
 
-renderPlaylist(songs);
-
-
-// buka lagu terakhir
-
-let last = localStorage.getItem("lastSong");
-
-if(last !== null){
-
-loadSong(Number(last), false);
-
-}
-
-
-})
-
-.catch(()=>{
-
-playlist.innerHTML =
-"Playlist gagal dimuat";
+loadSong();
 
 });
 
@@ -542,57 +190,142 @@ playlist.innerHTML =
 
 
 
-// TAMPILKAN PLAYLIST
-
-function renderPlaylist(data){
+function loadSong(){
 
 
-playlist.innerHTML="";
+let song=playlist[index];
 
 
-data.forEach(song=>{
+audio.src=song.file;
 
 
-let index = songs.indexOf(song);
+title.innerHTML=song.title;
 
 
-let item = document.createElement("div");
+artist.innerHTML=song.artist;
 
 
-item.className="song";
+cover.src=song.cover;
 
 
-item.innerHTML = `
-
-<img src="${song.cover}">
-
-<div class="song-info">
-
-<div class="song-title">
-${song.title}
-</div>
+setMedia();
 
 
-<div class="song-artist">
-${song.artist}
-</div>
-
-
-</div>
-
-`;
+}
 
 
 
-item.onclick = ()=>{
 
-loadSong(index,true);
+
+
+function next(){
+
+
+index++;
+
+
+if(index>=playlist.length){
+
+index=0;
+
+}
+
+
+loadSong();
+
+audio.play();
+
+
+}
+
+
+
+
+function prev(){
+
+
+index--;
+
+
+if(index<0){
+
+index=playlist.length-1;
+
+}
+
+
+loadSong();
+
+audio.play();
+
+
+}
+
+
+
+audio.onended=function(){
+
+next();
 
 };
 
 
-playlist.appendChild(item);
 
+
+
+// ==========================
+// BACKGROUND CONTROL
+// ==========================
+
+
+function setMedia(){
+
+
+if("mediaSession" in navigator){
+
+
+navigator.mediaSession.metadata = new MediaMetadata({
+
+title:playlist[index].title,
+
+artist:playlist[index].artist,
+
+album:"Sedatur Music Hub",
+
+artwork:[
+
+{
+
+src:playlist[index].cover,
+
+sizes:"512x512",
+
+type:"image/png"
+
+}
+
+]
+
+});
+
+
+
+
+
+navigator.mediaSession.setActionHandler(
+"nexttrack",
+()=>{
+
+next();
+
+});
+
+
+navigator.mediaSession.setActionHandler(
+"previoustrack",
+()=>{
+
+prev();
 
 });
 
@@ -600,124 +333,9 @@ playlist.appendChild(item);
 }
 
 
-
-
-
-// PUTAR LAGU
-
-function loadSong(index, play = true){
-
-
-current = index;
-
-
-let song = songs[index];
-
-
-audio.src = song.file;
-
-
-title.innerHTML = song.title;
-
-artist.innerHTML = song.artist;
-
-
-cover.src = song.cover;
-
-
-
-miniTitle.innerHTML = song.title;
-
-miniArtist.innerHTML = song.artist;
-
-
-
-localStorage.setItem(
-"lastSong",
-index
-);
-
-
-
-updateMediaSession(song);
-
-
-
-if(play){
-
-audio.play();
-
 }
 
 
-}
-
-
-
-
-
-// NEXT
-
-function nextSong(){
-
-
-current++;
-
-
-if(current >= songs.length){
-
-current = 0;
-
-}
-
-
-loadSong(current,true);
-
-
-}
-
-
-
-
-
-// PREVIOUS
-
-function prevSong(){
-
-
-current--;
-
-
-if(current < 0){
-
-current = songs.length - 1;
-
-}
-
-
-loadSong(current,true);
-
-
-}
-
-
-
-
-
-// PLAY PAUSE
-
-function togglePlay(){
-
-
-if(audio.paused){
-
-audio.play();
-
-}
-
-else{
-
-audio.pause();
 
 </script>
 
