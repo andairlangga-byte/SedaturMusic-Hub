@@ -1,1112 +1,200 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Sedatur Music Hub</title>
 
 <style>
-
 *{
+margin:0;
+padding:0;
 box-sizing:border-box;
-font-family:"Segoe UI",Arial,sans-serif;
+font-family:Arial,sans-serif;
 }
-
 
 body{
-
-margin:0;
-min-height:100vh;
-
-background:
-linear-gradient(135deg,#041b0d,#14532d,#052e16);
-
-color:white;
-
-padding:20px;
-
+background:#0f172a;
+color:#fff;
 display:flex;
 justify-content:center;
-
+align-items:center;
+height:100vh;
 }
-
-
-
-.container{
-
-width:100%;
-max-width:450px;
-
-}
-
-
-
-.header{
-
-text-align:center;
-
-margin-bottom:20px;
-
-}
-
-
-.header h1{
-
-margin:0;
-
-font-size:30px;
-
-color:#d4af37;
-
-}
-
-
-.header p{
-
-margin:8px 0;
-
-color:#cbd5e1;
-
-font-size:14px;
-
-}
-
-
-
-
 
 .player{
-
-background:#ffffff12;
-
-border:1px solid #ffffff22;
-
-border-radius:30px;
-
+width:340px;
+background:#1e293b;
 padding:25px;
-
+border-radius:20px;
 text-align:center;
-
-box-shadow:0 15px 40px #0005;
-
+box-shadow:0 10px 30px rgba(0,0,0,.4);
 }
 
-
-
-
-.cover{
-
-width:230px;
-
-height:230px;
-
-border-radius:25px;
-
+.player img{
+width:180px;
+height:180px;
+border-radius:15px;
 object-fit:cover;
-
-box-shadow:0 15px 30px #0006;
-
+margin-bottom:15px;
 }
 
-
-
-
-.title{
-
-font-size:25px;
-
-font-weight:700;
-
-margin-top:20px;
-
+h2{
+font-size:22px;
+margin-bottom:5px;
 }
 
-
-
-.artist{
-
-color:#cbd5e1;
-
-margin-top:5px;
-
+p{
+color:#94a3b8;
+margin-bottom:20px;
 }
-
-
-
-
-.progress-area{
-
-margin-top:20px;
-
-}
-
-
-
-#progress{
-
-width:100%;
-
-accent-color:#d4af37;
-
-}
-
-
-
-.time{
-
-display:flex;
-
-justify-content:space-between;
-
-font-size:12px;
-
-color:#cbd5e1;
-
-}
-
-
-
-
-.controls{
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-gap:12px;
-
-margin-top:20px;
-
-}
-
-
 
 button{
-
+padding:12px 20px;
+margin:5px;
 border:none;
-
-border-radius:50%;
-
-width:55px;
-
-height:55px;
-
-background:#d4af37;
-
-font-size:20px;
-
-font-weight:bold;
-
-}
-
-
-
-button:active{
-
-transform:scale(.9);
-
-}
-
-
-
-.mode{
-
-margin-top:15px;
-
-}
-
-
-
-.mode button{
-
-width:auto;
-
-height:auto;
-
-border-radius:20px;
-
-padding:8px 15px;
-
-font-size:13px;
-
-}
-
-
-
-
-.search{
-
-margin:20px 0;
-
-}
-
-
-
-.search input{
-
-width:100%;
-
-padding:14px;
-
-border-radius:20px;
-
-border:none;
-
-outline:none;
-
-font-size:15px;
-
-}
-
-
-
-
-
-.playlist{
-
-background:#ffffff10;
-
-border-radius:20px;
-
-padding:10px;
-
-}
-
-
-
-.song{
-
-display:flex;
-
-align-items:center;
-
-gap:12px;
-
-padding:12px;
-
-border-radius:15px;
-
-cursor:pointer;
-
-}
-
-
-
-.song:hover{
-
-background:#ffffff15;
-
-}
-
-
-
-.song.active{
-
-background:#d4af3725;
-
-}
-
-
-
-.song img{
-
-width:45px;
-
-height:45px;
-
 border-radius:10px;
-
-object-fit:cover;
-
+cursor:pointer;
+font-size:18px;
 }
 
-
-
-.song-info{
-
-flex:1;
-
+#play{
+background:#22c55e;
+color:white;
 }
 
+#prev,#next{
+background:#334155;
+color:white;
+}
 
-
-.song-title{
-
-font-size:14px;
-
+.home{
+position:fixed;
+top:15px;
+left:15px;
+background:#2563eb;
+color:white;
+text-decoration:none;
+padding:10px 15px;
+border-radius:12px;
 font-weight:bold;
-
 }
 
-
-
-.song-artist{
-
-font-size:12px;
-
-color:#cbd5e1;
-
+.home:hover{
+opacity:.9;
 }
-
-
-
-
-.status{
-
-text-align:center;
-
-margin-top:15px;
-
-font-size:12px;
-
-color:#94a3b8;
-
-}
-
-
-
 </style>
 
 </head>
-
-
 <body>
 
-
-
-<div class="container">
-
-
-
-<div class="header">
-
-<h1>🚆 Sedatur Music Hub</h1>
-
-<p>Premium Community Music Player</p>
-
-</div>
-
-
-
-
+<a class="home"
+href="https://sedatur.my.id"
+target="_blank"
+rel="noopener">
+🏠 Home
+</a>
 
 <div class="player">
 
+<img id="cover" src="logo.png">
 
+<h2 id="title">Sedatur Music Hub</h2>
 
-<img id="cover" class="cover" src="logo.png">
-
-
-
-<div id="title" class="title">
-Memuat Lagu...
-</div>
-
-
-
-<div id="artist" class="artist">
-Sedatur
-</div>
-
-
-
-
+<p id="artist">Loading...</p>
 
 <audio id="audio"></audio>
 
+<div>
 
+<button id="prev">⏮</button>
 
+<button id="play">▶</button>
 
-<div class="progress-area">
-
-<input type="range" id="progress" value="0">
-
-
-<div class="time">
-
-<span id="currentTime">
-0:00
-</span>
-
-
-<span id="duration">
-0:00
-</span>
-
+<button id="next">⏭</button>
 
 </div>
 
-
 </div>
 
-
-
-
-
-<div class="controls">
-
-
-<button onclick="prev()">
-⏮
-</button>
-
-
-<button onclick="playPause()" id="playBtn">
-▶️
-</button>
-
-
-<button onclick="next()">
-⏭
-</button>
-
-
-</div>
-
-
-
-
-<div class="mode">
-
-<button onclick="toggleShuffle()" id="shuffleBtn">
-🔀 Off
-</button>
-
-
-<button onclick="toggleRepeat()" id="repeatBtn">
-🔁 Off
-</button>
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-<div class="search">
-
-<input id="search"
-placeholder="Cari lagu..."
-oninput="searchSong()">
-
-</div>
-
-
-
-
-
-<div id="playlist" class="playlist">
-
-</div>
-
-
-
-
-<div id="status" class="status">
-
-Memuat playlist...
-
-</div>
-
-
-
-</div>
-
-  <script>
+<script>
 
 let playlist=[];
-
 let index=0;
-
-let shuffle=false;
-
-let repeat=false;
-
 
 const audio=document.getElementById("audio");
 
-const cover=document.getElementById("cover");
-
-const title=document.getElementById("title");
-
-const artist=document.getElementById("artist");
-
-const playBtn=document.getElementById("playBtn");
-
-const progress=document.getElementById("progress");
-
-const currentTime=document.getElementById("currentTime");
-
-const duration=document.getElementById("duration");
-
-const playlistBox=document.getElementById("playlist");
-
-const status=document.getElementById("status");
-
-
-
-// ======================
-// LOAD PLAYLIST JSON
-// ======================
-
-
 fetch("playlist.json")
-
-.then(res=>{
-
-if(!res.ok){
-
-throw Error("playlist.json tidak ditemukan");
-
-}
-
-return res.json();
-
-})
-
-
+.then(r=>r.json())
 .then(data=>{
-
 playlist=data;
-
-renderPlaylist();
-
-loadSong();
-
-status.innerHTML="Playlist aktif";
-
-})
-
-
-.catch(err=>{
-
-status.innerHTML=err.message;
-
+loadSong(0);
 });
 
+function loadSong(i){
 
+index=i;
 
+document.getElementById("title").textContent=playlist[i].title;
 
+document.getElementById("artist").textContent=playlist[i].artist;
 
-// ======================
-// LOAD SONG
-// ======================
+document.getElementById("cover").src=playlist[i].cover;
 
-
-function loadSong(){
-
-
-let song=playlist[index];
-
-
-audio.src=song.file;
-
-
-cover.src="logo.png";
-
-
-title.innerHTML=song.title;
-
-
-artist.innerHTML=song.artist;
-
-
-updateActive();
-
-
-updateMedia();
-
+audio.src=playlist[i].file;
 
 }
 
-
-
-
-
-// ======================
-// PLAY PAUSE
-// ======================
-
-
-function playPause(){
-
+play.onclick=()=>{
 
 if(audio.paused){
 
 audio.play();
 
-playBtn.innerHTML="⏸";
+play.innerHTML="⏸";
 
 }else{
 
 audio.pause();
 
-playBtn.innerHTML="▶️";
+play.innerHTML="▶";
 
 }
 
-
 }
 
-
-
-
-
-audio.onplay=()=>{
-
-playBtn.innerHTML="⏸";
-
-};
-
-
-audio.onpause=()=>{
-
-playBtn.innerHTML="▶️";
-
-};
-
-
-
-
-
-// ======================
-// NEXT PREVIOUS
-// ======================
-
-
-function next(){
-
-
-if(shuffle){
-
-index=Math.floor(Math.random()*playlist.length);
-
-}else{
-
+next.onclick=()=>{
 
 index++;
 
+if(index>=playlist.length) index=0;
 
-if(index>=playlist.length){
-
-index=0;
-
-}
-
-}
-
-
-loadSong();
+loadSong(index);
 
 audio.play();
 
+play.innerHTML="⏸";
 
 }
 
-
-
-
-function prev(){
-
+prev.onclick=()=>{
 
 index--;
 
+if(index<0) index=playlist.length-1;
 
-if(index<0){
-
-index=playlist.length-1;
-
-}
-
-
-loadSong();
+loadSong(index);
 
 audio.play();
 
+play.innerHTML="⏸";
 
 }
 
-
-
-
-audio.onended=()=>{
-
-
-if(repeat){
-
-audio.play();
-
-}else{
-
-next();
-
-}
-
-
-};
-
-
-
-
-
-// ======================
-// SHUFFLE REPEAT
-// ======================
-
-
-function toggleShuffle(){
-
-
-shuffle=!shuffle;
-
-
-document.getElementById("shuffleBtn").innerHTML=
-
-shuffle ? "🔀 On":"🔀 Off";
-
-
-}
-
-
-
-
-function toggleRepeat(){
-
-
-repeat=!repeat;
-
-
-document.getElementById("repeatBtn").innerHTML=
-
-repeat ? "🔁 On":"🔁 Off";
-
-
-}
-
-
-
-
-
-// ======================
-// PROGRESS
-// ======================
-
-
-audio.ontimeupdate=function(){
-
-
-if(audio.duration){
-
-
-progress.value=
-
-(audio.currentTime/audio.duration)*100;
-
-
-
-currentTime.innerHTML=
-
-formatTime(audio.currentTime);
-
-
-
-duration.innerHTML=
-
-formatTime(audio.duration);
-
-
-
-}
-
-};
-
-
-
-progress.oninput=function(){
-
-
-audio.currentTime=
-
-(progress.value/100)*audio.duration;
-
-
-};
-
-
-
-function formatTime(sec){
-
-
-if(isNaN(sec)) return "0:00";
-
-
-let m=Math.floor(sec/60);
-
-
-let s=Math.floor(sec%60);
-
-
-if(s<10) s="0"+s;
-
-
-return m+":"+s;
-
-
-}
-
-
-
-
-
-// ======================
-// PLAYLIST DISPLAY
-// ======================
-
-
-function renderPlaylist(){
-
-
-playlistBox.innerHTML="";
-
-
-playlist.forEach((song,i)=>{
-
-
-let div=document.createElement("div");
-
-
-div.className="song";
-
-
-div.innerHTML=`
-
-<img src="logo.png">
-
-
-<div class="song-info">
-
-<div class="song-title">
-
-${song.title}
-
-</div>
-
-
-<div class="song-artist">
-
-${song.artist}
-
-</div>
-
-
-</div>
-
-`;
-
-
-
-div.onclick=()=>{
-
-
-index=i;
-
-
-loadSong();
-
-audio.play();
-
-
-};
-
-
-playlistBox.appendChild(div);
-
-
-
-});
-
-
-}
-
-
-
-
-
-function updateActive(){
-
-
-let songs=document.querySelectorAll(".song");
-
-
-songs.forEach((el,i)=>{
-
-
-if(i===index){
-
-el.classList.add("active");
-
-}else{
-
-el.classList.remove("active");
-
-}
-
-
-});
-
-
-}
-
-
-
-
-
-// ======================
-// SEARCH
-// ======================
-
-
-function searchSong(){
-
-
-let keyword=
-
-document.getElementById("search").value.toLowerCase();
-
-
-let songs=document.querySelectorAll(".song");
-
-
-songs.forEach((song,i)=>{
-
-
-let text=
-
-playlist[i].title.toLowerCase()+" "+
-
-playlist[i].artist.toLowerCase();
-
-
-
-if(text.includes(keyword)){
-
-song.style.display="flex";
-
-}else{
-
-song.style.display="none";
-
-}
-
-
-
-});
-
-
-}
-
-
-
-
-
-// ======================
-// MEDIA SESSION BACKGROUND
-// ======================
-
-
-function updateMedia(){
-
-
-if(!("mediaSession" in navigator)) return;
-
-
-
-navigator.mediaSession.metadata=
-
-new MediaMetadata({
-
-title:playlist[index].title,
-
-artist:playlist[index].artist,
-
-album:"Sedatur Music Hub",
-
-artwork:[
-
-{
-
-src:"logo.png",
-
-sizes:"512x512",
-
-type:"image/png"
-
-}
-
-]
-
-});
-
-
-
-
-navigator.mediaSession.setActionHandler(
-
-"nexttrack",
-
-()=>next()
-
-);
-
-
-
-navigator.mediaSession.setActionHandler(
-
-"previoustrack",
-
-()=>prev()
-
-);
-
-
-
-navigator.mediaSession.setActionHandler(
-
-"play",
-
-()=>audio.play()
-
-);
-
-
-
-navigator.mediaSession.setActionHandler(
-
-"pause",
-
-()=>audio.pause()
-
-);
-
-
-
-}
-
-
+audio.onended=()=>next.click();
 
 </script>
 
-
 </body>
-
 </html>
-  
