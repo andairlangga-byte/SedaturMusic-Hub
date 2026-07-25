@@ -4,7 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Sedatur Music Hub</title>
 
@@ -21,14 +21,14 @@ margin:0;
 min-height:100vh;
 
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
+
+padding:20px;
 
 background:#0f172a;
 
 color:white;
-
-padding:20px;
 
 }
 
@@ -36,7 +36,7 @@ padding:20px;
 .player{
 
 width:100%;
-max-width:400px;
+max-width:420px;
 
 background:#1e293b;
 
@@ -54,29 +54,27 @@ text-align:center;
 width:220px;
 height:220px;
 
-border-radius:20px;
-
 object-fit:cover;
+
+border-radius:20px;
 
 }
 
 
-
 h1{
 
-font-size:25px;
+font-size:24px;
 
 margin:20px 0 5px;
 
 }
 
 
-#artist{
+.artist{
 
 color:#94a3b8;
 
 }
-
 
 
 audio{
@@ -91,17 +89,17 @@ margin-top:20px;
 
 button{
 
-border:0;
+border:none;
 
-background:#facc15;
+padding:12px 18px;
 
-padding:12px 20px;
-
-margin:15px 5px 0;
+margin:10px 5px;
 
 border-radius:30px;
 
-font-size:20px;
+font-size:18px;
+
+background:#facc15;
 
 cursor:pointer;
 
@@ -111,11 +109,12 @@ cursor:pointer;
 
 </style>
 
-
 </head>
 
 
+
 <body>
+
 
 
 <div class="player">
@@ -125,12 +124,12 @@ cursor:pointer;
 
 
 <h1 id="title">
-Loading...
+Memuat Lagu...
 </h1>
 
 
-<p id="artist">
-Sedatur Music
+<p id="artist" class="artist">
+Sedatur Music Hub
 </p>
 
 
@@ -138,18 +137,28 @@ Sedatur Music
 <audio id="audio" controls></audio>
 
 
-
 <div>
 
-<button onclick="prev()">⏮</button>
+<button onclick="prev()">
+⏮
+</button>
 
-<button onclick="next()">⏭</button>
+
+<button onclick="playPause()">
+▶️
+</button>
+
+
+<button onclick="next()">
+⏭
+</button>
+
 
 </div>
 
 
-
 </div>
+
 
 
 
@@ -172,17 +181,23 @@ const cover=document.getElementById("cover");
 
 
 
-// LOAD JSON
+// Ambil playlist
 
 fetch("playlist.json")
 
-.then(res=>res.json())
+.then(response=>response.json())
 
 .then(data=>{
 
 playlist=data;
 
 loadSong();
+
+})
+
+.catch(()=>{
+
+title.innerHTML="Playlist Error";
 
 });
 
@@ -193,7 +208,7 @@ loadSong();
 function loadSong(){
 
 
-let song=playlist[index];
+const song=playlist[index];
 
 
 audio.src=song.file;
@@ -208,11 +223,30 @@ artist.innerHTML=song.artist;
 cover.src=song.cover;
 
 
-setMedia();
+updateMedia();
 
 
 }
 
+
+
+
+
+function playPause(){
+
+
+if(audio.paused){
+
+audio.play();
+
+}else{
+
+audio.pause();
+
+}
+
+
+}
 
 
 
@@ -263,28 +297,32 @@ audio.play();
 
 
 
-audio.onended=function(){
+
+
+audio.addEventListener("ended",()=>{
 
 next();
 
-};
+});
 
 
 
 
 
-// ==========================
-// BACKGROUND CONTROL
-// ==========================
 
 
-function setMedia(){
+// MEDIA SESSION BACKGROUND
 
 
-if("mediaSession" in navigator){
+function updateMedia(){
 
 
-navigator.mediaSession.metadata = new MediaMetadata({
+if(!("mediaSession" in navigator)) return;
+
+
+
+navigator.mediaSession.metadata =
+new MediaMetadata({
 
 title:playlist[index].title,
 
@@ -310,15 +348,15 @@ type:"image/png"
 
 
 
-
-
 navigator.mediaSession.setActionHandler(
 "nexttrack",
 ()=>{
 
 next();
 
-});
+}
+);
+
 
 
 navigator.mediaSession.setActionHandler(
@@ -327,10 +365,31 @@ navigator.mediaSession.setActionHandler(
 
 prev();
 
-});
+}
+);
 
+
+
+navigator.mediaSession.setActionHandler(
+"play",
+()=>{
+
+audio.play();
 
 }
+);
+
+
+
+navigator.mediaSession.setActionHandler(
+"pause",
+()=>{
+
+audio.pause();
+
+}
+);
+
 
 
 }
