@@ -1,37 +1,120 @@
-const CACHE="sedatur-v1";
+const CACHE_NAME = "sedatur-music-v4";
 
-const files=[
+
+const CACHE_FILES = [
+
 "./",
 "./index.html",
 "./playlist.json",
-"./logo.png"
+"./manifest.json",
+"./logo.png",
+
+"./dunia-yang-nanti.mp3",
+"./ini-abadi.mp3",
+"./shape-of-my-heart.mp3"
+
 ];
 
 
+
+// INSTALL
+
 self.addEventListener(
 "install",
-e=>{
 
-e.waitUntil(
+event=>{
 
-caches.open(CACHE)
-.then(cache=>cache.addAll(files))
+
+event.waitUntil(
+
+caches.open(CACHE_NAME)
+
+.then(cache=>{
+
+return cache.addAll(CACHE_FILES);
+
+})
 
 );
 
-});
+
+}
+
+);
 
 
+
+
+// UPDATE CACHE
+
+self.addEventListener(
+"activate",
+
+event=>{
+
+
+event.waitUntil(
+
+caches.keys()
+
+.then(keys=>{
+
+
+return Promise.all(
+
+keys.map(key=>{
+
+
+if(key !== CACHE_NAME){
+
+return caches.delete(key);
+
+}
+
+
+})
+
+);
+
+
+})
+
+
+);
+
+
+}
+
+);
+
+
+
+
+// OFFLINE MODE
 
 self.addEventListener(
 "fetch",
-e=>{
 
-e.respondWith(
+event=>{
 
-caches.match(e.request)
-.then(res=>res || fetch(e.request))
+
+event.respondWith(
+
+
+caches.match(event.request)
+
+.then(response=>{
+
+
+return response || fetch(event.request);
+
+
+})
+
 
 );
 
-});
+
+}
+
+);
