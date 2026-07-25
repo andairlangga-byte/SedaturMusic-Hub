@@ -7,6 +7,11 @@
 
 <title>Sedatur Music Hub</title>
 
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#7c3aed">
+
+
 <style>
 
 *{
@@ -15,66 +20,109 @@ font-family:Arial, sans-serif;
 }
 
 body{
+
 margin:0;
-background:#020617;
+background:
+radial-gradient(circle at top,#7c3aed55,transparent 40%),
+#020617;
+
 color:white;
+
 }
 
 
 header{
+
 padding:30px 20px;
+
 text-align:center;
-background:linear-gradient(135deg,#7c3aed,#2563eb);
+
 }
 
 
 .logo{
-width:100px;
-height:100px;
+
+width:110px;
+height:110px;
+
 border-radius:50%;
+
 object-fit:cover;
-border:3px solid white;
+
+box-shadow:0 0 40px #7c3aed;
+
 }
+
 
 
 h1{
+
+font-size:32px;
+
 margin:15px 0 5px;
+
 }
+
+
+
+.subtitle{
+
+color:#94a3b8;
+
+}
+
 
 
 .container{
+
 max-width:700px;
+
 margin:auto;
+
 padding:20px;
+
 }
+
 
 
 .player{
 
-background:#111827;
-border-radius:25px;
+background:#ffffff10;
+
+backdrop-filter:blur(20px);
+
+border:1px solid #ffffff20;
+
+border-radius:30px;
+
 padding:25px;
+
 text-align:center;
 
 }
 
 
+
 .cover{
 
-width:230px;
-height:230px;
+width:250px;
+
+height:250px;
+
 border-radius:25px;
+
 object-fit:cover;
 
 }
 
 
+
 #title{
 
-font-size:24px;
 margin-top:20px;
 
 }
+
 
 
 #artist{
@@ -84,85 +132,111 @@ color:#94a3b8;
 }
 
 
+
 audio{
 
 width:100%;
+
 margin-top:20px;
 
 }
 
 
-.search{
-
-margin:20px 0;
-
-}
-
 
 .search input{
 
 width:100%;
+
 padding:15px;
-border-radius:15px;
+
+margin:20px 0;
+
+border-radius:20px;
+
 border:none;
+
 outline:none;
-
-}
-
-
-.song{
-
-display:flex;
-align-items:center;
-gap:15px;
-
-background:#1e293b;
-
-padding:15px;
-
-border-radius:18px;
-
-margin-bottom:10px;
-
-cursor:pointer;
-
-}
-
-
-.song:hover{
-
-background:#334155;
-
-}
-
-
-.song img{
-
-width:60px;
-height:60px;
-border-radius:15px;
-object-fit:cover;
-
-}
-
-
-.song b{
 
 font-size:16px;
 
 }
 
 
-.song small{
+
+.song{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+background:#ffffff10;
+
+padding:15px;
+
+border-radius:20px;
+
+margin-bottom:12px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+
+.song:hover{
+
+background:#7c3aed55;
+
+transform:scale(1.02);
+
+}
+
+
+
+.song img{
+
+width:60px;
+
+height:60px;
+
+border-radius:15px;
+
+object-fit:cover;
+
+}
+
+
+
+.artist{
 
 color:#94a3b8;
+
+font-size:14px;
+
+}
+
+
+
+footer{
+
+text-align:center;
+
+padding:30px;
+
+color:#64748b;
 
 }
 
 
 </style>
 
+
 </head>
+
 
 
 <body>
@@ -172,9 +246,13 @@ color:#94a3b8;
 
 <img src="logo.png" class="logo">
 
-<h1>🎧 Sedatur Music Hub</h1>
+<h1>
+🎧 Sedatur Music Hub
+</h1>
 
-<p>Music Center Sedatur Rawamangun</p>
+<p class="subtitle">
+Music Center Sedatur Rawamangun
+</p>
 
 </header>
 
@@ -219,13 +297,20 @@ oninput="searchSong()">
 
 <div id="playlist">
 
-Memuat lagu...
+Memuat playlist...
+
+</div>
+
 
 </div>
 
 
 
-</div>
+<footer>
+
+© 2026 Sedatur Music Hub
+
+</footer>
 
 
 
@@ -251,11 +336,11 @@ const playlist=document.getElementById("playlist");
 
 
 
-// Load playlist stabil
+// Load playlist
 
 fetch("playlist.json?v=1")
 
-.then(response=>response.json())
+.then(res=>res.json())
 
 .then(data=>{
 
@@ -266,23 +351,6 @@ songs=data;
 renderPlaylist(songs);
 
 
-// Ambil lagu terakhir
-
-let saved=localStorage.getItem("lastSong");
-
-
-if(saved!==null){
-
-playSong(Number(saved),false);
-
-}
-
-
-})
-
-.catch(error=>{
-
-playlist.innerHTML="Playlist gagal dimuat";
 
 });
 
@@ -302,13 +370,13 @@ data.forEach(song=>{
 let index=songs.indexOf(song);
 
 
-let div=document.createElement("div");
+let item=document.createElement("div");
 
 
-div.className="song";
+item.className="song";
 
 
-div.innerHTML=`
+item.innerHTML=`
 
 <img src="${song.cover}">
 
@@ -318,21 +386,22 @@ div.innerHTML=`
 
 <br>
 
-<small>${song.artist}</small>
+<span class="artist">
+${song.artist}
+</span>
 
 </div>
 
 `;
 
 
-div.onclick=function(){
 
-playSong(index,true);
-
-};
+item.onclick=()=>playSong(index);
 
 
-playlist.appendChild(div);
+
+playlist.appendChild(item);
+
 
 
 });
@@ -343,8 +412,7 @@ playlist.appendChild(div);
 
 
 
-
-function playSong(index,auto){
+function playSong(index){
 
 
 current=index;
@@ -373,15 +441,10 @@ index
 
 
 
-if(auto){
-
 audio.play();
 
-}
-
 
 }
-
 
 
 
@@ -389,7 +452,7 @@ audio.play();
 function searchSong(){
 
 
-let key=document
+let keyword=document
 .getElementById("search")
 .value
 .toLowerCase();
@@ -398,13 +461,11 @@ let key=document
 
 let result=songs.filter(song=>
 
-
-song.title.toLowerCase().includes(key)
+song.title.toLowerCase().includes(keyword)
 
 ||
 
-song.artist.toLowerCase().includes(key)
-
+song.artist.toLowerCase().includes(keyword)
 
 );
 
@@ -413,7 +474,6 @@ renderPlaylist(result);
 
 
 }
-
 
 
 
@@ -431,14 +491,27 @@ current=0;
 }
 
 
-playSong(current,true);
+playSong(current);
 
 
 };
+
+
+
+
+// PWA
+
+if("serviceWorker" in navigator){
+
+navigator.serviceWorker.register("sw.js");
+
+}
+
 
 
 </script>
 
 
 </body>
+
 </html>
