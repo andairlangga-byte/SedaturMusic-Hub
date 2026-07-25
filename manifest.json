@@ -1,0 +1,17 @@
+{
+"name":"Sedatur Music Hub",
+"short_name":"Sedatur Music",
+"start_url":"./",
+"display":"standalone",
+"background_color":"#020617",
+"theme_color":"#7c3aed",
+
+"icons":[
+{
+"src":"logo.png",
+"sizes":"512x512",
+"type":"image/png"
+}
+]
+
+}
