@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 
 <meta charset="UTF-8">
@@ -16,12 +17,15 @@
 
 *{
 box-sizing:border-box;
-font-family:Arial, sans-serif;
+font-family:Arial,Helvetica,sans-serif;
 }
+
 
 body{
 
 margin:0;
+padding-bottom:100px;
+
 background:
 radial-gradient(circle at top,#7c3aed55,transparent 40%),
 #020617;
@@ -31,11 +35,14 @@ color:white;
 }
 
 
+
+/* HEADER */
+
 header{
 
-padding:30px 20px;
-
 text-align:center;
+
+padding:30px 20px;
 
 }
 
@@ -55,23 +62,24 @@ box-shadow:0 0 40px #7c3aed;
 
 
 
-h1{
-
-font-size:32px;
+header h1{
 
 margin:15px 0 5px;
+
+font-size:30px;
 
 }
 
 
-
-.subtitle{
+header p{
 
 color:#94a3b8;
 
 }
 
 
+
+/* CONTAINER */
 
 .container{
 
@@ -84,6 +92,8 @@ padding:20px;
 }
 
 
+
+/* MAIN PLAYER */
 
 .player{
 
@@ -105,13 +115,15 @@ text-align:center;
 
 .cover{
 
-width:250px;
+width:260px;
 
-height:250px;
+height:260px;
 
 border-radius:25px;
 
 object-fit:cover;
+
+box-shadow:0 20px 50px #000;
 
 }
 
@@ -119,7 +131,9 @@ object-fit:cover;
 
 #title{
 
-margin-top:20px;
+font-size:24px;
+
+margin:20px 0 5px;
 
 }
 
@@ -143,21 +157,39 @@ margin-top:20px;
 
 
 
+/* SEARCH */
+
+.search{
+
+margin-top:25px;
+
+}
+
+
+
 .search input{
 
 width:100%;
 
-padding:15px;
+padding:15px 20px;
 
-margin:20px 0;
-
-border-radius:20px;
+border-radius:30px;
 
 border:none;
 
 outline:none;
 
 font-size:16px;
+
+}
+
+
+
+/* PLAYLIST */
+
+.playlist{
+
+margin-top:20px;
 
 }
 
@@ -191,7 +223,7 @@ transition:.3s;
 
 background:#7c3aed55;
 
-transform:scale(1.02);
+transform:translateX(5px);
 
 }
 
@@ -199,9 +231,9 @@ transform:scale(1.02);
 
 .song img{
 
-width:60px;
+width:65px;
 
-height:60px;
+height:65px;
 
 border-radius:15px;
 
@@ -211,11 +243,112 @@ object-fit:cover;
 
 
 
-.artist{
+.song-info{
+
+flex:1;
+
+}
+
+
+
+.song-title{
+
+font-weight:bold;
+
+font-size:17px;
+
+}
+
+
+
+.song-artist{
 
 color:#94a3b8;
 
 font-size:14px;
+
+}
+
+
+
+
+/* MINI PLAYER */
+
+.mini-player{
+
+position:fixed;
+
+left:15px;
+
+right:15px;
+
+bottom:15px;
+
+background:#111827ee;
+
+backdrop-filter:blur(20px);
+
+border-radius:25px;
+
+padding:12px;
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+box-shadow:0 10px 30px #000;
+
+z-index:99;
+
+}
+
+
+
+.mini-player button{
+
+width:45px;
+
+height:45px;
+
+border:none;
+
+border-radius:50%;
+
+background:#7c3aed;
+
+color:white;
+
+font-size:18px;
+
+}
+
+
+
+.mini-info{
+
+flex:1;
+
+overflow:hidden;
+
+}
+
+
+
+#miniTitle{
+
+font-weight:bold;
+
+}
+
+
+
+#miniArtist{
+
+color:#94a3b8;
+
+font-size:13px;
 
 }
 
@@ -234,7 +367,6 @@ color:#64748b;
 
 </style>
 
-
 </head>
 
 
@@ -242,23 +374,22 @@ color:#64748b;
 <body>
 
 
+
 <header>
 
 <img src="logo.png" class="logo">
 
-<h1>
-🎧 Sedatur Music Hub
-</h1>
+<h1>🎧 Sedatur Music Hub</h1>
 
-<p class="subtitle">
-Music Center Sedatur Rawamangun
-</p>
+<p>Music Center Sedatur Rawamangun</p>
 
 </header>
 
 
 
+
 <div class="container">
+
 
 
 <div class="player">
@@ -280,7 +411,9 @@ Sedatur Music
 <audio id="audio" controls></audio>
 
 
+
 </div>
+
 
 
 
@@ -288,21 +421,64 @@ Sedatur Music
 
 <input 
 id="search"
-placeholder="Cari lagu..."
-oninput="searchSong()">
+placeholder="Cari lagu atau artis...">
 
 </div>
 
 
 
-<div id="playlist">
+
+<div class="playlist" id="playlist">
 
 Memuat playlist...
 
 </div>
 
 
+
 </div>
+
+
+
+
+
+<!-- MINI PLAYER -->
+
+<div class="mini-player">
+
+
+<button onclick="prevSong()">
+⏮
+</button>
+
+
+<button onclick="togglePlay()">
+▶️
+</button>
+
+
+<button onclick="nextSong()">
+⏭
+</button>
+
+
+
+<div class="mini-info">
+
+<div id="miniTitle">
+Sedatur Music
+</div>
+
+<div id="miniArtist">
+-
+</div>
+
+</div>
+
+
+</div>
+
+
 
 
 
@@ -314,49 +490,64 @@ Memuat playlist...
 
 
 
-
 <script>
 
-
-let songs=[];
-
-let current=0;
+let songs = [];
+let current = 0;
 
 
-const audio=document.getElementById("audio");
+const audio = document.getElementById("audio");
 
-const title=document.getElementById("title");
+const title = document.getElementById("title");
+const artist = document.getElementById("artist");
+const cover = document.getElementById("cover");
 
-const artist=document.getElementById("artist");
+const playlist = document.getElementById("playlist");
 
-const cover=document.getElementById("cover");
-
-const playlist=document.getElementById("playlist");
-
+const miniTitle = document.getElementById("miniTitle");
+const miniArtist = document.getElementById("miniArtist");
 
 
 
-// Load playlist
+
+// LOAD PLAYLIST
 
 fetch("playlist.json?v=1")
 
-.then(res=>res.json())
+.then(response => response.json())
 
-.then(data=>{
+.then(data => {
 
-
-songs=data;
-
+songs = data;
 
 renderPlaylist(songs);
 
 
+// buka lagu terakhir
+
+let last = localStorage.getItem("lastSong");
+
+if(last !== null){
+
+loadSong(Number(last), false);
+
+}
+
+
+})
+
+.catch(error=>{
+
+playlist.innerHTML =
+"Playlist gagal dimuat";
 
 });
 
 
 
 
+
+// TAMPILKAN LIST LAGU
 
 function renderPlaylist(data){
 
@@ -367,28 +558,31 @@ playlist.innerHTML="";
 data.forEach(song=>{
 
 
-let index=songs.indexOf(song);
+let index = songs.indexOf(song);
 
 
-let item=document.createElement("div");
+let item = document.createElement("div");
 
 
 item.className="song";
 
 
-item.innerHTML=`
+item.innerHTML = `
 
 <img src="${song.cover}">
 
-<div>
 
-<b>${song.title}</b>
+<div class="song-info">
 
-<br>
+<div class="song-title">
+${song.title}
+</div>
 
-<span class="artist">
+
+<div class="song-artist">
 ${song.artist}
-</span>
+</div>
+
 
 </div>
 
@@ -396,7 +590,11 @@ ${song.artist}
 
 
 
-item.onclick=()=>playSong(index);
+item.onclick = ()=>{
+
+loadSong(index,true);
+
+};
 
 
 
@@ -412,25 +610,33 @@ playlist.appendChild(item);
 
 
 
-function playSong(index){
+
+// LOAD LAGU
+
+function loadSong(index,play=true){
 
 
-current=index;
+current = index;
 
 
-let song=songs[index];
+let song = songs[index];
 
 
-audio.src=song.file;
+audio.src = song.file;
 
 
-title.innerHTML=song.title;
+title.innerHTML = song.title;
+
+artist.innerHTML = song.artist;
 
 
-artist.innerHTML=song.artist;
+cover.src = song.cover;
 
 
-cover.src=song.cover;
+
+miniTitle.innerHTML = song.title;
+
+miniArtist.innerHTML = song.artist;
 
 
 
@@ -441,36 +647,11 @@ index
 
 
 
+if(play){
+
 audio.play();
 
-
 }
-
-
-
-
-function searchSong(){
-
-
-let keyword=document
-.getElementById("search")
-.value
-.toLowerCase();
-
-
-
-let result=songs.filter(song=>
-
-song.title.toLowerCase().includes(keyword)
-
-||
-
-song.artist.toLowerCase().includes(keyword)
-
-);
-
-
-renderPlaylist(result);
 
 
 }
@@ -478,36 +659,155 @@ renderPlaylist(result);
 
 
 
-audio.onended=function(){
+
+// NEXT
+
+function nextSong(){
 
 
 current++;
 
 
-if(current>=songs.length){
+if(current >= songs.length){
 
-current=0;
+current = 0;
 
 }
 
 
-playSong(current);
+loadSong(current,true);
 
+
+}
+
+
+
+
+
+// PREVIOUS
+
+function prevSong(){
+
+
+current--;
+
+
+if(current < 0){
+
+current = songs.length-1;
+
+}
+
+
+loadSong(current,true);
+
+
+}
+
+
+
+
+
+// PLAY / PAUSE MINI PLAYER
+
+function togglePlay(){
+
+
+if(audio.paused){
+
+audio.play();
+
+}
+
+else{
+
+audio.pause();
+
+}
+
+
+}
+
+
+
+
+
+// AUTO NEXT
+
+audio.onended=function(){
+
+nextSong();
 
 };
 
 
 
 
-// PWA
+
+
+// SEARCH
+
+document
+.getElementById("search")
+.addEventListener(
+"input",
+function(){
+
+
+let keyword=this.value.toLowerCase();
+
+
+
+let result=songs.filter(song=>
+
+
+song.title
+.toLowerCase()
+.includes(keyword)
+
+
+||
+
+song.artist
+.toLowerCase()
+.includes(keyword)
+
+
+);
+
+
+
+renderPlaylist(result);
+
+
+
+});
+
+
+
+
+
+
+
+// PWA SERVICE WORKER
 
 if("serviceWorker" in navigator){
 
-navigator.serviceWorker.register("sw.js");
 
-}
+navigator.serviceWorker.register(
+"sw.js"
+)
+
+.then(()=>{
+
+console.log(
+"Sedatur PWA aktif"
+);
+
+});
 
 
+  }
 
 </script>
 
