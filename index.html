@@ -1,67 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sedatur Music</title>
+<title>Sedatur Music Hub</title>
 
 <style>
 
 *{
 box-sizing:border-box;
+font-family:Inter,Segoe UI,Arial,sans-serif;
 }
 
 body{
 margin:0;
 min-height:100vh;
-font-family:Arial,sans-serif;
 background:
-linear-gradient(135deg,#050505,#172554,#064e3b);
+radial-gradient(circle at top,#7c3aed55,transparent 40%),
+linear-gradient(180deg,#020617,#000);
 color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-.player{
-
-width:95%;
-max-width:430px;
-
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(20px);
-
-border-radius:30px;
-
-padding:25px;
-
-box-shadow:0 20px 60px #000;
-
 }
 
 
-.header{
-
+header{
+padding:30px 20px;
 display:flex;
-justify-content:space-between;
 align-items:center;
-
+gap:20px;
+max-width:1000px;
+margin:auto;
 }
 
 
 .logo{
-
-font-size:22px;
-font-weight:bold;
-
+width:80px;
+height:80px;
+border-radius:50%;
+object-fit:cover;
+box-shadow:0 0 40px #7c3aed;
 }
 
 
-.online{
+header h1{
+margin:0;
+font-size:32px;
+}
 
-color:#22c55e;
-font-size:12px;
+
+header p{
+margin:5px 0;
+color:#94a3b8;
+}
+
+
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+display:grid;
+grid-template-columns:350px 1fr;
+gap:25px;
+}
+
+
+
+.player{
+
+background:#ffffff10;
+backdrop-filter:blur(20px);
+border:1px solid #ffffff15;
+border-radius:30px;
+padding:25px;
+text-align:center;
+position:sticky;
+top:20px;
 
 }
 
@@ -71,185 +85,37 @@ font-size:12px;
 
 width:260px;
 height:260px;
-
-display:block;
-margin:25px auto;
-
 border-radius:25px;
-
 object-fit:cover;
 
-background:#222;
-
-box-shadow:0 15px 40px #000;
-
-}
-
-
-
-.rotate{
-
-animation:rotate 8s linear infinite;
-
-}
-
-
-@keyframes rotate{
-
-from{
-transform:rotate(0deg);
-}
-
-to{
-transform:rotate(360deg);
-}
+box-shadow:
+0 20px 50px #000;
 
 }
 
 
 
-.info{
-
-text-align:center;
-
-}
-
-
-.title{
+#title{
 
 font-size:24px;
-font-weight:bold;
-
-}
-
-
-.artist{
-
-color:#aaa;
-
-margin-top:5px;
+margin:20px 0 5px;
 
 }
 
 
 
-.equalizer{
+#artist{
 
-display:flex;
-justify-content:center;
-gap:5px;
-
-height:35px;
-
-margin:20px;
-
-}
-
-
-.bar{
-
-width:5px;
-height:10px;
-
-background:#22c55e;
-
-border-radius:10px;
+color:#a1a1aa;
 
 }
 
 
 
-.playing .bar{
-
-animation:eq .8s infinite alternate;
-
-}
-
-
-@keyframes eq{
-
-from{
-height:10px;
-}
-
-to{
-height:35px;
-}
-
-}
-
-
-
-input{
+audio{
 
 width:100%;
-
-accent-color:#22c55e;
-
-}
-
-
-
-.time{
-
-display:flex;
-justify-content:space-between;
-
-font-size:12px;
-
-color:#aaa;
-
-}
-
-
-
-.controls{
-
-display:flex;
-
-justify-content:center;
-
-gap:15px;
-
-margin:25px 0;
-
-}
-
-
-
-button{
-
-border:none;
-
-cursor:pointer;
-
-}
-
-
-.main{
-
-width:65px;
-height:65px;
-
-border-radius:50%;
-
-background:#22c55e;
-
-font-size:25px;
-
-}
-
-
-.side{
-
-width:45px;
-height:45px;
-
-border-radius:50%;
-
-background:#333;
-
-color:white;
+margin-top:20px;
 
 }
 
@@ -257,29 +123,23 @@ color:white;
 
 .search{
 
-margin-top:15px;
-
-padding:12px;
-
-border-radius:15px;
-
-border:none;
-
-background:#ffffff15;
-
-color:white;
+background:#ffffff12;
+border-radius:20px;
+padding:15px;
+margin-bottom:20px;
 
 }
 
 
 
-.playlist{
+.search input{
 
-margin-top:15px;
-
-max-height:200px;
-
-overflow:auto;
+width:100%;
+background:transparent;
+border:0;
+outline:none;
+color:white;
+font-size:16px;
 
 }
 
@@ -287,25 +147,115 @@ overflow:auto;
 
 .song{
 
-padding:12px;
+display:flex;
+align-items:center;
+gap:15px;
 
-border-radius:12px;
+padding:15px;
 
-background:#ffffff10;
+border-radius:20px;
 
-margin-bottom:5px;
+background:#ffffff08;
+
+margin-bottom:12px;
 
 cursor:pointer;
 
-}
-
-
-.active{
-
-background:#22c55e55;
+transition:.3s;
 
 }
 
+
+
+.song:hover{
+
+background:#7c3aed55;
+transform:translateX(8px);
+
+}
+
+
+
+.song img{
+
+width:65px;
+height:65px;
+border-radius:15px;
+object-fit:cover;
+
+}
+
+
+
+.song-title{
+
+font-size:17px;
+font-weight:600;
+
+}
+
+
+
+.song-artist{
+
+font-size:14px;
+color:#94a3b8;
+
+}
+
+
+
+.badge{
+
+display:inline-block;
+
+background:#22c55e;
+
+padding:6px 15px;
+
+border-radius:20px;
+
+font-size:13px;
+
+margin-top:10px;
+
+}
+
+
+
+@media(max-width:800px){
+
+.container{
+
+grid-template-columns:1fr;
+
+}
+
+
+.player{
+
+position:relative;
+
+}
+
+
+.cover{
+
+width:220px;
+height:220px;
+
+}
+
+}
+
+
+footer{
+
+text-align:center;
+padding:30px;
+color:#64748b;
+
+}
 
 </style>
 
@@ -315,459 +265,175 @@ background:#22c55e55;
 <body>
 
 
+<header>
+
+<img src="logo.png" class="logo">
+
+<div>
+
+<h1>
+🎧 Sedatur Music Hub
+</h1>
+
+<p>
+Official Music Center Sedatur Rawamangun
+</p>
+
+<span class="badge">
+● Online Music
+</span>
+
+</div>
+
+</header>
+
+
+
+<div class="container">
+
+
 <div class="player">
 
 
-<div class="header">
-
-<div class="logo">
-🎧 Sedatur Music
-</div>
-
-<div class="online">
-● Online
-</div>
-
-</div>
+<img src="logo.png" id="cover" class="cover">
 
 
-<img id="cover"
-class="cover"
-src="https://drive.google.com/thumbnail?id=1_t_SCuzlRMn8_Y_-WZS_ahzQgMKysbyY&sz=w1000">
+<h2 id="title">
+Pilih Lagu
+</h2>
 
 
+<p id="artist">
+Sedatur Music
+</p>
 
-<div class="info">
 
-<div id="title" class="title">
-Loading...
-</div>
+<audio id="audio" controls></audio>
 
-<div id="artist" class="artist">
-Sedatur
-</div>
 
 </div>
 
 
 
-<div id="eq" class="equalizer">
 
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
+<div>
+
+
+<div class="search">
+
+🔍
+
+<input 
+id="search"
+placeholder="Cari lagu..."
+onkeyup="searchSong()">
 
 </div>
 
 
 
-<audio id="audio"></audio>
+<div id="playlist">
 
+Memuat playlist...
 
-<input id="progress" type="range" value="0">
+</div>
 
-
-<div class="time">
-
-<span id="current">0:00</span>
-
-<span id="duration">0:00</span>
 
 </div>
 
 
 
-<div class="controls">
-
-<button onclick="shuffle()" class="side">
-🔀
-</button>
-
-<button onclick="prev()" class="side">
-⏮
-</button>
-
-<button onclick="playPause()" id="play" class="main">
-▶️
-</button>
-
-<button onclick="next()" class="side">
-⏭
-</button>
-
-<button onclick="repeat()" id="repeat" class="side">
-🔁
-</button>
-
 </div>
 
 
-<input id="volume"
-type="range"
-min="0"
-max="1"
-step="0.1"
-value="1">
 
 
-<input id="search"
-class="search"
-placeholder="🔎 Cari lagu...">
+<footer>
 
+© 2026 Sedatur Music Hub
 
-<div id="playlist" class="playlist"></div>
+</footer>
 
-
-</div>
 
 
 <script>
-  
-const songs=[
-
-{
-title:"Dunia Yang Nanti",
-artist:"Raim Laode",
-cover:"https://via.placeholder.com/500",
-file:"https://probable-tan-ruunsniv.edgeone.dev/Raim%20Laode%20-%20Dunia%20Yang%20Nanti%20(%20Lirik%20video%20).mp3"
-},
-
-{
-title:"Ini Abadi",
-artist:"Perunggu",
-cover:"https://via.placeholder.com/500",
-file:"https://probable-tan-ruunsniv.edgeone.dev/Perunggu%20-%20Ini%20Abadi%20(Video%20Lirik).mp3"
-},
-
-{
-title:"Shape of My Heart",
-artist:"Backstreet Boys",
-cover:"https://via.placeholder.com/500",
-file:"https://probable-tan-ruunsniv.edgeone.dev/Backstreet%20Boys%20-%20Shape%20Of%20My%20Heart%20(Official%20HD%20Video).mp3"
-}
-
-];
 
 
-let index=0;
-let isShuffle=false;
-let isRepeat=false;
+let songs=[];
+
+let current=0;
 
 
 const audio=document.getElementById("audio");
-const cover=document.getElementById("cover");
+
 const title=document.getElementById("title");
+
 const artist=document.getElementById("artist");
+
+const cover=document.getElementById("cover");
+
 const playlist=document.getElementById("playlist");
-const playBtn=document.getElementById("play");
-const progress=document.getElementById("progress");
-const volume=document.getElementById("volume");
-const search=document.getElementById("search");
-const eq=document.getElementById("eq");
 
 
 
-function loadSong(){
+fetch("playlist.json")
 
-let song=songs[index];
+.then(r=>r.json())
 
-audio.src=song.file;
+.then(data=>{
 
-title.innerHTML=song.title;
-artist.innerHTML=song.artist;
+songs=data;
 
-cover.src=song.cover;
-
-renderPlaylist();
-
-}
-
-
-
-function playPause(){
-
-if(audio.paused){
-
-audio.play()
-.then(()=>{
-
-playBtn.innerHTML="⏸";
-
-cover.classList.add("rotate");
-
-eq.classList.add("playing");
-
-})
-.catch(()=>{
-
-alert("Audio gagal diputar");
+render(songs);
 
 });
 
 
-}else{
 
 
-audio.pause();
 
-playBtn.innerHTML="▶️";
-
-cover.classList.remove("rotate");
-
-eq.classList.remove("playing");
-
-
-}
-
-}
-
-
-
-
-function next(){
-
-
-if(isShuffle){
-
-index=Math.floor(Math.random()*songs.length);
-
-
-}else{
-
-
-index++;
-
-
-if(index>=songs.length){
-
-index=0;
-
-}
-
-}
-
-
-loadSong();
-
-audio.play();
-
-
-}
-
-
-
-
-function prev(){
-
-index--;
-
-if(index<0){
-
-index=songs.length-1;
-
-}
-
-
-loadSong();
-
-audio.play();
-
-}
-
-
-
-
-function shuffle(){
-
-isShuffle=!isShuffle;
-
-alert(
-isShuffle?
-"Shuffle Aktif 🔀":
-"Shuffle Mati"
-);
-
-}
-
-
-
-
-function repeat(){
-
-isRepeat=!isRepeat;
-
-document.getElementById("repeat").innerHTML=
-
-isRepeat?
-"🔁✓":
-"🔁";
-
-
-}
-
-
-
-
-audio.addEventListener("ended",()=>{
-
-
-if(isRepeat){
-
-audio.play();
-
-
-}else{
-
-
-next();
-
-
-}
-
-
-});
-
-
-
-
-audio.addEventListener("timeupdate",()=>{
-
-
-let value=
-
-(audio.currentTime/audio.duration)*100;
-
-
-progress.value=value || 0;
-
-
-
-document.getElementById("current").innerHTML=
-formatTime(audio.currentTime);
-
-
-document.getElementById("duration").innerHTML=
-formatTime(audio.duration);
-
-
-
-});
-
-
-
-
-progress.oninput=function(){
-
-audio.currentTime=
-
-(this.value/100)*audio.duration;
-
-}
-
-
-
-
-volume.oninput=function(){
-
-audio.volume=this.value;
-
-}
-
-
-
-
-function formatTime(sec){
-
-if(isNaN(sec)){
-
-return "0:00";
-
-}
-
-
-let min=Math.floor(sec/60);
-
-let s=Math.floor(sec%60);
-
-
-if(s<10){
-
-s="0"+s;
-
-}
-
-
-return min+":"+s;
-
-
-}
-
-
-
-
-function renderPlaylist(keyword=""){
+function render(data){
 
 
 playlist.innerHTML="";
 
 
-songs.forEach((song,i)=>{
+data.forEach(song=>{
 
 
-if(
-
-!song.title.toLowerCase()
-.includes(keyword.toLowerCase())
-
-&&
-
-!song.artist.toLowerCase()
-.includes(keyword.toLowerCase())
-
-){
-
-return;
-
-}
+let index=songs.indexOf(song);
 
 
-
-let item=document.createElement("div");
-
-
-item.className="song";
+let div=document.createElement("div");
 
 
-if(i==index){
-
-item.classList.add("active");
-
-}
+div.className="song";
 
 
+div.innerHTML=`
 
-item.innerHTML=
+<img src="${song.cover}">
 
-"🎵 "+song.title+
-"<br><small>"+song.artist+"</small>";
+<div>
 
+<div class="song-title">
+${song.title}
+</div>
 
+<div class="song-artist">
+${song.artist}
+</div>
 
-item.onclick=function(){
+</div>
 
-index=i;
-
-loadSong();
-
-audio.play();
-
-
-};
-
+`;
 
 
-playlist.appendChild(item);
+div.onclick=()=>play(index);
+
+
+playlist.appendChild(div);
+
 
 
 });
@@ -777,15 +443,72 @@ playlist.appendChild(item);
 
 
 
-search.oninput=function(){
 
-renderPlaylist(this.value);
+function play(i){
+
+
+current=i;
+
+
+let s=songs[i];
+
+
+audio.src=s.file;
+
+title.innerHTML=s.title;
+
+artist.innerHTML=s.artist;
+
+cover.src=s.cover;
+
+
+audio.play();
+
+
+}
+
+
+
+
+function searchSong(){
+
+
+let key=document
+.getElementById("search")
+.value
+.toLowerCase();
+
+
+
+render(
+
+songs.filter(s=>
+
+s.title.toLowerCase().includes(key)
+
+||
+
+s.artist.toLowerCase().includes(key)
+
+)
+
+);
+
+
+}
+
+
+
+audio.onended=()=>{
+
+current++;
+
+if(current>=songs.length)
+current=0;
+
+play(current);
 
 };
-
-
-
-loadSong();
 
 
 
@@ -794,4 +517,3 @@ loadSong();
 
 </body>
 </html>
-  
