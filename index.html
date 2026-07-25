@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,106 +11,77 @@
 
 *{
 box-sizing:border-box;
-font-family:Inter,Segoe UI,Arial,sans-serif;
+font-family:Arial, sans-serif;
 }
 
 body{
 margin:0;
-min-height:100vh;
-background:
-radial-gradient(circle at top,#7c3aed55,transparent 40%),
-linear-gradient(180deg,#020617,#000);
+background:#020617;
 color:white;
 }
 
 
 header{
 padding:30px 20px;
-display:flex;
-align-items:center;
-gap:20px;
-max-width:1000px;
-margin:auto;
+text-align:center;
+background:linear-gradient(135deg,#7c3aed,#2563eb);
 }
 
 
 .logo{
-width:80px;
-height:80px;
+width:100px;
+height:100px;
 border-radius:50%;
 object-fit:cover;
-box-shadow:0 0 40px #7c3aed;
+border:3px solid white;
 }
 
 
-header h1{
-margin:0;
-font-size:32px;
+h1{
+margin:15px 0 5px;
 }
-
-
-header p{
-margin:5px 0;
-color:#94a3b8;
-}
-
 
 
 .container{
-max-width:1000px;
+max-width:700px;
 margin:auto;
 padding:20px;
-display:grid;
-grid-template-columns:350px 1fr;
-gap:25px;
 }
-
 
 
 .player{
 
-background:#ffffff10;
-backdrop-filter:blur(20px);
-border:1px solid #ffffff15;
-border-radius:30px;
+background:#111827;
+border-radius:25px;
 padding:25px;
 text-align:center;
-position:sticky;
-top:20px;
 
 }
-
 
 
 .cover{
 
-width:260px;
-height:260px;
+width:230px;
+height:230px;
 border-radius:25px;
 object-fit:cover;
 
-box-shadow:
-0 20px 50px #000;
-
 }
-
 
 
 #title{
 
 font-size:24px;
-margin:20px 0 5px;
+margin-top:20px;
 
 }
-
 
 
 #artist{
 
-color:#a1a1aa;
+color:#94a3b8;
 
 }
-
 
 
 audio{
@@ -120,29 +92,22 @@ margin-top:20px;
 }
 
 
-
 .search{
 
-background:#ffffff12;
-border-radius:20px;
-padding:15px;
-margin-bottom:20px;
+margin:20px 0;
 
 }
-
 
 
 .search input{
 
 width:100%;
-background:transparent;
-border:0;
+padding:15px;
+border-radius:15px;
+border:none;
 outline:none;
-color:white;
-font-size:16px;
 
 }
-
 
 
 .song{
@@ -151,111 +116,49 @@ display:flex;
 align-items:center;
 gap:15px;
 
+background:#1e293b;
+
 padding:15px;
 
-border-radius:20px;
+border-radius:18px;
 
-background:#ffffff08;
-
-margin-bottom:12px;
+margin-bottom:10px;
 
 cursor:pointer;
 
-transition:.3s;
-
 }
-
 
 
 .song:hover{
 
-background:#7c3aed55;
-transform:translateX(8px);
+background:#334155;
 
 }
 
 
-
 .song img{
 
-width:65px;
-height:65px;
+width:60px;
+height:60px;
 border-radius:15px;
 object-fit:cover;
 
 }
 
 
+.song b{
 
-.song-title{
-
-font-size:17px;
-font-weight:600;
+font-size:16px;
 
 }
 
 
+.song small{
 
-.song-artist{
-
-font-size:14px;
 color:#94a3b8;
 
 }
 
-
-
-.badge{
-
-display:inline-block;
-
-background:#22c55e;
-
-padding:6px 15px;
-
-border-radius:20px;
-
-font-size:13px;
-
-margin-top:10px;
-
-}
-
-
-
-@media(max-width:800px){
-
-.container{
-
-grid-template-columns:1fr;
-
-}
-
-
-.player{
-
-position:relative;
-
-}
-
-
-.cover{
-
-width:220px;
-height:220px;
-
-}
-
-}
-
-
-footer{
-
-text-align:center;
-padding:30px;
-color:#64748b;
-
-}
 
 </style>
 
@@ -269,21 +172,9 @@ color:#64748b;
 
 <img src="logo.png" class="logo">
 
-<div>
+<h1>🎧 Sedatur Music Hub</h1>
 
-<h1>
-🎧 Sedatur Music Hub
-</h1>
-
-<p>
-Official Music Center Sedatur Rawamangun
-</p>
-
-<span class="badge">
-● Online Music
-</span>
-
-</div>
+<p>Music Center Sedatur Rawamangun</p>
 
 </header>
 
@@ -315,18 +206,12 @@ Sedatur Music
 
 
 
-
-<div>
-
-
 <div class="search">
-
-🔍
 
 <input 
 id="search"
 placeholder="Cari lagu..."
-onkeyup="searchSong()">
+oninput="searchSong()">
 
 </div>
 
@@ -334,10 +219,7 @@ onkeyup="searchSong()">
 
 <div id="playlist">
 
-Memuat playlist...
-
-</div>
-
+Memuat lagu...
 
 </div>
 
@@ -345,14 +227,6 @@ Memuat playlist...
 
 </div>
 
-
-
-
-<footer>
-
-© 2026 Sedatur Music Hub
-
-</footer>
 
 
 
@@ -376,15 +250,39 @@ const playlist=document.getElementById("playlist");
 
 
 
-fetch("playlist.json")
 
-.then(r=>r.json())
+// Load playlist stabil
+
+fetch("playlist.json?v=1")
+
+.then(response=>response.json())
 
 .then(data=>{
 
+
 songs=data;
 
-render(songs);
+
+renderPlaylist(songs);
+
+
+// Ambil lagu terakhir
+
+let saved=localStorage.getItem("lastSong");
+
+
+if(saved!==null){
+
+playSong(Number(saved),false);
+
+}
+
+
+})
+
+.catch(error=>{
+
+playlist.innerHTML="Playlist gagal dimuat";
 
 });
 
@@ -392,7 +290,7 @@ render(songs);
 
 
 
-function render(data){
+function renderPlaylist(data){
 
 
 playlist.innerHTML="";
@@ -416,24 +314,25 @@ div.innerHTML=`
 
 <div>
 
-<div class="song-title">
-${song.title}
-</div>
+<b>${song.title}</b>
 
-<div class="song-artist">
-${song.artist}
-</div>
+<br>
+
+<small>${song.artist}</small>
 
 </div>
 
 `;
 
 
-div.onclick=()=>play(index);
+div.onclick=function(){
+
+playSong(index,true);
+
+};
 
 
 playlist.appendChild(div);
-
 
 
 });
@@ -444,28 +343,45 @@ playlist.appendChild(div);
 
 
 
-function play(i){
+
+function playSong(index,auto){
 
 
-current=i;
+current=index;
 
 
-let s=songs[i];
+let song=songs[index];
 
 
-audio.src=s.file;
+audio.src=song.file;
 
-title.innerHTML=s.title;
 
-artist.innerHTML=s.artist;
+title.innerHTML=song.title;
 
-cover.src=s.cover;
 
+artist.innerHTML=song.artist;
+
+
+cover.src=song.cover;
+
+
+
+localStorage.setItem(
+"lastSong",
+index
+);
+
+
+
+if(auto){
 
 audio.play();
 
+}
+
 
 }
+
 
 
 
@@ -480,36 +396,45 @@ let key=document
 
 
 
-render(
+let result=songs.filter(song=>
 
-songs.filter(s=>
 
-s.title.toLowerCase().includes(key)
+song.title.toLowerCase().includes(key)
 
 ||
 
-s.artist.toLowerCase().includes(key)
+song.artist.toLowerCase().includes(key)
 
-)
 
 );
+
+
+renderPlaylist(result);
 
 
 }
 
 
 
-audio.onended=()=>{
+
+
+audio.onended=function(){
+
 
 current++;
 
-if(current>=songs.length)
+
+if(current>=songs.length){
+
 current=0;
 
-play(current);
+}
+
+
+playSong(current,true);
+
 
 };
-
 
 
 </script>
