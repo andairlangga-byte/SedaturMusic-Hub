@@ -1,634 +1,313 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
 
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sedatur Rawamangun V3</title>
+<title>Sedatur Music</title>
 
 <style>
 
 *{
-margin:0;
-padding:0;
 box-sizing:border-box;
-font-family:'Segoe UI',Arial,sans-serif;
 }
 
-html{
-scroll-behavior:smooth;
+body{
+margin:0;
+min-height:100vh;
+font-family:Arial,sans-serif;
+background:
+linear-gradient(135deg,#050505,#172554,#064e3b);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
 }
 
-<!-- STATISTIK -->
+.player{
 
-<section id="tentang">
+width:95%;
+max-width:430px;
 
-<h2 class="title">
-Sedatur Dalam Angka
-</h2>
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
 
+border-radius:30px;
 
-<div class="grid">
+padding:25px;
 
+box-shadow:0 20px 60px #000;
 
-<div class="stat">
-<h2>50+</h2>
-<p>Anggota Komunitas</p>
-</div>
-
-
-<div class="stat">
-<h2>100+</h2>
-<p>Kegiatan</p>
-</div>
-
-
-<div class="stat">
-<h2>24/7</h2>
-<p>Akses Website</p>
-</div>
-
-
-<div class="stat">
-<h2>∞</h2>
-<p>Semangat Bersama</p>
-</div>
-
-
-</div>
-
-</section>
-
-
-
-
-<!-- STATUS WEBSITE -->
-
-<section>
-
-
-<h2 class="title">
-Status Sistem
-</h2>
-
-
-<div class="status">
-
-🟢 Operational Normal
-
-<br>
-
-Website Sedatur berjalan dengan baik
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- FITUR -->
-
-<section id="fitur">
-
-
-<h2 class="title">
-Fitur Sedatur V3
-</h2>
-
-
-<div class="grid">
-
-
-<div class="card">
-
-<h3>
-📢 Laporan Cepat
-</h3>
-
-<p>
-Sampaikan laporan dan pantau proses penyelesaian.
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-📸 Galeri Digital
-</h3>
-
-<p>
-Dokumentasi kegiatan komunitas tersimpan rapi.
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-🎵 Music Hub
-</h3>
-
-<p>
-Playlist pilihan untuk menemani aktivitas.
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>
-📅 Event Center
-</h3>
-
-<p>
-Informasi kegiatan dan agenda terbaru.
-</p>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-<!-- EVENT COUNTDOWN -->
-
-
-<section id="event">
-
-
-<h2 class="title">
-Event Berikutnya
-</h2>
-
-
-<div class="card" style="text-align:center">
-
-
-<h3>
-🔥 CUSTOM: Nama Event
-</h3>
-
-
-<p>
-Menuju kegiatan besar Sedatur
-</p>
-
-
-<h1 id="countdown"
-style="
-font-size:40px;
-color:#7c3aed;
-margin-top:20px;
-">
-00 : 00 : 00 : 00
-</h1>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-<!-- GALERI -->
-
-
-<section id="galeri">
-
-
-<h2 class="title">
-Galeri Sedatur
-</h2>
-
-
-<div class="grid">
-
-
-<div class="card">
-
-<img src="CUSTOM FOTO 1"
-style="
-width:100%;
-border-radius:15px;
-">
-
-<p>
-Kegiatan Sedatur
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<img src="CUSTOM FOTO 2"
-style="
-width:100%;
-border-radius:15px;
-">
-
-<p>
-Dokumentasi Event
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<img src="CUSTOM FOTO 3"
-style="
-width:100%;
-border-radius:15px;
-">
-
-<p>
-Aktivitas Komunitas
-</p>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-<!-- MUSIC HUB -->
-
-
-<section>
-
-
-<h2 class="title">
-🎵 Music Hub
-</h2>
-
-
-<div class="card"
-style="text-align:center">
-
-
-<p>
-Playlist Sedatur
-</p>
-
-
-<iframe
-
-style="
-width:100%;
-height:300px;
-border-radius:20px;
-"
-
-src="CUSTOM LINK YOUTUBE PLAYLIST"
-
-frameborder="0"
-
-allowfullscreen>
-
-</iframe{
-background:#f8fafc;
-color:#0f172a;
 }
 
 
-/* NAVBAR */
-
-nav{
-
-position:fixed;
-top:0;
-left:0;
-width:100%;
-
-padding:18px 8%;
+.header{
 
 display:flex;
 justify-content:space-between;
 align-items:center;
-
-background:rgba(255,255,255,.75);
-backdrop-filter:blur(15px);
-
-z-index:1000;
-
-box-shadow:0 5px 20px #0001;
 
 }
 
 
 .logo{
 
-font-size:26px;
-font-weight:900;
-color:#7c3aed;
-
-}
-
-
-.menu a{
-
-margin-left:20px;
-
-text-decoration:none;
-
-font-weight:600;
-
-color:#334155;
-
-}
-
-
-
-/* HERO */
-
-.hero{
-
-min-height:100vh;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-text-align:center;
-
-padding:100px 20px;
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#7c3aed,
-
-#2563eb
-
-);
-
-color:white;
-
-}
-
-
-
-.hero h1{
-
-font-size:55px;
-
-font-weight:900;
-
-}
-
-
-.hero p{
-
-max-width:650px;
-
-margin:20px auto;
-
-font-size:20px;
-
-line-height:1.6;
-
-}
-
-
-.btn{
-
-display:inline-block;
-
-padding:15px 30px;
-
-border-radius:50px;
-
-margin:10px;
-
-text-decoration:none;
-
+font-size:22px;
 font-weight:bold;
 
-transition:.3s;
-
 }
 
 
-.btn-primary{
+.online{
 
-background:white;
-
-color:#7c3aed;
-
-}
-
-
-.btn-secondary{
-
-border:2px solid white;
-
-color:white;
-
-}
-
-
-.btn:hover{
-
-transform:translateY(-5px);
+color:#22c55e;
+font-size:12px;
 
 }
 
 
 
-/* SECTION */
+.cover{
 
-section{
+width:260px;
+height:260px;
 
-padding:90px 8%;
+display:block;
+margin:25px auto;
+
+border-radius:25px;
+
+object-fit:cover;
+
+background:#222;
+
+box-shadow:0 15px 40px #000;
+
+}
+
+
+
+.rotate{
+
+animation:rotate 8s linear infinite;
+
+}
+
+
+@keyframes rotate{
+
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(360deg);
+}
+
+}
+
+
+
+.info{
+
+text-align:center;
 
 }
 
 
 .title{
 
-text-align:center;
-
-font-size:35px;
-
-margin-bottom:40px;
-
-}
-
-
-
-/* CARD */
-
-.grid{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(auto-fit,minmax(250px,1fr));
-
-gap:25px;
-
-}
-
-
-.card{
-
-background:white;
-
-padding:30px;
-
-border-radius:25px;
-
-box-shadow:
-
-0 15px 35px #0001;
-
-transition:.3s;
-
-}
-
-
-.card:hover{
-
-transform:translateY(-8px);
-
-}
-
-
-.card h3{
-
-color:#7c3aed;
-
-margin-bottom:10px;
-
-}
-
-
-
-/* STATUS */
-
-
-.status{
-
-background:#dcfce7;
-
-color:#166534;
-
-padding:18px;
-
-border-radius:20px;
-
-text-align:center;
-
+font-size:24px;
 font-weight:bold;
 
 }
 
 
+.artist{
 
-/* STAT */
+color:#aaa;
 
-.stat{
-
-text-align:center;
-
-background:white;
-
-padding:25px;
-
-border-radius:20px;
-
-box-shadow:0 10px 30px #0001;
-
-}
-
-
-.stat h2{
-
-font-size:40px;
-
-color:#7c3aed;
+margin-top:5px;
 
 }
 
 
 
-/* FOOTER */
+.equalizer{
+
+display:flex;
+justify-content:center;
+gap:5px;
+
+height:35px;
+
+margin:20px;
+
+}
 
 
-footer{
+.bar{
 
-background:#0f172a;
+width:5px;
+height:10px;
+
+background:#22c55e;
+
+border-radius:10px;
+
+}
+
+
+
+.playing .bar{
+
+animation:eq .8s infinite alternate;
+
+}
+
+
+@keyframes eq{
+
+from{
+height:10px;
+}
+
+to{
+height:35px;
+}
+
+}
+
+
+
+input{
+
+width:100%;
+
+accent-color:#22c55e;
+
+}
+
+
+
+.time{
+
+display:flex;
+justify-content:space-between;
+
+font-size:12px;
+
+color:#aaa;
+
+}
+
+
+
+.controls{
+
+display:flex;
+
+justify-content:center;
+
+gap:15px;
+
+margin:25px 0;
+
+}
+
+
+
+button{
+
+border:none;
+
+cursor:pointer;
+
+}
+
+
+.main{
+
+width:65px;
+height:65px;
+
+border-radius:50%;
+
+background:#22c55e;
+
+font-size:25px;
+
+}
+
+
+.side{
+
+width:45px;
+height:45px;
+
+border-radius:50%;
+
+background:#333;
 
 color:white;
 
-text-align:center;
+}
 
-padding:40px;
+
+
+.search{
+
+margin-top:15px;
+
+padding:12px;
+
+border-radius:15px;
+
+border:none;
+
+background:#ffffff15;
+
+color:white;
 
 }
 
 
 
-/* MOBILE */
+.playlist{
 
-@media(max-width:700px){
+margin-top:15px;
 
-.hero h1{
+max-height:200px;
 
-font-size:35px;
+overflow:auto;
+
+}
+
+
+
+.song{
+
+padding:12px;
+
+border-radius:12px;
+
+background:#ffffff10;
+
+margin-bottom:5px;
+
+cursor:pointer;
 
 }
 
 
-.menu{
+.active{
 
-display:none;
-
-}
+background:#22c55e55;
 
 }
 
 
 </style>
-
 
 </head>
 
@@ -636,257 +315,483 @@ display:none;
 <body>
 
 
-<nav>
+<div class="player">
+
+
+<div class="header">
 
 <div class="logo">
-🚀 SEDATUR
+🎧 Sedatur Music
 </div>
 
-
-<div class="menu">
-
-<a href="#fitur">Fitur</a>
-<a href="#event">Event</a>
-<a href="#galeri">Galeri</a>
-<a href="#kontak">Kontak</a>
+<div class="online">
+● Online
+</div>
 
 </div>
 
 
-</nav>
+<img id="cover"
+class="cover"
+src="https://via.placeholder.com/500">
 
 
 
-<div class="hero">
+<div class="info">
 
-
-<div>
-
-
-<h1>
-Sedatur Rawamangun
-</h1>
-
-
-<p>
-Pusat informasi komunitas,
-laporan cepat tanggap,
-dan dokumentasi kegiatan Sedatur.
-</p>
-
-
-
-<a class="btn btn-primary"
-href="#">
-📢 Buat Laporan
-</a>
-
-
-<a class="btn btn-secondary"
-href="#">
-🌐 Jelajahi
-</a>
-
-
+<div id="title" class="title">
+Loading...
 </div>
 
-
+<div id="artist" class="artist">
+Sedatur
 </div>
-
-<!-- NEWS CENTER -->
-
-<section>
-
-<h2 class="title">
-📰 Berita Terbaru
-</h2>
-
-
-<div class="grid">
-
-
-<div class="card">
-
-<h3>
-🚀 Sedatur V3 Launch
-</h3>
-
-<p>
-Website baru Sedatur dengan tampilan modern dan fitur lebih lengkap.
-</p>
-
-<small>
-CUSTOM: Tanggal berita
-</small>
 
 </div>
 
 
 
-<div class="card">
+<div id="eq" class="equalizer">
 
-<h3>
-📸 Dokumentasi Kegiatan
-</h3>
-
-<p>
-Update kegiatan komunitas terbaru akan tampil disini.
-</p>
-
-<small>
-CUSTOM: Tanggal berita
-</small>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
 
 </div>
 
 
 
-<div class="card">
+<audio id="audio"></audio>
 
-<h3>
-📢 Pengumuman
-</h3>
 
-<p>
-Informasi penting komunitas Sedatur Rawamangun.
-</p>
+<input id="progress" type="range" value="0">
 
-<small>
-CUSTOM: Tanggal berita
-</small>
+
+<div class="time">
+
+<span id="current">0:00</span>
+
+<span id="duration">0:00</span>
 
 </div>
 
 
-</div>
 
+<div class="controls">
 
-</section>
+<button onclick="shuffle()" class="side">
+🔀
+</button>
 
+<button onclick="prev()" class="side">
+⏮
+</button>
 
+<button onclick="playPause()" id="play" class="main">
+▶️
+</button>
 
+<button onclick="next()" class="side">
+⏭
+</button>
 
-
-
-<!-- CROWDFUNDING -->
-
-<section>
-
-
-<h2 class="title">
-🤝 Dukungan Sedatur
-</h2>
-
-
-<div class="card">
-
-
-<h3>
-CUSTOM: Nama Program
-</h3>
-
-
-<p>
-Target dukungan kegiatan komunitas.
-</p>
-
-
-<div style="
-background:#e2e8f0;
-height:20px;
-border-radius:20px;
-overflow:hidden;
-margin:20px 0;
-">
-
-
-<div style="
-background:#7c3aed;
-width:65%;
-height:100%;
-border-radius:20px;
-">
+<button onclick="repeat()" id="repeat" class="side">
+🔁
+</button>
 
 </div>
+
+
+<input id="volume"
+type="range"
+min="0"
+max="1"
+step="0.1"
+value="1">
+
+
+<input id="search"
+class="search"
+placeholder="🔎 Cari lagu...">
+
+
+<div id="playlist" class="playlist"></div>
 
 
 </div>
 
 
-<p>
-65% Terkumpul
-</p>
+<script>
+  
+const songs=[
+
+{
+title:"Dunia Yang Nanti",
+artist:"Raim Laode",
+cover:"https://via.placeholder.com/500",
+file:"https://probable-tan-ruunsniv.edgeone.dev/Raim%20Laode%20-%20Dunia%20Yang%20Nanti%20(%20Lirik%20video%20).mp3"
+},
+
+{
+title:"Ini Abadi",
+artist:"Perunggu",
+cover:"https://via.placeholder.com/500",
+file:"https://probable-tan-ruunsniv.edgeone.dev/Perunggu%20-%20Ini%20Abadi%20(Video%20Lirik).mp3"
+},
+
+{
+title:"Shape of My Heart",
+artist:"Backstreet Boys",
+cover:"https://via.placeholder.com/500",
+file:"https://probable-tan-ruunsniv.edgeone.dev/Backstreet%20Boys%20-%20Shape%20Of%20My%20Heart%20(Official%20HD%20Video).mp3"
+}
+
+];
 
 
-</div>
+let index=0;
+let isShuffle=false;
+let isRepeat=false;
 
 
-</section>
-
-
-
-
-
-
-<!-- CTA -->
-
-
-<section>
-
-
-<div class="card"
-style="
-text-align:center;
-background:#7c3aed;
-color:white;
-">
-
-
-<h2>
-Punya Laporan?
-</h2>
-
-
-<p style="margin:15px 0;">
-Laporkan kendala dan bantu Sedatur menjadi lebih baik.
-</p>
-
-
-<a href="report.html"
-class="btn btn-primary">
-
-📢 Buat Laporan
-
-</a>
-
-
-</div>
-
-
-</section>
+const audio=document.getElementById("audio");
+const cover=document.getElementById("cover");
+const title=document.getElementById("title");
+const artist=document.getElementById("artist");
+const playlist=document.getElementById("playlist");
+const playBtn=document.getElementById("play");
+const progress=document.getElementById("progress");
+const volume=document.getElementById("volume");
+const search=document.getElementById("search");
+const eq=document.getElementById("eq");
 
 
 
+function loadSong(){
+
+let song=songs[index];
+
+audio.src=song.file;
+
+title.innerHTML=song.title;
+artist.innerHTML=song.artist;
+
+cover.src=song.cover;
+
+renderPlaylist();
+
+}
+
+
+
+function playPause(){
+
+if(audio.paused){
+
+audio.play()
+.then(()=>{
+
+playBtn.innerHTML="⏸";
+
+cover.classList.add("rotate");
+
+eq.classList.add("playing");
+
+})
+.catch(()=>{
+
+alert("Audio gagal diputar");
+
+});
+
+
+}else{
+
+
+audio.pause();
+
+playBtn.innerHTML="▶️";
+
+cover.classList.remove("rotate");
+
+eq.classList.remove("playing");
+
+
+}
+
+}
 
 
 
 
-<!-- KONTAK -->
+function next(){
 
 
-<section id="kontak">
+if(isShuffle){
+
+index=Math.floor(Math.random()*songs.length);
 
 
-<h2 class="title">
-Hubungi Kami
-</h2>
+}else{
 
 
-<div class="grid">
+index++;
 
 
-<div class="card">
+if(index>=songs.length){
 
-<h3>
-📷 Instagram
-</h
+index=0;
+
+}
+
+}
+
+
+loadSong();
+
+audio.play();
+
+
+}
+
+
+
+
+function prev(){
+
+index--;
+
+if(index<0){
+
+index=songs.length-1;
+
+}
+
+
+loadSong();
+
+audio.play();
+
+}
+
+
+
+
+function shuffle(){
+
+isShuffle=!isShuffle;
+
+alert(
+isShuffle?
+"Shuffle Aktif 🔀":
+"Shuffle Mati"
+);
+
+}
+
+
+
+
+function repeat(){
+
+isRepeat=!isRepeat;
+
+document.getElementById("repeat").innerHTML=
+
+isRepeat?
+"🔁✓":
+"🔁";
+
+
+}
+
+
+
+
+audio.addEventListener("ended",()=>{
+
+
+if(isRepeat){
+
+audio.play();
+
+
+}else{
+
+
+next();
+
+
+}
+
+
+});
+
+
+
+
+audio.addEventListener("timeupdate",()=>{
+
+
+let value=
+
+(audio.currentTime/audio.duration)*100;
+
+
+progress.value=value || 0;
+
+
+
+document.getElementById("current").innerHTML=
+formatTime(audio.currentTime);
+
+
+document.getElementById("duration").innerHTML=
+formatTime(audio.duration);
+
+
+
+});
+
+
+
+
+progress.oninput=function(){
+
+audio.currentTime=
+
+(this.value/100)*audio.duration;
+
+}
+
+
+
+
+volume.oninput=function(){
+
+audio.volume=this.value;
+
+}
+
+
+
+
+function formatTime(sec){
+
+if(isNaN(sec)){
+
+return "0:00";
+
+}
+
+
+let min=Math.floor(sec/60);
+
+let s=Math.floor(sec%60);
+
+
+if(s<10){
+
+s="0"+s;
+
+}
+
+
+return min+":"+s;
+
+
+}
+
+
+
+
+function renderPlaylist(keyword=""){
+
+
+playlist.innerHTML="";
+
+
+songs.forEach((song,i)=>{
+
+
+if(
+
+!song.title.toLowerCase()
+.includes(keyword.toLowerCase())
+
+&&
+
+!song.artist.toLowerCase()
+.includes(keyword.toLowerCase())
+
+){
+
+return;
+
+}
+
+
+
+let item=document.createElement("div");
+
+
+item.className="song";
+
+
+if(i==index){
+
+item.classList.add("active");
+
+}
+
+
+
+item.innerHTML=
+
+"🎵 "+song.title+
+"<br><small>"+song.artist+"</small>";
+
+
+
+item.onclick=function(){
+
+index=i;
+
+loadSong();
+
+audio.play();
+
+
+};
+
+
+
+playlist.appendChild(item);
+
+
+});
+
+
+}
+
+
+
+search.oninput=function(){
+
+renderPlaylist(this.value);
+
+};
+
+
+
+loadSong();
+
+
+
+</script>
+
+
+</body>
+</html>
+  
