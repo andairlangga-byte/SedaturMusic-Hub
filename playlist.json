@@ -16,5 +16,29 @@
     "artist": "Backstreet Boys",
     "cover": "logo.png",
     "file": "shape-of-my-heart.mp3"
+  },
+  {
+    "title": "IQRO",
+    "artist": "Raim Laode",
+    "cover": "logo.png",
+    "file": "iqro.mp3"
+  },
+  {
+    "title": "What Makes You Beautiful",
+    "artist": "One Direction",
+    "cover": "logo.png",
+    "file": "what-makes-you-beautiful.mp3"
+  },
+  {
+    "title": "33X",
+    "artist": "Perunggu",
+    "cover": "logo.png",
+    "file": "33x.mp3"
+  },
+  {
+    "title": "Teh Hijau",
+    "artist": "Tulus",
+    "cover": "logo.png",
+    "file": "teh-hijau.mp3"
   }
 ]
