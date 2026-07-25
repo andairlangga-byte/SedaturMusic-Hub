@@ -4,7 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Sedatur Music Hub</title>
 
@@ -12,74 +12,173 @@
 
 *{
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:"Segoe UI",Arial,sans-serif;
 }
+
 
 body{
 
 margin:0;
 min-height:100vh;
 
-display:flex;
-align-items:center;
-justify-content:center;
-
-padding:20px;
-
-background:#0f172a;
+background:
+linear-gradient(135deg,#041b0d,#14532d,#052e16);
 
 color:white;
 
+padding:20px;
+
+display:flex;
+justify-content:center;
+
 }
+
+
+
+.container{
+
+width:100%;
+max-width:450px;
+
+}
+
+
+
+.header{
+
+text-align:center;
+
+margin-bottom:20px;
+
+}
+
+
+.header h1{
+
+margin:0;
+
+font-size:30px;
+
+color:#d4af37;
+
+}
+
+
+.header p{
+
+margin:8px 0;
+
+color:#cbd5e1;
+
+font-size:14px;
+
+}
+
+
+
 
 
 .player{
 
-width:100%;
-max-width:420px;
+background:#ffffff12;
 
-background:#1e293b;
+border:1px solid #ffffff22;
+
+border-radius:30px;
 
 padding:25px;
 
-border-radius:25px;
-
 text-align:center;
+
+box-shadow:0 15px 40px #0005;
 
 }
 
 
-.logo{
 
-width:220px;
-height:220px;
+
+.cover{
+
+width:230px;
+
+height:230px;
+
+border-radius:25px;
 
 object-fit:cover;
 
-border-radius:20px;
+box-shadow:0 15px 30px #0006;
 
 }
 
 
-h1{
 
-font-size:24px;
 
-margin:20px 0 5px;
+.title{
+
+font-size:25px;
+
+font-weight:700;
+
+margin-top:20px;
 
 }
+
 
 
 .artist{
 
-color:#94a3b8;
+color:#cbd5e1;
+
+margin-top:5px;
 
 }
 
 
-audio{
+
+
+.progress-area{
+
+margin-top:20px;
+
+}
+
+
+
+#progress{
 
 width:100%;
+
+accent-color:#d4af37;
+
+}
+
+
+
+.time{
+
+display:flex;
+
+justify-content:space-between;
+
+font-size:12px;
+
+color:#cbd5e1;
+
+}
+
+
+
+
+.controls{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:12px;
 
 margin-top:20px;
 
@@ -91,17 +190,181 @@ button{
 
 border:none;
 
-padding:12px 18px;
+border-radius:50%;
 
-margin:10px 5px;
+width:55px;
 
-border-radius:30px;
+height:55px;
 
-font-size:18px;
+background:#d4af37;
 
-background:#facc15;
+font-size:20px;
+
+font-weight:bold;
+
+}
+
+
+
+button:active{
+
+transform:scale(.9);
+
+}
+
+
+
+.mode{
+
+margin-top:15px;
+
+}
+
+
+
+.mode button{
+
+width:auto;
+
+height:auto;
+
+border-radius:20px;
+
+padding:8px 15px;
+
+font-size:13px;
+
+}
+
+
+
+
+.search{
+
+margin:20px 0;
+
+}
+
+
+
+.search input{
+
+width:100%;
+
+padding:14px;
+
+border-radius:20px;
+
+border:none;
+
+outline:none;
+
+font-size:15px;
+
+}
+
+
+
+
+
+.playlist{
+
+background:#ffffff10;
+
+border-radius:20px;
+
+padding:10px;
+
+}
+
+
+
+.song{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+padding:12px;
+
+border-radius:15px;
 
 cursor:pointer;
+
+}
+
+
+
+.song:hover{
+
+background:#ffffff15;
+
+}
+
+
+
+.song.active{
+
+background:#d4af3725;
+
+}
+
+
+
+.song img{
+
+width:45px;
+
+height:45px;
+
+border-radius:10px;
+
+object-fit:cover;
+
+}
+
+
+
+.song-info{
+
+flex:1;
+
+}
+
+
+
+.song-title{
+
+font-size:14px;
+
+font-weight:bold;
+
+}
+
+
+
+.song-artist{
+
+font-size:12px;
+
+color:#cbd5e1;
+
+}
+
+
+
+
+.status{
+
+text-align:center;
+
+margin-top:15px;
+
+font-size:12px;
+
+color:#94a3b8;
 
 }
 
@@ -112,39 +375,88 @@ cursor:pointer;
 </head>
 
 
-
 <body>
+
+
+
+<div class="container">
+
+
+
+<div class="header">
+
+<h1>🚆 Sedatur Music Hub</h1>
+
+<p>Premium Community Music Player</p>
+
+</div>
+
+
 
 
 
 <div class="player">
 
 
-<img id="cover" class="logo" src="logo.png">
+
+<img id="cover" class="cover" src="logo.png">
 
 
-<h1 id="title">
+
+<div id="title" class="title">
 Memuat Lagu...
-</h1>
-
-
-<p id="artist" class="artist">
-Sedatur Music Hub
-</p>
+</div>
 
 
 
-<audio id="audio" controls></audio>
+<div id="artist" class="artist">
+Sedatur
+</div>
 
 
-<div>
+
+
+
+<audio id="audio"></audio>
+
+
+
+
+<div class="progress-area">
+
+<input type="range" id="progress" value="0">
+
+
+<div class="time">
+
+<span id="currentTime">
+0:00
+</span>
+
+
+<span id="duration">
+0:00
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="controls">
+
 
 <button onclick="prev()">
 ⏮
 </button>
 
 
-<button onclick="playPause()">
+<button onclick="playPause()" id="playBtn">
 ▶️
 </button>
 
@@ -157,47 +469,127 @@ Sedatur Music Hub
 </div>
 
 
+
+
+<div class="mode">
+
+<button onclick="toggleShuffle()" id="shuffleBtn">
+🔀 Off
+</button>
+
+
+<button onclick="toggleRepeat()" id="repeatBtn">
+🔁 Off
+</button>
+
+</div>
+
+
+
 </div>
 
 
 
 
-<script>
 
+<div class="search">
+
+<input id="search"
+placeholder="Cari lagu..."
+oninput="searchSong()">
+
+</div>
+
+
+
+
+
+<div id="playlist" class="playlist">
+
+</div>
+
+
+
+
+<div id="status" class="status">
+
+Memuat playlist...
+
+</div>
+
+
+
+</div>
+
+  <script>
 
 let playlist=[];
 
 let index=0;
 
+let shuffle=false;
+
+let repeat=false;
+
 
 const audio=document.getElementById("audio");
+
+const cover=document.getElementById("cover");
 
 const title=document.getElementById("title");
 
 const artist=document.getElementById("artist");
 
-const cover=document.getElementById("cover");
+const playBtn=document.getElementById("playBtn");
+
+const progress=document.getElementById("progress");
+
+const currentTime=document.getElementById("currentTime");
+
+const duration=document.getElementById("duration");
+
+const playlistBox=document.getElementById("playlist");
+
+const status=document.getElementById("status");
 
 
 
+// ======================
+// LOAD PLAYLIST JSON
+// ======================
 
-// Ambil playlist
 
 fetch("playlist.json")
 
-.then(response=>response.json())
+.then(res=>{
+
+if(!res.ok){
+
+throw Error("playlist.json tidak ditemukan");
+
+}
+
+return res.json();
+
+})
+
 
 .then(data=>{
 
 playlist=data;
 
+renderPlaylist();
+
 loadSong();
+
+status.innerHTML="Playlist aktif";
 
 })
 
-.catch(()=>{
 
-title.innerHTML="Playlist Error";
+.catch(err=>{
+
+status.innerHTML=err.message;
 
 });
 
@@ -205,13 +597,21 @@ title.innerHTML="Playlist Error";
 
 
 
+// ======================
+// LOAD SONG
+// ======================
+
+
 function loadSong(){
 
 
-const song=playlist[index];
+let song=playlist[index];
 
 
 audio.src=song.file;
+
+
+cover.src="logo.png";
 
 
 title.innerHTML=song.title;
@@ -220,7 +620,7 @@ title.innerHTML=song.title;
 artist.innerHTML=song.artist;
 
 
-cover.src=song.cover;
+updateActive();
 
 
 updateMedia();
@@ -232,6 +632,11 @@ updateMedia();
 
 
 
+// ======================
+// PLAY PAUSE
+// ======================
+
+
 function playPause(){
 
 
@@ -239,10 +644,14 @@ if(audio.paused){
 
 audio.play();
 
+playBtn.innerHTML="⏸";
+
 }else{
 
 audio.pause();
 
+playBtn.innerHTML="▶️";
+
 }
 
 
@@ -250,9 +659,38 @@ audio.pause();
 
 
 
+
+
+audio.onplay=()=>{
+
+playBtn.innerHTML="⏸";
+
+};
+
+
+audio.onpause=()=>{
+
+playBtn.innerHTML="▶️";
+
+};
+
+
+
+
+
+// ======================
+// NEXT PREVIOUS
+// ======================
 
 
 function next(){
+
+
+if(shuffle){
+
+index=Math.floor(Math.random()*playlist.length);
+
+}else{
 
 
 index++;
@@ -261,6 +699,8 @@ index++;
 if(index>=playlist.length){
 
 index=0;
+
+}
 
 }
 
@@ -298,20 +738,289 @@ audio.play();
 
 
 
+audio.onended=()=>{
 
-audio.addEventListener("ended",()=>{
+
+if(repeat){
+
+audio.play();
+
+}else{
 
 next();
+
+}
+
+
+};
+
+
+
+
+
+// ======================
+// SHUFFLE REPEAT
+// ======================
+
+
+function toggleShuffle(){
+
+
+shuffle=!shuffle;
+
+
+document.getElementById("shuffleBtn").innerHTML=
+
+shuffle ? "🔀 On":"🔀 Off";
+
+
+}
+
+
+
+
+function toggleRepeat(){
+
+
+repeat=!repeat;
+
+
+document.getElementById("repeatBtn").innerHTML=
+
+repeat ? "🔁 On":"🔁 Off";
+
+
+}
+
+
+
+
+
+// ======================
+// PROGRESS
+// ======================
+
+
+audio.ontimeupdate=function(){
+
+
+if(audio.duration){
+
+
+progress.value=
+
+(audio.currentTime/audio.duration)*100;
+
+
+
+currentTime.innerHTML=
+
+formatTime(audio.currentTime);
+
+
+
+duration.innerHTML=
+
+formatTime(audio.duration);
+
+
+
+}
+
+};
+
+
+
+progress.oninput=function(){
+
+
+audio.currentTime=
+
+(progress.value/100)*audio.duration;
+
+
+};
+
+
+
+function formatTime(sec){
+
+
+if(isNaN(sec)) return "0:00";
+
+
+let m=Math.floor(sec/60);
+
+
+let s=Math.floor(sec%60);
+
+
+if(s<10) s="0"+s;
+
+
+return m+":"+s;
+
+
+}
+
+
+
+
+
+// ======================
+// PLAYLIST DISPLAY
+// ======================
+
+
+function renderPlaylist(){
+
+
+playlistBox.innerHTML="";
+
+
+playlist.forEach((song,i)=>{
+
+
+let div=document.createElement("div");
+
+
+div.className="song";
+
+
+div.innerHTML=`
+
+<img src="logo.png">
+
+
+<div class="song-info">
+
+<div class="song-title">
+
+${song.title}
+
+</div>
+
+
+<div class="song-artist">
+
+${song.artist}
+
+</div>
+
+
+</div>
+
+`;
+
+
+
+div.onclick=()=>{
+
+
+index=i;
+
+
+loadSong();
+
+audio.play();
+
+
+};
+
+
+playlistBox.appendChild(div);
+
+
 
 });
 
 
+}
 
 
 
 
 
+function updateActive(){
+
+
+let songs=document.querySelectorAll(".song");
+
+
+songs.forEach((el,i)=>{
+
+
+if(i===index){
+
+el.classList.add("active");
+
+}else{
+
+el.classList.remove("active");
+
+}
+
+
+});
+
+
+}
+
+
+
+
+
+// ======================
+// SEARCH
+// ======================
+
+
+function searchSong(){
+
+
+let keyword=
+
+document.getElementById("search").value.toLowerCase();
+
+
+let songs=document.querySelectorAll(".song");
+
+
+songs.forEach((song,i)=>{
+
+
+let text=
+
+playlist[i].title.toLowerCase()+" "+
+
+playlist[i].artist.toLowerCase();
+
+
+
+if(text.includes(keyword)){
+
+song.style.display="flex";
+
+}else{
+
+song.style.display="none";
+
+}
+
+
+
+});
+
+
+}
+
+
+
+
+
+// ======================
 // MEDIA SESSION BACKGROUND
+// ======================
 
 
 function updateMedia(){
@@ -321,7 +1030,8 @@ if(!("mediaSession" in navigator)) return;
 
 
 
-navigator.mediaSession.metadata =
+navigator.mediaSession.metadata=
+
 new MediaMetadata({
 
 title:playlist[index].title,
@@ -334,7 +1044,7 @@ artwork:[
 
 {
 
-src:playlist[index].cover,
+src:"logo.png",
 
 sizes:"512x512",
 
@@ -348,46 +1058,43 @@ type:"image/png"
 
 
 
+
 navigator.mediaSession.setActionHandler(
+
 "nexttrack",
-()=>{
 
-next();
+()=>next()
 
-}
 );
 
 
 
 navigator.mediaSession.setActionHandler(
+
 "previoustrack",
-()=>{
 
-prev();
+()=>prev()
 
-}
 );
 
 
 
 navigator.mediaSession.setActionHandler(
+
 "play",
-()=>{
 
-audio.play();
+()=>audio.play()
 
-}
 );
 
 
 
 navigator.mediaSession.setActionHandler(
+
 "pause",
-()=>{
 
-audio.pause();
+()=>audio.pause()
 
-}
 );
 
 
@@ -402,3 +1109,4 @@ audio.pause();
 </body>
 
 </html>
+  
