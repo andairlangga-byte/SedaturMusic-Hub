@@ -1,528 +1,274 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>🎵 Sedatur Music Hub</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, sans-serif;
-}
+*{box-sizing:border-box;font-family:Arial;margin:0;padding:0}
 
 body{
-background:linear-gradient(180deg,#0f172a,#020617);
+background:linear-gradient(#0f172a,#020617);
 color:white;
-min-height:100vh;
+min-height:100vh
 }
 
-
 header{
-
+padding:15px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-
-padding:18px;
-
 background:#111827;
-
 position:sticky;
-top:0;
-
+top:0
 }
 
-.logo{
-font-size:20px;
-font-weight:bold;
+.logo{font-weight:bold;font-size:20px}
+
+.home{
+background:#2563eb;
+color:white;
+padding:8px 12px;
+border-radius:10px;
+text-decoration:none;
+font-size:14px
 }
 
-
-.clock{
-text-align:right;
-}
-
-#time{
-font-size:22px;
-font-weight:bold;
-}
-
-#date{
-font-size:12px;
-color:#94a3b8;
-}
-
+.clock{text-align:right;font-size:13px}
+#time{font-size:20px;font-weight:bold}
 
 
 .marquee{
-
 margin:15px;
-
 background:#1e293b;
-
-border-radius:12px;
-
 padding:10px;
-
+border-radius:12px;
 overflow:hidden;
-
-white-space:nowrap;
-
+white-space:nowrap
 }
-
 
 .marquee span{
-
 display:inline-block;
-
-animation:run 12s linear infinite;
-
+animation:run 12s linear infinite
 }
-
 
 @keyframes run{
-
-from{
-transform:translateX(100%);
-}
-
-to{
-transform:translateX(-100%);
-}
-
+from{transform:translateX(100%)}
+to{transform:translateX(-100%)}
 }
 
 
-
-.container{
-
-max-width:700px;
-
+.box{
+max-width:600px;
 margin:auto;
-
-padding:15px;
-
+padding:15px
 }
-
 
 
 .card{
-
 background:#1e293b;
-
 border-radius:25px;
-
-padding:25px;
-
-text-align:center;
-
-box-shadow:0 15px 40px #0005;
-
+padding:20px;
+text-align:center
 }
 
-
-
-/* VINYL */
 
 .vinyl{
-
-width:230px;
-
-height:230px;
-
+width:220px;
+height:220px;
 margin:auto;
-
 border-radius:50%;
-
-background:
-radial-gradient(circle,#222 0 20%,#000 21%);
-
+background:radial-gradient(circle,#333 0 20%,#000 21%);
 display:flex;
-
 align-items:center;
-
-justify-content:center;
-
+justify-content:center
 }
-
 
 .vinyl img{
-
 width:90px;
-
 height:90px;
-
 border-radius:50%;
-
-background:white;
-
-padding:5px;
-
+background:white
 }
-
-
 
 .spin{
-
-animation:spin 8s linear infinite;
-
+animation:spin 8s linear infinite
 }
-
 
 @keyframes spin{
-
-100%{
-transform:rotate(360deg);
-}
-
+100%{transform:rotate(360deg)}
 }
 
 
-
-
-.title{
-
-font-size:25px;
-
-font-weight:bold;
-
-margin-top:20px;
-
+h2{
+margin-top:20px
 }
-
 
 .artist{
-
 color:#94a3b8;
-
-margin-top:5px;
-
+margin:8px
 }
 
 
-.status{
-
-margin-top:10px;
-
-color:#22c55e;
-
-}
-
-
-
-
-input[type=range]{
-
+input,select{
 width:100%;
-
+margin-top:10px
 }
-
-
-
-.timebar{
-
-display:flex;
-
-justify-content:space-between;
-
-font-size:12px;
-
-color:#cbd5e1;
-
-}
-
-
 
 
 .controls{
-
 display:flex;
-
 justify-content:center;
-
-gap:12px;
-
-margin-top:20px;
-
+gap:10px;
+margin:20px
 }
-
 
 button{
-
-border:0;
-
 width:45px;
-
 height:45px;
-
+border:0;
 border-radius:50%;
-
 background:#334155;
-
 color:white;
-
-font-size:18px;
-
+font-size:18px
 }
-
 
 .play{
-
 width:60px;
-
 height:60px;
-
-background:#22c55e;
-
+background:#22c55e
 }
-
-
-
-
-.volume{
-
-margin-top:20px;
-
-display:flex;
-
-gap:10px;
-
-align-items:center;
-
-}
-
-
-
-
-select{
-
-width:100%;
-
-margin-top:20px;
-
-padding:12px;
-
-border-radius:12px;
-
-background:#334155;
-
-color:white;
-
-border:0;
-
-}
-
 
 
 .playlist{
-
 margin-top:20px;
-
-background:#111827;
-
-border-radius:20px;
-
-padding:10px;
-
+background:#020617;
+border-radius:15px;
+padding:10px
 }
-
-
 
 .song{
-
 display:flex;
-
+gap:10px;
 align-items:center;
-
-gap:12px;
-
 padding:10px;
-
-border-radius:12px;
-
+border-radius:10px
 }
-
 
 .song:hover{
-
-background:#334155;
-
+background:#334155
 }
-
 
 .song img{
-
 width:50px;
-
 height:50px;
-
-border-radius:50%;
-
+border-radius:50%
 }
-
-
-
-.active{
-
-background:#2563eb;
-
-}
-
 
 </style>
-
 </head>
-
 
 <body>
 
+<header>
 
+<div class="logo">
+🎵 Sedatur Music Hub
+</div>
 
+<div>
+<a class="home"
+href="https://sites.google.com/view/sedatur-rawamangun/home"
+target="_blank">
+🏠 Home
+</a>
 
+<div class="clock">
+<div id="time">00:00:00</div>
+<div id="date"></div>
+</div>
+
+</div>
+
+</header>
 
 
 <div class="marquee">
-
-<span id="running">
+<span id="run">
 🎵 Selamat datang di Sedatur Music Hub 🎧
 </span>
-
 </div>
 
 
-
-<div class="container">
-
+<div class="box">
 
 <div class="card">
 
-
 <div class="vinyl" id="vinyl">
-
 <img id="cover" src="logo.png">
-
 </div>
 
 
-
-<div class="title" id="title">
-
+<h2 id="title">
 Sedatur Music Hub
-
-</div>
-
+</h2>
 
 <div class="artist" id="artist">
-
-Pilih lagu
-
+Pilih Lagu
 </div>
 
 
-<div class="status" id="status">
-
+<div id="status">
 ⏸ Belum diputar
-
 </div>
 
 
-
-<br>
-
-
-<input id="seek" type="range" value="0">
+<input id="seek" type="range">
 
 
-
-<div class="timebar">
-
-<span id="current">
-00:00
-</span>
-
-<span id="duration">
-00:00
-</span>
-
+<div>
+<span id="cur">00:00</span>
+/
+<span id="dur">00:00</span>
 </div>
-
 
 
 <div class="controls">
 
-<button id="prev">
-⏮
-</button>
-
-
-<button id="play" class="play">
-▶
-</button>
-
-
-<button id="next">
-⏭
-</button>
-
-
-<button id="shuffle">
-🔀
-</button>
-
-
-<button id="repeat">
-🔁
-</button>
-
+<button id="prev">⏮</button>
+<button id="play" class="play">▶</button>
+<button id="next">⏭</button>
+<button id="shuffle">🔀</button>
+<button id="repeat">🔁</button>
 
 </div>
 
 
-
-<div class="volume">
-
-🔊
-
-<input id="volume" type="range" min="0" max="1" step="0.01">
-
-</div>
+<input id="vol" type="range" min="0" max="1" step="0.01">
 
 
-
-<select id="category">
-
+<select id="cat">
 <option value="all">
 🎤 Semua Artis
 </option>
-
 </select>
 
 
-
-<div class="playlist" id="playlist">
-
-</div>
-
+<div class="playlist" id="list"></div>
 
 </div>
 
 </div>
-
 
 
 <audio id="audio"></audio>
-<script>
+  <script>
 
 const audio=document.getElementById("audio");
-
-const cover=document.getElementById("cover");
 const vinyl=document.getElementById("vinyl");
+const cover=document.getElementById("cover");
 
 const title=document.getElementById("title");
 const artist=document.getElementById("artist");
@@ -536,41 +282,36 @@ const shuffle=document.getElementById("shuffle");
 const repeat=document.getElementById("repeat");
 
 const seek=document.getElementById("seek");
-const volume=document.getElementById("volume");
+const vol=document.getElementById("vol");
 
-const current=document.getElementById("current");
-const duration=document.getElementById("duration");
+const cur=document.getElementById("cur");
+const dur=document.getElementById("dur");
 
-const playlist=document.getElementById("playlist");
+const list=document.getElementById("list");
+const cat=document.getElementById("cat");
 
-const category=document.getElementById("category");
-
-const running=document.getElementById("running");
-
-const time=document.getElementById("time");
-const date=document.getElementById("date");
+const run=document.getElementById("run");
 
 
 let songs=[];
 let index=0;
 
-let isShuffle=false;
-let isRepeat=false;
+let shuf=false;
+let rep=false;
 
 
 
-// JAM REALTIME
+// JAM
 
 function clock(){
 
-let now=new Date();
+let d=new Date();
 
-time.textContent=
-now.toLocaleTimeString("id-ID");
+document.getElementById("time")
+.textContent=d.toLocaleTimeString("id-ID");
 
-
-date.textContent=
-now.toLocaleDateString(
+document.getElementById("date")
+.textContent=d.toLocaleDateString(
 "id-ID",
 {
 weekday:"long",
@@ -583,25 +324,22 @@ year:"numeric"
 }
 
 clock();
-
 setInterval(clock,1000);
 
 
 
 
-// LOAD PLAYLIST
+// LOAD JSON
 
 fetch("playlist.json")
-
-.then(r=>r.json())
-
+.then(x=>x.json())
 .then(data=>{
 
 songs=data;
 
-makeCategory();
+buatKategori();
 
-showPlaylist();
+tampil();
 
 restore();
 
@@ -612,46 +350,43 @@ restore();
 
 // KATEGORI
 
-function makeCategory(){
+function buatKategori(){
 
-let cats=[...new Set(
+[...new Set(
 songs.map(x=>x.category)
-)];
+)]
+.forEach(c=>{
 
-cats.forEach(c=>{
+let o=document.createElement("option");
 
-let op=document.createElement("option");
+o.value=c;
 
-op.value=c;
+o.textContent="🎤 "+c;
 
-op.textContent="🎤 "+c;
-
-category.appendChild(op);
+cat.appendChild(o);
 
 });
 
 }
 
 
-
-category.onchange=showPlaylist;
-
+cat.onchange=tampil;
 
 
 
-// TAMPIL PLAYLIST
 
-function showPlaylist(){
+// LIST
 
-playlist.innerHTML="";
+function tampil(){
+
+list.innerHTML="";
 
 
-songs.forEach((song,i)=>{
-
+songs.forEach((s,i)=>{
 
 if(
-category.value!="all" &&
-song.category!=category.value
+cat.value!="all" &&
+s.category!=cat.value
 )return;
 
 
@@ -662,16 +397,12 @@ div.className="song";
 
 div.innerHTML=`
 
-<img src="${song.cover}">
+<img src="${s.cover}">
 
 <div>
-
-<b>${song.title}</b>
-
+<b>${s.title}</b>
 <br>
-
-<small>${song.artist}</small>
-
+<small>${s.artist}</small>
 </div>
 
 `;
@@ -681,14 +412,14 @@ div.onclick=()=>{
 
 index=i;
 
-loadSong();
+load();
 
 playSong();
 
 };
 
 
-playlist.appendChild(div);
+list.appendChild(div);
 
 
 });
@@ -698,41 +429,39 @@ playlist.appendChild(div);
 
 
 
+
 // LOAD LAGU
 
-function loadSong(){
+function load(){
 
-let song=songs[index];
+let s=songs[index];
 
-if(!song)return;
-
-
-audio.src=song.file;
+if(!s)return;
 
 
-cover.src=song.cover;
+audio.src=s.file;
+
+cover.src=s.cover;
+
+title.textContent=s.title;
+
+artist.textContent=s.artist;
 
 
-title.textContent=song.title;
-
-
-artist.textContent=song.artist;
-
-
-running.textContent=
-"🎵 Sedang Diputar • "
-+song.title+
-" • "
-+song.artist+
+run.textContent=
+"🎵 Sedang Diputar • "+
+s.title+
+" • "+
+s.artist+
 " 🎧";
 
 
-save();
+localStorage.song=index;
 
-
-updateMedia();
+media();
 
 }
+
 
 
 
@@ -764,7 +493,6 @@ vinyl.classList.remove("spin");
 }
 
 
-
 play.onclick=()=>{
 
 audio.paused?
@@ -780,7 +508,7 @@ pauseSong();
 
 next.onclick=()=>{
 
-if(isShuffle){
+if(shuf){
 
 index=Math.floor(
 Math.random()*songs.length
@@ -796,7 +524,7 @@ index=0;
 }
 
 
-loadSong();
+load();
 
 playSong();
 
@@ -813,8 +541,7 @@ index--;
 if(index<0)
 index=songs.length-1;
 
-
-loadSong();
+load();
 
 playSong();
 
@@ -827,14 +554,12 @@ playSong();
 
 shuffle.onclick=()=>{
 
-isShuffle=!isShuffle;
+shuf=!shuf;
 
 shuffle.style.background=
-isShuffle?
-"#22c55e":
-"#334155";
+shuf?"#22c55e":"#334155";
 
-save();
+localStorage.shuf=shuf;
 
 };
 
@@ -845,27 +570,23 @@ save();
 
 repeat.onclick=()=>{
 
-isRepeat=!isRepeat;
-
+rep=!rep;
 
 repeat.style.background=
-isRepeat?
-"#22c55e":
-"#334155";
+rep?"#22c55e":"#334155";
 
-save();
+localStorage.rep=rep;
 
 };
 
 
 
 
-// AUTO NEXT
+// AUTO
 
 audio.onended=()=>{
 
-
-if(isRepeat){
+if(rep){
 
 audio.currentTime=0;
 
@@ -876,7 +597,6 @@ playSong();
 next.click();
 
 }
-
 
 };
 
@@ -889,27 +609,20 @@ audio.onloadedmetadata=()=>{
 
 seek.max=audio.duration;
 
-duration.textContent=
-format(audio.duration);
+dur.textContent=format(audio.duration);
 
 };
-
 
 
 audio.ontimeupdate=()=>{
 
 seek.value=audio.currentTime;
 
-current.textContent=
-format(audio.currentTime);
+cur.textContent=format(audio.currentTime);
 
-localStorage.setItem(
-"pos",
-audio.currentTime
-);
+localStorage.pos=audio.currentTime;
 
 };
-
 
 
 seek.oninput=()=>{
@@ -923,21 +636,17 @@ audio.currentTime=seek.value;
 
 // VOLUME
 
-volume.value=
-localStorage.getItem("vol") || 1;
+vol.value=
+localStorage.vol || 1;
+
+audio.volume=vol.value;
 
 
-audio.volume=volume.value;
+vol.oninput=()=>{
 
+audio.volume=vol.value;
 
-volume.oninput=()=>{
-
-audio.volume=volume.value;
-
-localStorage.setItem(
-"vol",
-volume.value
-);
+localStorage.vol=vol.value;
 
 };
 
@@ -946,45 +655,20 @@ volume.value
 
 // FORMAT
 
-function format(sec){
+function format(s){
 
-if(isNaN(sec))
-return "00:00";
+if(isNaN(s))return"00:00";
 
+let m=Math.floor(s/60);
 
-let m=Math.floor(sec/60);
-
-let s=Math.floor(sec%60);
-
+let d=Math.floor(s%60);
 
 return String(m).padStart(2,"0")
 +":"+
-String(s).padStart(2,"0");
+String(d).padStart(2,"0");
 
 }
 
-
-
-// SIMPAN
-
-function save(){
-
-localStorage.setItem(
-"song",
-index
-);
-
-localStorage.setItem(
-"shuffle",
-isShuffle
-);
-
-localStorage.setItem(
-"repeat",
-isRepeat
-);
-
-}
 
 
 
@@ -993,31 +677,24 @@ isRepeat
 function restore(){
 
 index=
-Number(
-localStorage.getItem("song")
-)||0;
+Number(localStorage.song)||0;
 
+shuf=
+localStorage.shuf=="true";
 
-isShuffle=
-localStorage.getItem("shuffle")
-==="true";
+rep=
+localStorage.rep=="true";
 
-
-isRepeat=
-localStorage.getItem("repeat")
-==="true";
-
-
-loadSong();
-
+load();
 
 }
 
 
 
-// MEDIA SESSION ANDROID
 
-function updateMedia(){
+// MEDIA ANDROID
+
+function media(){
 
 if(!("mediaSession" in navigator))
 return;
