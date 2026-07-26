@@ -2,43 +2,85 @@
   {
     "title": "Dunia Yang Nanti",
     "artist": "Raim Laode",
+    "category": "Raim Laode",
     "cover": "logo.png",
     "file": "dunia-yang-nanti.mp3"
   },
   {
     "title": "Ini Abadi",
     "artist": "Perunggu",
+    "category": "Perunggu",
     "cover": "logo.png",
     "file": "ini-abadi.mp3"
   },
   {
     "title": "Shape of My Heart",
     "artist": "Backstreet Boys",
+    "category": "Backstreet Boys",
     "cover": "logo.png",
     "file": "shape-of-my-heart.mp3"
   },
   {
     "title": "IQRO",
     "artist": "Raim Laode",
+    "category": "Raim Laode",
     "cover": "logo.png",
     "file": "iqro.mp3"
   },
   {
     "title": "What Makes You Beautiful",
     "artist": "One Direction",
+    "category": "One Direction",
     "cover": "logo.png",
     "file": "what-makes-you-beautiful.mp3"
   },
   {
     "title": "33X",
     "artist": "Perunggu",
+    "category": "Perunggu",
     "cover": "logo.png",
     "file": "33x.mp3"
   },
   {
     "title": "Teh Hijau",
     "artist": "Tulus",
+    "category": "Tulus",
     "cover": "logo.png",
     "file": "teh-hijau.mp3"
+  },
+  {
+    "title": "1000 X",
+    "artist": "Ghea Indrawari",
+    "category": "Ghea Indrawari",
+    "cover": "logo.png",
+    "file": "1000x.mp3"
+  },
+  {
+    "title": "Lesung Pipi",
+    "artist": "Raim Laode",
+    "category": "Raim Laode",
+    "cover": "logo.png",
+    "file": "lesung-pipi.mp3"
+  },
+  {
+    "title": "Everything U Are",
+    "artist": "Hindia",
+    "category": "Hindia",
+    "cover": "logo.png",
+    "file": "everything-u-are.mp3"
+  },
+  {
+    "title": "Kami Belum Tentu",
+    "artist": ".Feast",
+    "category": ".Feast",
+    "cover": "logo.png",
+    "file": "kami-belum-tentu.mp3"
+  },
+  {
+    "title": "Berapa Kali Kita Akan Saling Memaafkan",
+    "artist": "Pamungkas",
+    "category": "Pamungkas",
+    "cover": "logo.png",
+    "file": "berapa-kali-kita-akan-saling-memaafkan.mp3"
   }
 ]
