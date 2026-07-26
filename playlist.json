@@ -82,5 +82,33 @@
     "category": "Pamungkas",
     "cover": "logo.png",
     "file": "berapa-kali-kita-akan-saling-memaafkan.mp3"
+  },
+  {
+    "title": "Nina",
+    "artist": ".Feast",
+    "category": ".Feast",
+    "cover": "logo.png",
+    "file": "nina.mp3"
+  },
+  {
+    "title": "Buruh Tani",
+    "artist": "Marjinal",
+    "category": "Marjinal",
+    "cover": "logo.png",
+    "file": "buruh-tani.mp3"
+  },
+  {
+    "title": "Dia Masa Lalumu, Aku Masa Depanmu",
+    "artist": "Vionita",
+    "category": "Vionita",
+    "cover": "logo.png",
+    "file": "dia-masa-lalumu-aku-masa-depanmu.mp3"
+  },
+  {
+    "title": "Sesi Potret",
+    "artist": "Enau & Ari Lesmana",
+    "category": "Enau & Ari Lesmana",
+    "cover": "logo.png",
+    "file": "sesi-potret.mp3"
   }
 ]
