@@ -1,176 +1,764 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="theme-color" content="#050816">
 
 <title>🎵 Sedatur Music Hub</title>
 
 <style>
-*{box-sizing:border-box;font-family:Arial;margin:0;padding:0}
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
 
 body{
-background:linear-gradient(#0f172a,#020617);
-color:white;
-min-height:100vh
+min-height:100vh;
+background:
+radial-gradient(circle at 15% 0%,rgba(59,130,246,.16),transparent 30%),
+radial-gradient(circle at 90% 20%,rgba(168,85,247,.13),transparent 30%),
+linear-gradient(180deg,#050816,#02040b);
+color:#f8fafc;
 }
+
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 header{
-padding:15px;
-display:flex;
-justify-content:center;
-align-items:center;
-background:#111827;
 position:sticky;
-top:0
+top:0;
+z-index:100;
+
+padding:14px 16px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+
+background:rgba(5,8,22,.78);
+border-bottom:1px solid rgba(255,255,255,.07);
+
+backdrop-filter:blur(20px);
+-webkit-backdrop-filter:blur(20px);
 }
 
-.logo{font-weight:bold;font-size:20px}
+.logo{
+font-size:19px;
+font-weight:900;
+letter-spacing:-.4px;
+}
 
 .home{
-background:#2563eb;
-color:white;
+display:inline-flex;
+align-items:center;
+gap:5px;
+
 padding:8px 12px;
-border-radius:10px;
+
+border-radius:12px;
+
+background:rgba(59,130,246,.15);
+border:1px solid rgba(96,165,250,.2);
+
+color:#93c5fd;
 text-decoration:none;
-font-size:14px
+
+font-size:12px;
+font-weight:700;
 }
 
-.clock{text-align:right;font-size:13px}
-#time{font-size:20px;font-weight:bold}
 
+/* =====================================================
+   CLOCK
+===================================================== */
+
+.clock{
+text-align:right;
+margin-top:5px;
+}
+
+#time{
+font-size:15px;
+font-weight:900;
+}
+
+#date{
+font-size:9px;
+color:#64748b;
+margin-top:2px;
+}
+
+
+/* =====================================================
+   MARQUEE
+===================================================== */
 
 .marquee{
-margin:15px;
-background:#1e293b;
-padding:10px;
-border-radius:12px;
+margin:14px auto;
+
+width:min(700px,calc(100% - 24px));
+
+padding:11px 15px;
+
+border-radius:15px;
+
 overflow:hidden;
-white-space:nowrap
+white-space:nowrap;
+
+background:rgba(255,255,255,.035);
+border:1px solid rgba(255,255,255,.06);
+
+box-shadow:0 10px 35px rgba(0,0,0,.2);
 }
 
 .marquee span{
 display:inline-block;
-animation:run 12s linear infinite
+
+padding-left:100%;
+
+font-size:11px;
+font-weight:700;
+
+color:#cbd5e1;
+
+animation:runText 18s linear infinite;
 }
 
-@keyframes run{
-from{transform:translateX(100%)}
-to{transform:translateX(-100%)}
+@keyframes runText{
+
+from{
+transform:translateX(0);
 }
 
+to{
+transform:translateX(-100%);
+}
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
 
 .box{
-max-width:600px;
+width:min(680px,100%);
 margin:auto;
-padding:15px
+padding:0 12px 50px;
 }
 
+
+/* =====================================================
+   PLAYER CARD
+===================================================== */
 
 .card{
-background:#1e293b;
-border-radius:25px;
-padding:20px;
-text-align:center
+
+position:relative;
+
+padding:22px 16px 20px;
+
+border-radius:30px;
+
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.07),
+rgba(255,255,255,.025)
+);
+
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:
+0 25px 80px rgba(0,0,0,.42),
+inset 0 1px rgba(255,255,255,.04);
+
+overflow:hidden;
+}
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+width:220px;
+height:220px;
+
+border-radius:50%;
+
+background:rgba(59,130,246,.10);
+
+filter:blur(60px);
+
+top:-100px;
+left:-80px;
+
+pointer-events:none;
 }
 
 
+/* =====================================================
+   NOW PLAYING
+===================================================== */
+
+.now-playing{
+position:relative;
+
+text-align:center;
+
+font-size:10px;
+font-weight:800;
+
+letter-spacing:1.5px;
+
+color:#60a5fa;
+
+margin-bottom:18px;
+}
+
+
+/* =====================================================
+   VINYL
+===================================================== */
+
 .vinyl{
-width:220px;
-height:220px;
+
+position:relative;
+
+width:min(230px,65vw);
+height:min(230px,65vw);
+
 margin:auto;
+
 border-radius:50%;
-background:radial-gradient(circle,#333 0 20%,#000 21%);
+
+background:
+repeating-radial-gradient(
+circle,
+#111 0px,
+#111 3px,
+#080808 4px,
+#181818 6px
+);
+
 display:flex;
 align-items:center;
-justify-content:center
+justify-content:center;
+
+box-shadow:
+0 20px 45px rgba(0,0,0,.6),
+inset 0 0 20px rgba(255,255,255,.04);
+
+}
+
+.vinyl::after{
+
+content:"";
+
+position:absolute;
+
+width:22px;
+height:22px;
+
+border-radius:50%;
+
+background:#020617;
+
+border:4px solid #64748b;
+
+z-index:3;
+
 }
 
 .vinyl img{
-width:90px;
-height:90px;
+
+width:92px;
+height:92px;
+
+object-fit:cover;
+
 border-radius:50%;
-background:white
+
+background:white;
+
+box-shadow:
+0 0 0 5px #111,
+0 8px 20px rgba(0,0,0,.5);
+
 }
 
 .spin{
-animation:spin 8s linear infinite
+animation:spin 8s linear infinite;
 }
 
 @keyframes spin{
-100%{transform:rotate(360deg)}
+
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(360deg);
+}
+
 }
 
 
-h2{
-margin-top:20px
+/* =====================================================
+   SONG INFO
+===================================================== */
+
+.song-info{
+text-align:center;
+margin-top:20px;
+}
+
+#title{
+
+font-size:23px;
+font-weight:900;
+
+letter-spacing:-.5px;
+
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
 }
 
 .artist{
+
+margin-top:7px;
+
+font-size:13px;
+
 color:#94a3b8;
-margin:8px
+}
+
+#status{
+
+margin-top:10px;
+
+font-size:11px;
+
+color:#64748b;
 }
 
 
-input,select{
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress-box{
+margin-top:20px;
+}
+
+.time-row{
+
+display:flex;
+justify-content:space-between;
+
+font-size:10px;
+
+color:#64748b;
+
+margin-bottom:7px;
+}
+
+input[type="range"]{
+
 width:100%;
-margin-top:10px
+
+height:5px;
+
+accent-color:#3b82f6;
+
+cursor:pointer;
 }
 
+
+/* =====================================================
+   CONTROLS
+===================================================== */
 
 .controls{
+
 display:flex;
+
 justify-content:center;
-gap:10px;
-margin:20px
+align-items:center;
+
+gap:9px;
+
+margin-top:20px;
 }
 
-button{
-width:45px;
-height:45px;
-border:0;
+.controls button{
+
+width:43px;
+height:43px;
+
+border:1px solid rgba(255,255,255,.07);
+
 border-radius:50%;
-background:#334155;
-color:white;
-font-size:18px
+
+background:#111827;
+
+color:#e2e8f0;
+
+font-size:16px;
+
+cursor:pointer;
+
+transition:.2s;
 }
 
-.play{
-width:60px;
-height:60px;
-background:#22c55e
+.controls button:active{
+transform:scale(.9);
 }
 
+.controls button:hover{
+background:#1e293b;
+}
+
+.controls .play{
+
+width:62px;
+height:62px;
+
+font-size:22px;
+
+background:
+linear-gradient(
+135deg,
+#3b82f6,
+#2563eb
+);
+
+box-shadow:
+0 8px 25px rgba(37,99,235,.35);
+
+border:0;
+}
+
+
+/* =====================================================
+   EXTRA CONTROLS
+===================================================== */
+
+.extra{
+
+margin-top:18px;
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:10px;
+}
+
+.extra-box{
+
+padding:12px;
+
+border-radius:15px;
+
+background:rgba(255,255,255,.035);
+
+border:1px solid rgba(255,255,255,.06);
+}
+
+.extra-label{
+
+display:flex;
+
+justify-content:space-between;
+
+font-size:10px;
+
+color:#64748b;
+
+margin-bottom:7px;
+}
+
+
+/* =====================================================
+   CATEGORY
+===================================================== */
+
+select{
+
+width:100%;
+
+margin-top:15px;
+
+padding:13px 14px;
+
+border-radius:14px;
+
+border:1px solid rgba(255,255,255,.08);
+
+background:#0b1120;
+
+color:#e2e8f0;
+
+outline:none;
+
+font-size:12px;
+}
+
+
+/* =====================================================
+   PLAYLIST HEADER
+===================================================== */
+
+.playlist-head{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-top:22px;
+
+margin-bottom:10px;
+}
+
+.playlist-title{
+
+font-size:13px;
+
+font-weight:900;
+}
+
+.playlist-count{
+
+font-size:10px;
+
+color:#64748b;
+}
+
+
+/* =====================================================
+   PLAYLIST
+===================================================== */
 
 .playlist{
-margin-top:20px;
-background:#020617;
-border-radius:15px;
-padding:10px
+
+background:rgba(2,6,23,.7);
+
+border:1px solid rgba(255,255,255,.06);
+
+border-radius:20px;
+
+padding:8px;
+
+max-height:430px;
+
+overflow-y:auto;
 }
 
+.playlist::-webkit-scrollbar{
+width:4px;
+}
+
+.playlist::-webkit-scrollbar-thumb{
+background:#334155;
+border-radius:10px;
+}
+
+
+/* =====================================================
+   SONG ITEM
+===================================================== */
+
 .song{
+
 display:flex;
-gap:10px;
+
 align-items:center;
+
+gap:11px;
+
 padding:10px;
-border-radius:10px
+
+border-radius:14px;
+
+cursor:pointer;
+
+transition:.2s;
 }
 
 .song:hover{
-background:#334155
+
+background:rgba(255,255,255,.05);
+}
+
+.song.active{
+
+background:
+linear-gradient(
+90deg,
+rgba(59,130,246,.15),
+rgba(59,130,246,.04)
+);
+
+border:1px solid rgba(59,130,246,.12);
 }
 
 .song img{
-width:50px;
-height:50px;
-border-radius:50%
+
+width:48px;
+height:48px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+flex-shrink:0;
+}
+
+.song-info-list{
+
+min-width:0;
+flex:1;
+}
+
+.song-name{
+
+font-size:12px;
+
+font-weight:800;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+}
+
+.song-artist{
+
+font-size:10px;
+
+color:#64748b;
+
+margin-top:3px;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+}
+
+.song-number{
+
+font-size:10px;
+
+color:#475569;
+
+width:20px;
+
+text-align:center;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+
+padding:25px;
+
+text-align:center;
+
+font-size:12px;
+
+color:#64748b;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:420px){
+
+header{
+align-items:flex-start;
+}
+
+.logo{
+font-size:16px;
+}
+
+.clock #time{
+font-size:13px;
+}
+
+.clock #date{
+font-size:8px;
+}
+
+.vinyl{
+width:205px;
+height:205px;
+}
+
+.vinyl img{
+width:82px;
+height:82px;
+}
+
+#title{
+font-size:20px;
+}
+
+}
+
+@media(min-width:700px){
+
+.box{
+padding-top:5px;
+}
+
+.card{
+padding:30px;
+}
+
 }
 
 </style>
+
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
@@ -179,15 +767,27 @@ border-radius:50%
 </div>
 
 <div>
-<a class="home"
+
+<a
+class="home"
 href="https://sites.google.com/view/sedatur-rawamangun/home"
-target="_blank">
+target="_blank"
+rel="noopener">
+
 🏠 Home
+
 </a>
 
 <div class="clock">
-<div id="time">00:00:00</div>
-<div id="date"></div>
+
+<div id="time">
+00:00:00
+</div>
+
+<div id="date">
+Memuat tanggal...
+</div>
+
 </div>
 
 </div>
@@ -195,556 +795,1262 @@ target="_blank">
 </header>
 
 
+<!-- =====================================================
+     RUNNING TEXT
+===================================================== -->
+
 <div class="marquee">
+
 <span id="run">
-🎵 Selamat datang di Sedatur Music Hub 🎧
+🎵 Selamat datang di Sedatur Music Hub • Nikmati musik bersama Sedatur Rawamangun 🎧
 </span>
+
 </div>
 
 
-<div class="box">
+<!-- =====================================================
+     MAIN PLAYER
+===================================================== -->
 
-<div class="card">
+<main class="box">
 
-<div class="vinyl" id="vinyl">
-<img id="cover" src="logo.png">
+<section class="card">
+
+
+<div class="now-playing">
+NOW PLAYING
 </div>
 
+
+<!-- VINYL -->
+
+<div
+class="vinyl"
+id="vinyl">
+
+<img
+id="cover"
+src="logo.png"
+alt="Cover">
+
+</div>
+
+
+<!-- SONG INFO -->
+
+<div class="song-info">
 
 <h2 id="title">
 Sedatur Music Hub
 </h2>
 
-<div class="artist" id="artist">
-Pilih Lagu
-</div>
+<div
+class="artist"
+id="artist">
 
+Pilih lagu untuk mulai memutar
+
+</div>
 
 <div id="status">
 ⏸ Belum diputar
 </div>
 
-
-<input id="seek" type="range">
-
-
-<div>
-<span id="cur">00:00</span>
-/
-<span id="dur">00:00</span>
 </div>
 
+
+<!-- PROGRESS -->
+
+<div class="progress-box">
+
+<div class="time-row">
+
+<span id="cur">
+00:00
+</span>
+
+<span id="dur">
+00:00
+</span>
+
+</div>
+
+<input
+id="seek"
+type="range"
+min="0"
+max="100"
+value="0"
+step="0.1">
+
+</div>
+
+
+<!-- CONTROLS -->
 
 <div class="controls">
 
-<button id="prev">⏮</button>
-<button id="play" class="play">▶</button>
-<button id="next">⏭</button>
-<button id="shuffle">🔀</button>
-<button id="repeat">🔁</button>
+<button
+id="prev"
+title="Sebelumnya">
+
+⏮
+
+</button>
+
+
+<button
+id="play"
+class="play"
+title="Putar">
+
+▶
+
+</button>
+
+
+<button
+id="next"
+title="Berikutnya">
+
+⏭
+
+</button>
+
+
+<button
+id="shuffle"
+title="Acak">
+
+🔀
+
+</button>
+
+
+<button
+id="repeat"
+title="Ulangi">
+
+🔁
+
+</button>
 
 </div>
 
 
-<input id="vol" type="range" min="0" max="1" step="0.01">
+<!-- EXTRA -->
 
+<div class="extra">
+
+
+<div class="extra-box">
+
+<div class="extra-label">
+
+<span>🔊 Volume</span>
+
+<span id="volumeText">
+100%
+</span>
+
+</div>
+
+<input
+id="vol"
+type="range"
+min="0"
+max="1"
+step="0.01"
+value="1">
+
+</div>
+
+
+<div class="extra-box">
+
+<div class="extra-label">
+
+<span>🎵 Status</span>
+
+<span id="songCount">
+0 Lagu
+</span>
+
+</div>
+
+<div
+style="
+font-size:11px;
+color:#94a3b8;
+">
+
+Sedatur Playlist
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CATEGORY -->
 
 <select id="cat">
+
 <option value="all">
 🎤 Semua Artis
 </option>
+
 </select>
 
 
-<div class="playlist" id="list"></div>
+<!-- PLAYLIST HEADER -->
+
+<div class="playlist-head">
+
+<div class="playlist-title">
+🎶 Playlist
+</div>
+
+<div
+class="playlist-count"
+id="playlistCount">
+
+0 lagu
 
 </div>
 
 </div>
 
 
-<audio id="audio"></audio>
-  <script>
+<!-- PLAYLIST -->
 
-const audio=document.getElementById("audio");
-const vinyl=document.getElementById("vinyl");
-const cover=document.getElementById("cover");
+<div
+class="playlist"
+id="list">
 
-const title=document.getElementById("title");
-const artist=document.getElementById("artist");
-const status=document.getElementById("status");
+<div class="empty">
+Memuat playlist...
+</div>
 
-const play=document.getElementById("play");
-const prev=document.getElementById("prev");
-const next=document.getElementById("next");
-
-const shuffle=document.getElementById("shuffle");
-const repeat=document.getElementById("repeat");
-
-const seek=document.getElementById("seek");
-const vol=document.getElementById("vol");
-
-const cur=document.getElementById("cur");
-const dur=document.getElementById("dur");
-
-const list=document.getElementById("list");
-const cat=document.getElementById("cat");
-
-const run=document.getElementById("run");
+</div>
 
 
-let songs=[];
-let index=0;
+</section>
 
-let shuf=false;
-let rep=false;
+</main>
 
 
+<!-- AUDIO -->
 
-// JAM
+<audio
+id="audio"
+preload="metadata">
+</audio>
 
-function clock(){
 
-let d=new Date();
+<script>
 
-document.getElementById("time")
-.textContent=d.toLocaleTimeString("id-ID");
+/* =====================================================
+   SEDATUR MUSIC HUB — PART 2
+===================================================== */
 
-document.getElementById("date")
-.textContent=d.toLocaleDateString(
-"id-ID",
-{
+const audio = document.getElementById("audio");
+const vinyl = document.getElementById("vinyl");
+const cover = document.getElementById("cover");
+
+const title = document.getElementById("title");
+const artist = document.getElementById("artist");
+const status = document.getElementById("status");
+
+const playBtn = document.getElementById("play");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+
+const shuffleBtn = document.getElementById("shuffle");
+const repeatBtn = document.getElementById("repeat");
+
+const seek = document.getElementById("seek");
+const vol = document.getElementById("vol");
+
+const cur = document.getElementById("cur");
+const dur = document.getElementById("dur");
+
+const list = document.getElementById("list");
+const cat = document.getElementById("cat");
+
+const run = document.getElementById("run");
+
+const volumeText = document.getElementById("volumeText");
+const songCount = document.getElementById("songCount");
+const playlistCount = document.getElementById("playlistCount");
+
+
+/* =====================================================
+   DATA
+===================================================== */
+
+let songs = [];
+let index = 0;
+
+let shuffleMode = false;
+let repeatMode = false;
+
+
+/* =====================================================
+   STORAGE
+===================================================== */
+
+const STORAGE = {
+song: "sedatur_music_song",
+position: "sedatur_music_position",
+volume: "sedatur_music_volume",
+shuffle: "sedatur_music_shuffle",
+repeat: "sedatur_music_repeat"
+};
+
+
+/* =====================================================
+   CLOCK
+===================================================== */
+
+function updateClock(){
+
+const d = new Date();
+
+document.getElementById("time").textContent =
+d.toLocaleTimeString("id-ID",{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit"
+});
+
+document.getElementById("date").textContent =
+d.toLocaleDateString("id-ID",{
 weekday:"long",
 day:"numeric",
 month:"long",
 year:"numeric"
+});
+
 }
+
+updateClock();
+
+setInterval(updateClock,1000);
+
+
+/* =====================================================
+   LOAD PLAYLIST.JSON
+===================================================== */
+
+async function loadPlaylist(){
+
+try{
+
+const response = await fetch(
+"playlist.json?cache="+Date.now()
+);
+
+if(!response.ok){
+
+throw new Error(
+"playlist.json tidak ditemukan."
 );
 
 }
 
-clock();
-setInterval(clock,1000);
+const data = await response.json();
 
+if(!Array.isArray(data)){
 
-
-
-// LOAD JSON
-
-fetch("playlist.json")
-.then(x=>x.json())
-.then(data=>{
-
-songs=data;
-
-buatKategori();
-
-tampil();
-
-restore();
-
-});
-
-
-
-
-// KATEGORI
-
-function buatKategori(){
-
-[...new Set(
-songs.map(x=>x.category)
-)]
-.forEach(c=>{
-
-let o=document.createElement("option");
-
-o.value=c;
-
-o.textContent="🎤 "+c;
-
-cat.appendChild(o);
-
-});
+throw new Error(
+"Format playlist.json tidak valid."
+);
 
 }
 
+songs = data;
 
-cat.onchange=tampil;
+songCount.textContent =
+songs.length+" Lagu";
 
+playlistCount.textContent =
+songs.length+" lagu";
 
+buatKategori();
 
+restore();
 
-// LIST
+renderPlaylist();
 
-function tampil(){
+}catch(error){
 
-list.innerHTML="";
+console.error(error);
 
+list.innerHTML = `
 
-songs.forEach((s,i)=>{
+<div class="empty">
 
-if(
-cat.value!="all" &&
-s.category!=cat.value
-)return;
+⚠️ Playlist gagal dimuat<br><br>
 
+${escapeHTML(error.message)}
 
-let div=document.createElement("div");
-
-div.className="song";
-
-
-div.innerHTML=`
-
-<img src="${s.cover}">
-
-<div>
-<b>${s.title}</b>
-<br>
-<small>${s.artist}</small>
 </div>
 
 `;
 
+}
 
-div.onclick=()=>{
-
-index=i;
-
-load();
-
-playSong();
-
-};
+}
 
 
-list.appendChild(div);
+/* =====================================================
+   CATEGORY
+===================================================== */
 
+function buatKategori(){
+
+cat.innerHTML = `
+
+<option value="all">
+🎤 Semua Artis
+</option>
+
+`;
+
+const categories = [
+...new Set(
+songs.map(song=>song.category)
+.filter(Boolean)
+)
+];
+
+categories.forEach(category=>{
+
+const option =
+document.createElement("option");
+
+option.value = category;
+
+option.textContent =
+"🎤 "+category;
+
+cat.appendChild(option);
+
+});
+
+}
+
+
+cat.addEventListener(
+"change",
+renderPlaylist
+);
+
+
+/* =====================================================
+   RENDER PLAYLIST
+===================================================== */
+
+function renderPlaylist(){
+
+list.innerHTML = "";
+
+const selected = cat.value;
+
+const filtered = songs
+.map((song,i)=>({
+song,
+index:i
+}))
+.filter(item=>{
+
+if(selected==="all"){
+return true;
+}
+
+return item.song.category===selected;
 
 });
 
 
+playlistCount.textContent =
+filtered.length+" lagu";
+
+
+if(!filtered.length){
+
+list.innerHTML = `
+
+<div class="empty">
+
+Tidak ada lagu di kategori ini.
+
+</div>
+
+`;
+
+return;
+
 }
 
 
+filtered.forEach((item,position)=>{
+
+const s = item.song;
+
+const div =
+document.createElement("div");
+
+div.className =
+"song"+
+(item.index===index ? " active":"");
 
 
-// LOAD LAGU
+div.innerHTML = `
 
-function load(){
+<div class="song-number">
 
-let s=songs[index];
+${String(position+1).padStart(2,"0")}
 
-if(!s)return;
+</div>
+
+<img
+src="${escapeAttribute(s.cover || "logo.png")}"
+alt=""
+onerror="this.src='logo.png'">
+
+<div class="song-info-list">
+
+<div class="song-name">
+
+${escapeHTML(s.title || "Tanpa Judul")}
+
+</div>
+
+<div class="song-artist">
+
+${escapeHTML(s.artist || "Unknown Artist")}
+
+</div>
+
+</div>
+
+`;
+
+div.addEventListener(
+"click",
+()=>{
+
+index = item.index;
+
+loadSong();
+
+playSong();
+
+}
+);
+
+list.appendChild(div);
+
+});
+
+}
 
 
-audio.src=s.file;
+/* =====================================================
+   LOAD SONG
+===================================================== */
 
-cover.src=s.cover;
+function loadSong(){
 
-title.textContent=s.title;
+const song = songs[index];
 
-artist.textContent=s.artist;
+if(!song){
+return;
+}
+
+audio.src = song.file;
+
+cover.src =
+song.cover || "logo.png";
+
+title.textContent =
+song.title || "Tanpa Judul";
+
+artist.textContent =
+song.artist || "Unknown Artist";
 
 
-run.textContent=
+run.textContent =
 "🎵 Sedang Diputar • "+
-s.title+
+(song.title || "Tanpa Judul")+
 " • "+
-s.artist+
-" 🎧";
+(song.artist || "")+
+" • 🎧 Sedatur Music Hub";
 
 
-localStorage.song=index;
+audio.load();
 
-media();
+localStorage.setItem(
+STORAGE.song,
+index
+);
+
+renderPlaylist();
+
+updateMediaSession();
 
 }
 
 
+/* =====================================================
+   PLAY
+===================================================== */
 
+async function playSong(){
 
-// PLAY
+try{
 
-function playSong(){
+await audio.play();
 
-audio.play();
+playBtn.textContent = "⏸";
 
-play.textContent="⏸";
-
-status.textContent="🟢 Sedang Diputar";
+status.textContent =
+"🟢 Sedang Diputar";
 
 vinyl.classList.add("spin");
 
+}catch(error){
+
+console.log(
+"Audio belum dapat diputar:",
+error
+);
+
 }
 
+}
+
+
+/* =====================================================
+   PAUSE
+===================================================== */
 
 function pauseSong(){
 
 audio.pause();
 
-play.textContent="▶";
+playBtn.textContent = "▶";
 
-status.textContent="⏸ Dijeda";
+status.textContent =
+"⏸ Dijeda";
 
 vinyl.classList.remove("spin");
 
 }
 
 
-play.onclick=()=>{
+/* =====================================================
+   PLAY BUTTON
+===================================================== */
 
-audio.paused?
-playSong():
+playBtn.addEventListener(
+"click",
+()=>{
+
+if(!audio.src){
+
+loadSong();
+
+}
+
+if(audio.paused){
+
+playSong();
+
+}else{
+
 pauseSong();
 
-};
+}
+
+}
+);
 
 
+/* =====================================================
+   NEXT
+===================================================== */
 
+nextBtn.addEventListener(
+"click",
+()=>{
 
-// NEXT
+if(!songs.length){
+return;
+}
 
-next.onclick=()=>{
+if(shuffleMode){
 
-if(shuf){
+let newIndex;
 
-index=Math.floor(
+do{
+
+newIndex =
+Math.floor(
 Math.random()*songs.length
 );
+
+}while(
+songs.length>1 &&
+newIndex===index
+);
+
+index = newIndex;
 
 }else{
 
 index++;
 
-if(index>=songs.length)
-index=0;
+if(index>=songs.length){
+
+index = 0;
 
 }
 
+}
 
-load();
+loadSong();
 
 playSong();
 
-};
+}
+);
 
 
+/* =====================================================
+   PREVIOUS
+===================================================== */
 
-// PREV
+prevBtn.addEventListener(
+"click",
+()=>{
 
-prev.onclick=()=>{
+if(!songs.length){
+return;
+}
+
+
+/*
+Jika lagu sudah berjalan lebih dari 3 detik,
+tombol previous mengulang lagu.
+*/
+
+if(audio.currentTime>3){
+
+audio.currentTime = 0;
+
+return;
+
+}
+
 
 index--;
 
-if(index<0)
-index=songs.length-1;
+if(index<0){
 
-load();
-
-playSong();
-
-};
-
-
-
-
-// SHUFFLE
-
-shuffle.onclick=()=>{
-
-shuf=!shuf;
-
-shuffle.style.background=
-shuf?"#22c55e":"#334155";
-
-localStorage.shuf=shuf;
-
-};
-
-
-
-
-// REPEAT
-
-repeat.onclick=()=>{
-
-rep=!rep;
-
-repeat.style.background=
-rep?"#22c55e":"#334155";
-
-localStorage.rep=rep;
-
-};
-
-
-
-
-// AUTO
-
-audio.onended=()=>{
-
-if(rep){
-
-audio.currentTime=0;
-
-playSong();
-
-}else{
-
-next.click();
+index = songs.length-1;
 
 }
 
-};
+loadSong();
+
+playSong();
+
+}
+);
 
 
+/* =====================================================
+   SHUFFLE
+===================================================== */
+
+shuffleBtn.addEventListener(
+"click",
+()=>{
+
+shuffleMode =
+!shuffleMode;
+
+shuffleBtn.style.background =
+shuffleMode
+? "#22c55e"
+: "#111827";
+
+localStorage.setItem(
+STORAGE.shuffle,
+shuffleMode
+);
+
+}
+);
 
 
-// SEEK
+/* =====================================================
+   REPEAT
+===================================================== */
 
-audio.onloadedmetadata=()=>{
+repeatBtn.addEventListener(
+"click",
+()=>{
 
-seek.max=audio.duration;
+repeatMode =
+!repeatMode;
 
-dur.textContent=format(audio.duration);
+repeatBtn.style.background =
+repeatMode
+? "#22c55e"
+: "#111827";
 
-};
+localStorage.setItem(
+STORAGE.repeat,
+repeatMode
+);
 
-
-audio.ontimeupdate=()=>{
-
-seek.value=audio.currentTime;
-
-cur.textContent=format(audio.currentTime);
-
-localStorage.pos=audio.currentTime;
-
-};
-
-
-seek.oninput=()=>{
-
-audio.currentTime=seek.value;
-
-};
+}
+);
 
 
+/* =====================================================
+   AUTO NEXT
+===================================================== */
+
+audio.addEventListener(
+"ended",
+()=>{
+
+if(repeatMode){
+
+audio.currentTime = 0;
+
+playSong();
+
+return;
+
+}
+
+nextBtn.click();
+
+}
+);
+
+/* =====================================================
+   METADATA
+===================================================== */
+
+audio.addEventListener(
+"loadedmetadata",
+()=>{
+
+if(!isFinite(audio.duration)){
+return;
+}
+
+seek.max =
+audio.duration;
+
+seek.value = 0;
+
+dur.textContent =
+formatTime(audio.duration);
+
+}
+);
 
 
-// VOLUME
+/* =====================================================
+   TIME UPDATE
+===================================================== */
 
-vol.value=
-localStorage.vol || 1;
+audio.addEventListener(
+"timeupdate",
+()=>{
 
-audio.volume=vol.value;
+if(!isFinite(audio.duration)){
+return;
+}
+
+seek.value =
+audio.currentTime;
+
+cur.textContent =
+formatTime(audio.currentTime);
+
+localStorage.setItem(
+STORAGE.position,
+audio.currentTime
+);
+
+}
+);
 
 
-vol.oninput=()=>{
+/* =====================================================
+   SEEK
+===================================================== */
 
-audio.volume=vol.value;
+seek.addEventListener(
+"input",
+()=>{
 
-localStorage.vol=vol.value;
+audio.currentTime =
+Number(seek.value);
 
-};
+}
+);
 
 
+/* =====================================================
+   VOLUME
+===================================================== */
 
+function setVolume(value){
 
-// FORMAT
+const volume =
+Math.max(
+0,
+Math.min(1,Number(value))
+);
 
-function format(s){
+audio.volume = volume;
 
-if(isNaN(s))return"00:00";
+vol.value = volume;
 
-let m=Math.floor(s/60);
+volumeText.textContent =
+Math.round(volume*100)+"%";
 
-let d=Math.floor(s%60);
-
-return String(m).padStart(2,"0")
-+":"+
-String(d).padStart(2,"0");
+localStorage.setItem(
+STORAGE.volume,
+volume
+);
 
 }
 
 
+vol.addEventListener(
+"input",
+()=>{
+
+setVolume(vol.value);
+
+}
+);
 
 
-// RESTORE
+/* =====================================================
+   RESTORE PLAYER
+===================================================== */
 
 function restore(){
 
-index=
-Number(localStorage.song)||0;
+index =
+Number(
+localStorage.getItem(
+STORAGE.song
+)
+);
 
-shuf=
-localStorage.shuf=="true";
+if(
+!Number.isInteger(index) ||
+index<0 ||
+index>=songs.length
+){
 
-rep=
-localStorage.rep=="true";
-
-load();
+index = 0;
 
 }
 
 
+shuffleMode =
+localStorage.getItem(
+STORAGE.shuffle
+)==="true";
 
 
-// MEDIA ANDROID
+repeatMode =
+localStorage.getItem(
+STORAGE.repeat
+)==="true";
 
-function media(){
 
-if(!("mediaSession" in navigator))
+shuffleBtn.style.background =
+shuffleMode
+? "#22c55e"
+: "#111827";
+
+
+repeatBtn.style.background =
+repeatMode
+? "#22c55e"
+: "#111827";
+
+
+const savedVolume =
+localStorage.getItem(
+STORAGE.volume
+);
+
+if(savedVolume!==null){
+
+setVolume(savedVolume);
+
+}else{
+
+setVolume(1);
+
+}
+
+
+loadSong();
+
+}
+
+
+/* =====================================================
+   RESTORE POSITION
+===================================================== */
+
+audio.addEventListener(
+"loadedmetadata",
+()=>{
+
+const savedSong =
+Number(
+localStorage.getItem(
+STORAGE.song
+)
+);
+
+const savedPosition =
+Number(
+localStorage.getItem(
+STORAGE.position
+)
+);
+
+
+if(
+savedSong===index &&
+Number.isFinite(savedPosition) &&
+savedPosition>0 &&
+savedPosition<audio.duration
+){
+
+audio.currentTime =
+savedPosition;
+
+}
+
+}
+);
+
+
+/* =====================================================
+   MEDIA SESSION — ANDROID
+===================================================== */
+
+function updateMediaSession(){
+
+if(
+!("mediaSession" in navigator) ||
+!songs[index]
+){
+
 return;
 
+}
 
-navigator.mediaSession.metadata=
+const song = songs[index];
+
+try{
+
+navigator.mediaSession.metadata =
 new MediaMetadata({
 
-title:title.textContent,
+title:
+song.title || "Sedatur Music",
 
-artist:artist.textContent,
+artist:
+song.artist || "Sedatur",
 
-album:"Sedatur Music Hub",
+album:
+"Sedatur Music Hub",
 
 artwork:[
+
 {
-src:cover.src,
-sizes:"512x512"
+src:
+song.cover || "logo.png",
+
+sizes:"512x512",
+
+type:"image/png"
+
 }
+
 ]
 
 });
-
 
 navigator.mediaSession.setActionHandler(
 "play",
 playSong
 );
 
-
 navigator.mediaSession.setActionHandler(
 "pause",
 pauseSong
 );
 
-
 navigator.mediaSession.setActionHandler(
 "nexttrack",
-()=>next.click()
+()=>nextBtn.click()
 );
-
 
 navigator.mediaSession.setActionHandler(
 "previoustrack",
-()=>prev.click()
+()=>prevBtn.click()
 );
 
+}catch(error){
+
+console.log(
+"Media Session:",
+error
+);
 
 }
 
+}
+
+
+/* =====================================================
+   FORMAT TIME
+===================================================== */
+
+function formatTime(seconds){
+
+if(
+!Number.isFinite(seconds)
+){
+
+return "00:00";
+
+}
+
+const minutes =
+Math.floor(seconds/60);
+
+const secs =
+Math.floor(seconds%60);
+
+return String(minutes)
+.padStart(2,"0")
++
+":"+
+String(secs)
+.padStart(2,"0");
+
+}
+
+
+/* =====================================================
+   SAFE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttribute(value){
+
+return escapeHTML(value);
+
+}
+
+
+/* =====================================================
+   KEYBOARD CONTROL
+===================================================== */
+
+document.addEventListener(
+"keydown",
+event=>{
+
+if(
+event.target.tagName==="INPUT" ||
+event.target.tagName==="SELECT"
+){
+
+return;
+
+}
+
+if(event.code==="Space"){
+
+event.preventDefault();
+
+if(audio.paused){
+
+playSong();
+
+}else{
+
+pauseSong();
+
+}
+
+}
+
+if(event.code==="ArrowRight"){
+
+audio.currentTime =
+Math.min(
+audio.duration || 0,
+audio.currentTime+5
+);
+
+}
+
+if(event.code==="ArrowLeft"){
+
+audio.currentTime =
+Math.max(
+0,
+audio.currentTime-5
+);
+
+}
+
+}
+);
+
+
+/* =====================================================
+   START
+===================================================== */
+
+loadPlaylist();
 
 </script>
 
