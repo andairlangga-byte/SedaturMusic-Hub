@@ -2576,73 +2576,50 @@ function updateVideoButton(){
 /* =====================================================
    OPEN VIDEO
 ===================================================== */
+/* =====================================================
+   OPEN VIDEO - FIXED
+   AUDIO = MASTER
+   VIDEO = MUTED
+===================================================== */
 
 function openVideo(){
 
-    const song =
-        songs[index];
-
+    const song = songs[index];
 
     if(
         !song ||
-        !song.lyricsVideo
+        !song.lyricsVideo ||
+        !String(song.lyricsVideo).trim()
     ){
 
-        return;
+        lyricsBtn.textContent =
+            "⚠️ Video Tidak Tersedia";
 
+        return;
     }
 
 
-    /*
-       TOKEN BARU
-       Supaya video lama tidak
-       bisa mengambil alih video baru.
-    */
+    const currentToken = ++videoToken;
 
-    const currentToken =
-        ++videoToken;
+    videoReady = false;
 
 
-    videoReady =
-        false;
-
-
-    /*
-       Hentikan video sebelumnya
-    */
+    /* STOP VIDEO LAMA */
 
     lyricsVideo.pause();
 
-
-    lyricsVideo.removeAttribute(
-        "src"
-    );
-
+    lyricsVideo.removeAttribute("src");
 
     lyricsVideo.load();
 
 
-    /*
-       VIDEO WAJIB MUTE
-    */
+    /* VIDEO SELALU MUTE */
 
-    lyricsVideo.muted =
-        true;
-
-    lyricsVideo.volume =
-        0;
+    lyricsVideo.muted = true;
+    lyricsVideo.volume = 0;
 
 
-    /*
-       Masukkan video lagu baru
-    */
-
-    lyricsVideo.src =
-        song.lyricsVideo;
-
-
-    lyricsVideo.load();
-
+    /* TAMPILKAN VIDEO */
 
     visualStage.classList.add(
         "video-active"
@@ -2654,108 +2631,189 @@ function openVideo(){
 
 
     /*
-       Saat metadata siap
+       SET URL VIDEO BARU
     */
 
-    lyricsVideo.onloadedmetadata =
-        async () => {
+    lyricsVideo.src =
+        song.lyricsVideo;
 
-        /*
-           Kalau token sudah berubah,
-           berarti lagu sudah berganti.
-        */
+
+    /*
+       IMPORTANT:
+       Jangan langsung play sebelum
+       metadata tersedia.
+    */
+
+    lyricsVideo.load();
+
+
+    let loaded = false;
+
+
+    /* ============================
+       VIDEO BERHASIL DIMUAT
+    ============================ */
+
+    lyricsVideo.onloadedmetadata = () => {
 
         if(
-            currentToken !==
-            videoToken
+            currentToken !== videoToken
         ){
 
             return;
-
         }
 
 
-        videoReady =
-            true;
+        loaded = true;
+
+        videoReady = true;
 
 
         /*
-           AUDIO ADALAH MASTER
+           AUDIO MENJADI MASTER CLOCK
         */
 
         syncVideo(true);
 
 
+        lyricsBtn.textContent =
+            "🎬 Sembunyikan Video";
+
+
         /*
-           Jika audio sedang berjalan,
-           video ikut berjalan.
+           Kalau audio sedang jalan,
+           video ikut jalan.
         */
 
         if(
             !audio.paused
         ){
 
-            try{
+            lyricsVideo.muted = true;
 
-                await lyricsVideo.play();
+            lyricsVideo.volume = 0;
 
-            }catch(error){
 
-                console.log(
-                    "Video autoplay diblokir:",
-                    error
-                );
+            lyricsVideo.play()
+            .catch(
+                error => {
 
-            }
+                    console.log(
+                        "Video autoplay:",
+                        error
+                    );
+
+                }
+            );
 
         }
-
-
-        lyricsBtn.textContent =
-            "🎬 Sembunyikan Video";
 
     };
 
 
-    /*
-       Kalau video error
-    */
+    /* ============================
+       CAN PLAY
+    ============================ */
 
-    lyricsVideo.onerror =
-        () => {
+    lyricsVideo.oncanplay = () => {
 
         if(
-            currentToken !==
-            videoToken
+            currentToken !== videoToken
         ){
 
             return;
-
         }
 
 
-        videoReady =
-            false;
+        videoReady = true;
+
+
+        lyricsVideo.muted = true;
+
+        lyricsVideo.volume = 0;
+
+
+        syncVideo(true);
+
+
+        if(
+            !audio.paused
+        ){
+
+            lyricsVideo.play()
+            .catch(
+                ()=>{}
+            );
+
+        }
+
+    };
+
+
+    /* ============================
+       ERROR
+    ============================ */
+
+    lyricsVideo.onerror = () => {
+
+        if(
+            currentToken !== videoToken
+        ){
+
+            return;
+        }
+
+
+        videoReady = false;
 
 
         lyricsBtn.textContent =
             "⚠️ Video Gagal Dimuat";
 
 
-        console.log(
-            "Video gagal:",
+        console.error(
+            "Video gagal dimuat:",
             song.lyricsVideo
         );
 
     };
 
+
+    /* ============================
+       TIMEOUT
+    ============================ */
+
+    setTimeout(
+        () => {
+
+        if(
+            currentToken !== videoToken
+        ){
+
+            return;
+        }
+
+
+        if(
+            !loaded &&
+            !videoReady
+        ){
+
+            lyricsBtn.textContent =
+                "⚠️ Video Gagal Dimuat";
+
+            console.warn(
+                "Video timeout:",
+                song.lyricsVideo
+            );
+
+        }
+
+    },
+    10000
+    );
+
 }
-
-
-/* =====================================================
-   VIDEO BUTTON
-===================================================== */
-
 lyricsBtn.onclick =
 ()=>{
 
