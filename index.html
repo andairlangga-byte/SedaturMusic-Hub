@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>🎵 Sedatur Music Hub</title>
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
 
 *{
     box-sizing:border-box;
@@ -24,1139 +17,535 @@
 }
 
 :root{
-
     --bg:#030712;
-    --panel:#0f172a;
-    --panel2:#111c30;
-
+    --card:#0f172a;
+    --card2:#111c30;
     --border:rgba(255,255,255,.09);
-
     --text:#f8fafc;
     --muted:#94a3b8;
-
-    --accent:#38bdf8;
+    --blue:#38bdf8;
     --green:#22c55e;
-
 }
 
-
-/* =====================================================
-   BODY
-===================================================== */
-
 body{
-
     min-height:100vh;
-
+    color:var(--text);
     background:
         radial-gradient(
             circle at 15% 0%,
-            rgba(56,189,248,.13),
+            rgba(56,189,248,.12),
             transparent 30%
         ),
-
         radial-gradient(
             circle at 90% 20%,
             rgba(34,197,94,.08),
-            transparent 28%
+            transparent 30%
         ),
-
         var(--bg);
-
-    color:var(--text);
-
 }
 
 
-button,
-input,
-select{
-
-    font:inherit;
-
-}
-
-button{
-
-    cursor:pointer;
-
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
+/* HEADER */
 
 header{
-
     position:sticky;
-
     top:0;
-
-    z-index:100;
-
-    padding:15px;
-
-    background:
-        rgba(3,7,18,.82);
-
-    backdrop-filter:
-        blur(18px);
-
-    border-bottom:
-        1px solid var(--border);
-
+    z-index:50;
+    padding:14px 16px;
     display:flex;
-
-    justify-content:
-        space-between;
-
     align-items:center;
-
-    gap:15px;
-
+    justify-content:space-between;
+    gap:12px;
+    background:rgba(3,7,18,.88);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid var(--border);
 }
-
 
 .logo{
-
-    font-size:20px;
-
+    font-size:19px;
     font-weight:900;
-
 }
-
-
-.header-right{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-}
-
 
 .home{
-
     display:inline-block;
-
-    background:
-        rgba(56,189,248,.14);
-
-    border:
-        1px solid
-        rgba(56,189,248,.25);
-
-    color:
-        var(--accent);
-
-    padding:
-        9px 13px;
-
-    border-radius:
-        12px;
-
+    padding:9px 12px;
+    border-radius:11px;
     text-decoration:none;
-
-    font-size:13px;
-
+    color:var(--blue);
+    background:rgba(56,189,248,.12);
+    border:1px solid rgba(56,189,248,.22);
+    font-size:12px;
     font-weight:700;
-
 }
-
 
 .clock{
-
     text-align:right;
-
+    margin-top:5px;
 }
-
 
 #time{
-
-    font-size:18px;
-
+    font-size:15px;
     font-weight:900;
-
 }
-
 
 #date{
-
-    font-size:10px;
-
     color:var(--muted);
-
+    font-size:9px;
 }
 
 
-/* =====================================================
-   MARQUEE
-===================================================== */
+/* MARQUEE */
 
 .marquee{
-
-    margin:
-        15px auto;
-
-    max-width:
-        650px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid var(--border);
-
-    padding:
-        11px;
-
-    border-radius:
-        14px;
-
+    width:min(650px,calc(100% - 30px));
+    margin:15px auto;
+    padding:10px;
     overflow:hidden;
-
     white-space:nowrap;
-
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:rgba(255,255,255,.035);
 }
-
 
 .marquee span{
-
     display:inline-block;
-
-    animation:
-        run 16s linear infinite;
-
     color:#cbd5e1;
-
     font-size:12px;
-
+    animation:marquee 16s linear infinite;
 }
 
-
-@keyframes run{
-
+@keyframes marquee{
     from{
-
-        transform:
-            translateX(100%);
-
+        transform:translateX(100%);
     }
 
     to{
-
-        transform:
-            translateX(-100%);
-
+        transform:translateX(-100%);
     }
-
 }
 
 
-/* =====================================================
-   MAIN
-===================================================== */
+/* CONTAINER */
 
-.box{
-
-    width:
-        min(650px,100%);
-
+.container{
+    width:min(650px,100%);
     margin:auto;
-
-    padding:
-        0 15px 40px;
-
+    padding:0 15px 40px;
 }
 
+
+/* CARD */
 
 .card{
-
+    padding:20px;
+    border-radius:25px;
+    border:1px solid var(--border);
     background:
         linear-gradient(
             145deg,
-            rgba(17,28,48,.95),
-            rgba(8,15,29,.95)
+            rgba(17,28,48,.96),
+            rgba(8,15,29,.96)
         );
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        28px;
-
-    padding:
-        22px;
-
     box-shadow:
-        0 25px 80px
-        rgba(0,0,0,.35);
-
+        0 25px 70px rgba(0,0,0,.35);
 }
 
 
-/* =====================================================
-   VISUAL STAGE
-===================================================== */
+/* VISUAL AREA */
 
-.visual-stage{
-
-    position:relative;
-
+.visual{
     width:100%;
-
     aspect-ratio:1/1;
-
-    max-width:420px;
-
-    margin:
-        5px auto 0;
-
+    max-width:270px;
+    margin:auto;
+    position:relative;
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
-    overflow:hidden;
-
-    border-radius:24px;
-
-    background:#020617;
-
 }
 
 
-/* =====================================================
-   VINYL
-===================================================== */
+/* VINYL */
 
 .vinyl{
-
     width:220px;
-
     height:220px;
-
     border-radius:50%;
-
+    display:flex;
+    align-items:center;
+    justify-content:center;
     background:
-
         radial-gradient(
             circle,
-            #222 0 10%,
-            #111 11% 20%,
-            #333 21% 22%,
-            #080808 23% 100%
+            #333 0 9%,
+            #111 10% 18%,
+            #333 19% 20%,
+            #080808 21% 100%
         );
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
     box-shadow:
-
-        0 0 0 8px
-        rgba(255,255,255,.025),
-
-        0 20px 50px
-        rgba(0,0,0,.5);
-
+        0 0 0 8px rgba(255,255,255,.025),
+        0 20px 50px rgba(0,0,0,.5);
 }
-
 
 .vinyl img{
-
     width:90px;
-
     height:90px;
-
     border-radius:50%;
-
     object-fit:cover;
-
-    border:
-        4px solid #111;
-
+    border:4px solid #111;
 }
-
 
 .spin{
-
-    animation:
-        spin 8s linear infinite;
-
+    animation:spin 8s linear infinite;
 }
-
 
 @keyframes spin{
-
     to{
-
-        transform:
-            rotate(360deg);
-
+        transform:rotate(360deg);
     }
-
 }
 
 
-/* =====================================================
-   VIDEO
-===================================================== */
+/* VIDEO */
 
-.lyrics-video{
-
-    position:absolute;
-
-    inset:0;
-
+.video{
+    display:none;
     width:100%;
-
-    height:100%;
-
-    object-fit:contain;
-
+    aspect-ratio:16/9;
+    border-radius:18px;
+    overflow:hidden;
     background:#000;
-
-    display:none;
-
 }
 
-
-.visual-stage.video-active
-.lyrics-video{
-
+.video.active{
     display:block;
+}
 
+.video video{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:contain;
 }
 
 
-.visual-stage.video-active
-.vinyl{
-
-    display:none;
-
-}
-
-
-/* =====================================================
-   SONG INFO
-===================================================== */
+/* SONG INFO */
 
 #title{
-
-    font-size:24px;
-
-    margin-top:22px;
-
+    margin-top:18px;
+    font-size:23px;
     line-height:1.2;
-
 }
 
-
-.artist{
-
-    color:var(--muted);
-
-    font-size:14px;
-
+#artist{
     margin-top:7px;
-
+    color:var(--muted);
+    font-size:14px;
 }
-
 
 #status{
-
-    margin-top:10px;
-
-    font-size:12px;
-
+    margin-top:9px;
     color:#cbd5e1;
-
+    font-size:12px;
 }
 
 
-/* =====================================================
-   SEEK
-===================================================== */
+/* SEEK */
 
-.seek-area{
-
-    margin-top:22px;
-
+.seek{
+    margin-top:20px;
 }
-
 
 #seek{
-
     width:100%;
-
-    accent-color:
-        var(--accent);
-
+    accent-color:var(--blue);
 }
-
 
 .time-row{
-
     display:flex;
-
-    justify-content:
-        space-between;
-
-    font-size:11px;
-
-    color:var(--muted);
-
+    justify-content:space-between;
     margin-top:5px;
-
+    color:var(--muted);
+    font-size:10px;
 }
 
 
-/* =====================================================
-   CONTROLS
-===================================================== */
+/* CONTROLS */
 
 .controls{
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     gap:9px;
-
-    margin:
-        20px 0 15px;
-
+    margin:18px 0;
     flex-wrap:wrap;
-
 }
-
 
 .controls button{
-
     width:43px;
-
     height:43px;
-
-    border:
-        1px solid var(--border);
-
+    border:1px solid var(--border);
     border-radius:50%;
-
     background:#1e293b;
-
     color:white;
-
-    font-size:17px;
-
-    transition:.2s;
-
+    font-size:16px;
 }
-
-
-.controls button:hover{
-
-    background:#334155;
-
-}
-
-
-.controls button:active{
-
-    transform:
-        scale(.92);
-
-}
-
 
 .controls button.active{
-
-    background:
-        var(--green);
-
+    background:var(--green);
     color:#001b08;
+}
 
+#play{
+    width:60px;
+    height:60px;
+    background:var(--green);
+    color:#001b08;
+    font-size:21px;
 }
 
 
-.play{
+/* EXTRA BUTTON */
 
-    width:
-        62px!important;
-
-    height:
-        62px!important;
-
-    background:
-        var(--green)!important;
-
-    color:
-        #001b08!important;
-
-    font-size:
-        22px!important;
-
-}
-
-
-/* =====================================================
-   VIDEO BUTTON
-===================================================== */
-
-.lyrics-btn{
-
+.full-btn{
     width:100%;
-
-    height:48px;
-
-    border:
-        1px solid
-        rgba(56,189,248,.25);
-
-    border-radius:
-        15px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(56,189,248,.18),
-            rgba(56,189,248,.06)
-        );
-
+    height:45px;
+    margin-bottom:12px;
+    border:1px solid rgba(56,189,248,.25);
+    border-radius:13px;
+    background:rgba(56,189,248,.1);
     color:#7dd3fc;
-
     font-weight:800;
-
-    font-size:14px;
-
-    transition:.2s;
-
 }
 
-
-.lyrics-btn:hover{
-
-    background:
-        rgba(56,189,248,.25);
-
-}
-
-
-.lyrics-btn:disabled{
-
+.full-btn:disabled{
     opacity:.35;
-
-    cursor:not-allowed;
-
 }
 
 
-/* =====================================================
-   VOLUME
-===================================================== */
+/* SEARCH */
 
-.volume-box{
-
-    margin-top:15px;
-
-    padding:
-        13px 15px;
-
-    border-radius:
-        15px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid var(--border);
-
-}
-
-
-.volume-label{
-
-    font-size:11px;
-
-    color:var(--muted);
-
-    margin-bottom:7px;
-
-}
-
-
-#vol{
-
+.search{
     width:100%;
-
-    accent-color:
-        var(--accent);
-
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-.search-box{
-
-    margin-top:15px;
-
-}
-
-
-#search{
-
-    width:100%;
-
-    padding:
-        13px;
-
-    border-radius:
-        14px;
-
-    border:
-        1px solid var(--border);
-
-    background:#0b1424;
-
-    color:white;
-
+    padding:12px 14px;
+    border-radius:13px;
+    border:1px solid var(--border);
     outline:none;
-
+    background:#0b1424;
+    color:white;
+    margin-top:12px;
 }
 
-
-#search::placeholder{
-
+.search::placeholder{
     color:#64748b;
-
 }
 
 
-/* =====================================================
-   CATEGORY
-===================================================== */
+/* SELECT */
 
-#cat{
-
+select{
     width:100%;
-
-    margin-top:10px;
-
-    padding:13px;
-
-    border-radius:
-        14px;
-
-    border:
-        1px solid var(--border);
-
-    background:#0b1424;
-
-    color:white;
-
-    outline:none;
-
-}
-
-
-/* =====================================================
-   SLEEP TIMER
-===================================================== */
-
-.sleep-box{
-
-    margin-top:15px;
-
-    padding:
-        15px;
-
-    border-radius:
-        16px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid var(--border);
-
-}
-
-
-.sleep-label{
-
-    font-size:11px;
-
-    color:var(--muted);
-
-    margin-bottom:8px;
-
-}
-
-
-#sleepSelect{
-
-    width:100%;
-
     padding:12px;
-
-    border-radius:
-        12px;
-
-    border:
-        1px solid var(--border);
-
-    background:#0b1424;
-
-    color:white;
-
+    margin-top:10px;
+    border-radius:13px;
+    border:1px solid var(--border);
     outline:none;
-
+    background:#0b1424;
+    color:white;
 }
 
+
+/* VOLUME */
+
+.volume{
+    margin-top:12px;
+    padding:12px 14px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.03);
+}
+
+.volume label{
+    display:block;
+    margin-bottom:7px;
+    color:var(--muted);
+    font-size:11px;
+}
+
+#volume{
+    width:100%;
+    accent-color:var(--blue);
+}
+
+
+/* SLEEP */
+
+.sleep{
+    margin-top:12px;
+}
+
+.sleep-title{
+    color:var(--muted);
+    font-size:11px;
+    margin-bottom:5px;
+}
 
 #sleepCountdown{
-
-    margin-top:9px;
-
-    text-align:center;
-
-    color:var(--accent);
-
-    font-size:11px;
-
     display:none;
-
+    margin-top:7px;
+    color:#facc15;
+    font-size:11px;
 }
 
 
-/* =====================================================
-   STATISTICS
-===================================================== */
+/* STATS */
 
 .stats{
-
     display:grid;
-
     grid-template-columns:
         repeat(4,1fr);
-
-    gap:8px;
-
+    gap:7px;
     margin-top:15px;
-
 }
-
 
 .stat{
-
-    padding:
-        13px 8px;
-
+    padding:10px 5px;
     text-align:center;
-
-    border-radius:
-        14px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid var(--border);
-
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.03);
 }
-
 
 .stat b{
-
     display:block;
-
-    font-size:18px;
-
+    font-size:15px;
 }
-
 
 .stat span{
-
     display:block;
-
-    margin-top:4px;
-
-    font-size:9px;
-
+    margin-top:3px;
     color:var(--muted);
-
+    font-size:9px;
 }
 
 
-/* =====================================================
-   PLAYLIST
-===================================================== */
+/* PLAYLIST */
 
 .playlist{
-
     margin-top:15px;
-
-    background:
-        rgba(2,6,23,.7);
-
-    border:
-        1px solid var(--border);
-
-    border-radius:
-        18px;
-
-    padding:8px;
-
-    max-height:
-        500px;
-
-    overflow-y:auto;
-
+    padding:7px;
+    border-radius:17px;
+    border:1px solid var(--border);
+    background:rgba(2,6,23,.7);
 }
-
 
 .song{
-
     display:flex;
-
-    gap:12px;
-
     align-items:center;
-
-    padding:10px;
-
-    border-radius:
-        13px;
-
+    gap:10px;
+    padding:9px;
+    border-radius:12px;
     cursor:pointer;
-
-    transition:.2s;
-
 }
-
 
 .song:hover{
-
     background:#1e293b;
-
 }
-
 
 .song.active{
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(56,189,248,.14),
-            rgba(56,189,248,.04)
-        );
-
-    border-left:
-        3px solid var(--accent);
-
+    background:rgba(56,189,248,.1);
+    border-left:3px solid var(--blue);
 }
-
 
 .song img{
-
-    width:48px;
-
-    height:48px;
-
-    border-radius:50%;
-
-    object-fit:cover;
-
+    width:46px;
+    height:46px;
     flex-shrink:0;
-
+    object-fit:cover;
+    border-radius:50%;
 }
-
 
 .song-info{
-
     min-width:0;
-
     flex:1;
-
 }
-
 
 .song-info b{
-
     display:block;
-
-    font-size:13px;
-
-    white-space:nowrap;
-
     overflow:hidden;
-
+    white-space:nowrap;
     text-overflow:ellipsis;
-
+    font-size:12px;
 }
-
 
 .song-info small{
-
     display:block;
-
-    color:var(--muted);
-
-    font-size:11px;
-
     margin-top:3px;
-
+    color:var(--muted);
+    font-size:10px;
 }
 
-
-.fav-btn{
-
-    width:34px;
-
-    height:34px;
-
-    border:0;
-
-    border-radius:50%;
-
-    background:
-        rgba(255,255,255,.06);
-
-    color:#94a3b8;
-
-    font-size:18px;
-
+.fav{
+    width:32px;
+    height:32px;
     flex-shrink:0;
-
+    border:0;
+    border-radius:50%;
+    background:transparent;
+    color:#94a3b8;
+    font-size:18px;
 }
 
-
-.fav-btn.active{
-
+.fav.active{
     color:#f43f5e;
-
 }
 
 
-/* =====================================================
-   MOBILE
-===================================================== */
+/* MOBILE */
 
-@media(max-width:600px){
+@media(max-width:500px){
 
     header{
-
         align-items:flex-start;
-
     }
-
 
     .logo{
-
-        font-size:17px;
-
+        font-size:16px;
     }
-
-
-    .header-right{
-
-        gap:5px;
-
-    }
-
 
     .clock{
-
         display:none;
-
     }
-
 
     .card{
-
-        padding:17px;
-
+        padding:16px;
     }
-
-
-    .visual-stage{
-
-        max-width:350px;
-
-    }
-
 
     .vinyl{
-
         width:190px;
-
         height:190px;
-
     }
-
 
     .vinyl img{
-
         width:78px;
-
         height:78px;
-
     }
-
 
     #title{
-
-        font-size:21px;
-
+        font-size:20px;
     }
-
 
     .stats{
-
         grid-template-columns:
             repeat(2,1fr);
-
-    }
-
-}
-
-
-/* =====================================================
-   DESKTOP
-===================================================== */
-
-@media(min-width:800px){
-
-    .box{
-
-        padding-bottom:60px;
-
     }
 
 }
 
 </style>
-
 </head>
 
-
 <body>
-
-
-<!-- =================================================
-     HEADER
-================================================= -->
 
 <header>
 
@@ -1164,18 +553,15 @@ header{
         🎵 Sedatur Music Hub
     </div>
 
-
-    <div class="header-right">
+    <div>
 
         <a
             class="home"
             href="https://sedatur.my.id/home"
             target="_blank"
-            rel="noopener"
         >
             🏠 Home
         </a>
-
 
         <div class="clock">
 
@@ -1194,34 +580,23 @@ header{
 </header>
 
 
-<!-- =================================================
-     MARQUEE
-================================================= -->
-
 <div class="marquee">
 
-    <span id="run">
+    <span id="marqueeText">
         🎵 Selamat datang di Sedatur Music Hub 🎧
     </span>
 
 </div>
 
 
-<!-- =================================================
-     MAIN
-================================================= -->
-
-<main class="box">
+<main class="container">
 
 <div class="card">
 
 
     <!-- VISUAL -->
 
-    <div
-        class="visual-stage"
-        id="visualStage"
-    >
+    <div class="visual">
 
         <div
             class="vinyl"
@@ -1236,32 +611,32 @@ header{
 
         </div>
 
+        <div
+            class="video"
+            id="videoBox"
+        >
 
-        <video
-            id="lyricsVideo"
-            class="lyrics-video"
-            muted
-            playsinline
-            preload="metadata"
-        ></video>
+            <video
+                id="lyricsVideo"
+                playsinline
+                preload="metadata"
+                muted
+            ></video>
+
+        </div>
 
     </div>
 
 
-    <!-- SONG INFO -->
+    <!-- INFO -->
 
     <h2 id="title">
         Sedatur Music Hub
     </h2>
 
-
-    <div
-        class="artist"
-        id="artist"
-    >
+    <div id="artist">
         Pilih Lagu
     </div>
-
 
     <div id="status">
         ⏸ Belum diputar
@@ -1270,7 +645,7 @@ header{
 
     <!-- SEEK -->
 
-    <div class="seek-area">
+    <div class="seek">
 
         <input
             id="seek"
@@ -1280,14 +655,13 @@ header{
             value="0"
         >
 
-
         <div class="time-row">
 
-            <span id="cur">
+            <span id="current">
                 00:00
             </span>
 
-            <span id="dur">
+            <span id="duration">
                 00:00
             </span>
 
@@ -1300,43 +674,23 @@ header{
 
     <div class="controls">
 
-        <button
-            id="prev"
-            title="Sebelumnya"
-        >
+        <button id="prev">
             ⏮
         </button>
 
-
-        <button
-            id="play"
-            class="play"
-            title="Putar"
-        >
+        <button id="play">
             ▶
         </button>
 
-
-        <button
-            id="next"
-            title="Berikutnya"
-        >
+        <button id="next">
             ⏭
         </button>
 
-
-        <button
-            id="shuffle"
-            title="Acak"
-        >
+        <button id="shuffle">
             🔀
         </button>
 
-
-        <button
-            id="repeat"
-            title="Ulangi"
-        >
+        <button id="repeat">
             🔁
         </button>
 
@@ -1346,8 +700,8 @@ header{
     <!-- VIDEO -->
 
     <button
-        id="lyricsBtn"
-        class="lyrics-btn"
+        class="full-btn"
+        id="videoBtn"
         disabled
     >
         🎬 Lirik Video
@@ -1356,14 +710,14 @@ header{
 
     <!-- VOLUME -->
 
-    <div class="volume-box">
+    <div class="volume">
 
-        <div class="volume-label">
+        <label>
             🔊 Volume
-        </div>
+        </label>
 
         <input
-            id="vol"
+            id="volume"
             type="range"
             min="0"
             max="1"
@@ -1374,44 +728,18 @@ header{
     </div>
 
 
-    <!-- SEARCH -->
+    <!-- SLEEP TIMER -->
 
-    <div class="search-box">
+    <div class="sleep">
 
-        <input
-            id="search"
-            type="search"
-            placeholder="🔎 Cari lagu atau artis..."
-            autocomplete="off"
-        >
-
-    </div>
-
-
-    <!-- CATEGORY -->
-
-    <select id="cat">
-
-        <option value="all">
-            🎤 Semua Artis
-        </option>
-
-    </select>
-
-
-    <!-- SLEEP -->
-
-    <div class="sleep-box">
-
-        <div class="sleep-label">
+        <div class="sleep-title">
             😴 Waktu Tidur
         </div>
-
 
         <select id="sleepSelect">
 
             <option value="0">
-                Mati
+                Tidak aktif
             </option>
 
             <option value="15">
@@ -1420,10 +748,6 @@ header{
 
             <option value="30">
                 30 menit
-            </option>
-
-            <option value="45">
-                45 menit
             </option>
 
             <option value="60">
@@ -1436,10 +760,30 @@ header{
 
         </select>
 
-
         <div id="sleepCountdown"></div>
 
     </div>
+
+
+    <!-- SEARCH -->
+
+    <input
+        class="search"
+        id="search"
+        type="search"
+        placeholder="🔎 Cari lagu atau artis..."
+    >
+
+
+    <!-- CATEGORY -->
+
+    <select id="category">
+
+        <option value="all">
+            🎤 Semua Artis
+        </option>
+
+    </select>
 
 
     <!-- STATISTICS -->
@@ -1458,7 +802,6 @@ header{
 
         </div>
 
-
         <div class="stat">
 
             <b id="statPlays">
@@ -1470,7 +813,6 @@ header{
             </span>
 
         </div>
-
 
         <div class="stat">
 
@@ -1484,7 +826,6 @@ header{
 
         </div>
 
-
         <div class="stat">
 
             <b id="statTime">
@@ -1492,7 +833,7 @@ header{
             </b>
 
             <span>
-                Waktu Dengar
+                Waktu
             </span>
 
         </div>
@@ -1504,8 +845,19 @@ header{
 
     <div
         class="playlist"
-        id="list"
-    ></div>
+        id="playlist"
+    >
+
+        <div style="
+            padding:20px;
+            text-align:center;
+            color:#94a3b8;
+            font-size:12px;
+        ">
+            Memuat playlist...
+        </div>
+
+    </div>
 
 
 </div>
@@ -1513,9 +865,7 @@ header{
 </main>
 
 
-<!-- =================================================
-     AUDIO
-================================================= -->
+<!-- AUDIO -->
 
 <audio
     id="audio"
@@ -1523,14 +873,14 @@ header{
 ></audio>
 
 
-<!-- =================================================
-     SCRIPT DIMULAI DI PART 2
-     
-     /* =====================================================
-   ELEMENT & VARIABLE
+<!-- PART 2 DITEMPEL DI SINI -->
+/* =====================================================
+   SEDATUR MUSIC HUB
+   PART 2 — PLAYLIST + AUDIO PLAYER
 ===================================================== */
 
 const audio = document.getElementById("audio");
+
 const vinyl = document.getElementById("vinyl");
 const cover = document.getElementById("cover");
 
@@ -1538,65 +888,39 @@ const title = document.getElementById("title");
 const artist = document.getElementById("artist");
 const status = document.getElementById("status");
 
-const play = document.getElementById("play");
-const prev = document.getElementById("prev");
-const next = document.getElementById("next");
-const shuffle = document.getElementById("shuffle");
-const repeat = document.getElementById("repeat");
+const playBtn = document.getElementById("play");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+const shuffleBtn = document.getElementById("shuffle");
+const repeatBtn = document.getElementById("repeat");
 
 const seek = document.getElementById("seek");
-const vol = document.getElementById("vol");
-const cur = document.getElementById("cur");
-const dur = document.getElementById("dur");
+const volume = document.getElementById("volume");
 
-const list = document.getElementById("list");
-const cat = document.getElementById("cat");
+const currentTime = document.getElementById("current");
+const duration = document.getElementById("duration");
+
+const playlist = document.getElementById("playlist");
 const search = document.getElementById("search");
-const run = document.getElementById("run");
+const category = document.getElementById("category");
 
-const lyricsBtn =
-    document.getElementById("lyricsBtn");
+const videoBtn = document.getElementById("videoBtn");
+const lyricsVideo = document.getElementById("lyricsVideo");
+const videoBox = document.getElementById("videoBox");
 
-const lyricsVideo =
-    document.getElementById("lyricsVideo");
-
-const visualStage =
-    document.getElementById("visualStage");
-
-const sleepSelect =
-    document.getElementById("sleepSelect");
-
-const sleepCountdown =
-    document.getElementById("sleepCountdown");
-
-const statSongs =
-    document.getElementById("statSongs");
-
-const statPlays =
-    document.getElementById("statPlays");
-
-const statFav =
-    document.getElementById("statFav");
-
-const statTime =
-    document.getElementById("statTime");
+const marqueeText =
+    document.getElementById("marqueeText");
 
 
 let songs = [];
-let index = 0;
-let shuf = false;
-let rep = false;
+let currentIndex = 0;
 
-let videoVisible = false;
-
-let sleepTimer = null;
-let sleepEnd = 0;
-
-let lastTrackedTime = 0;
+let shuffleMode = false;
+let repeatMode = false;
 
 
 /* =====================================================
-   CLOCK
+   JAM
 ===================================================== */
 
 function updateClock(){
@@ -1621,36 +945,153 @@ function updateClock(){
 }
 
 updateClock();
-
 setInterval(updateClock,1000);
 
 
 /* =====================================================
-   FORMAT TIME
+   FORMAT WAKTU
 ===================================================== */
 
-function formatTime(sec){
+function formatTime(seconds){
 
-    if(!isFinite(sec) || sec < 0)
+    if(!isFinite(seconds) || seconds < 0)
         return "00:00";
 
-    const m = Math.floor(sec / 60);
-    const s = Math.floor(sec % 60);
+    const min =
+        Math.floor(seconds / 60);
 
-    return String(m).padStart(2,"0")
+    const sec =
+        Math.floor(seconds % 60);
+
+    return String(min).padStart(2,"0")
         + ":" +
-        String(s).padStart(2,"0");
+        String(sec).padStart(2,"0");
 
 }
 
 
 /* =====================================================
-   ESCAPE HTML
+   LOAD PLAYLIST.JSON
 ===================================================== */
 
-function escapeHTML(value){
+async function loadPlaylist(){
 
-    return String(value ?? "")
+    try{
+
+        const response =
+            await fetch("./playlist.json");
+
+        if(!response.ok){
+
+            throw new Error(
+                "HTTP " + response.status
+            );
+
+        }
+
+        const data =
+            await response.json();
+
+        if(!Array.isArray(data)){
+
+            throw new Error(
+                "playlist.json harus berupa array"
+            );
+
+        }
+
+        songs = data;
+
+        if(songs.length === 0){
+
+            playlist.innerHTML = `
+                <div style="
+                    padding:20px;
+                    text-align:center;
+                    color:#94a3b8;
+                ">
+                    🎵 Playlist masih kosong
+                </div>
+            `;
+
+            return;
+
+        }
+
+        createCategories();
+        renderPlaylist();
+
+        loadSong(false);
+
+    }catch(error){
+
+        console.error(
+            "Playlist Error:",
+            error
+        );
+
+        playlist.innerHTML = `
+            <div style="
+                padding:20px;
+                text-align:center;
+                color:#f87171;
+            ">
+                ⚠️ playlist.json tidak terbaca
+                <br><br>
+                <small>
+                    Pastikan playlist.json
+                    satu folder dengan index.html
+                </small>
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   KATEGORI ARTIS
+===================================================== */
+
+function createCategories(){
+
+    category.innerHTML = `
+        <option value="all">
+            🎤 Semua Artis
+        </option>
+    `;
+
+    const categories =
+        [...new Set(
+            songs
+                .map(song => song.category)
+                .filter(Boolean)
+        )];
+
+    categories.forEach(name => {
+
+        const option =
+            document.createElement("option");
+
+        option.value = name;
+        option.textContent =
+            "🎤 " + name;
+
+        category.appendChild(option);
+
+    });
+
+}
+
+
+/* =====================================================
+   AMANKAN TEXT
+===================================================== */
+
+function safeText(text){
+
+    return String(text || "")
         .replace(/&/g,"&amp;")
         .replace(/</g,"&lt;")
         .replace(/>/g,"&gt;")
@@ -1668,16 +1109,11 @@ function getFavorites(){
 
     try{
 
-        const data =
-            JSON.parse(
-                localStorage.getItem(
-                    "sedatur_favorites"
-                ) || "[]"
-            );
-
-        return Array.isArray(data)
-            ? data
-            : [];
+        return JSON.parse(
+            localStorage.getItem(
+                "sedatur_favorites"
+            ) || "[]"
+        );
 
     }catch{
 
@@ -1688,234 +1124,59 @@ function getFavorites(){
 }
 
 
-function isFavorite(i){
+function isFavorite(index){
 
-    return getFavorites().includes(i);
+    return getFavorites()
+        .includes(index);
 
 }
 
 
-function toggleFavorite(i){
+function toggleFavorite(index){
 
-    let fav =
+    let favorites =
         getFavorites();
 
-    if(fav.includes(i)){
+    if(favorites.includes(index)){
 
-        fav =
-            fav.filter(x => x !== i);
+        favorites =
+            favorites.filter(
+                i => i !== index
+            );
 
     }else{
 
-        fav.push(i);
+        favorites.push(index);
 
     }
 
     localStorage.setItem(
         "sedatur_favorites",
-        JSON.stringify(fav)
+        JSON.stringify(favorites)
     );
 
-    tampilPlaylist();
+    renderPlaylist();
     updateStats();
 
 }
 
 
 /* =====================================================
-   STATISTICS
+   RENDER PLAYLIST
 ===================================================== */
 
-function getPlays(){
+function renderPlaylist(){
 
-    return Number(
-        localStorage.getItem(
-            "sedatur_plays"
-        ) || 0
-    );
-
-}
-
-
-function addPlay(){
-
-    localStorage.setItem(
-        "sedatur_plays",
-        getPlays() + 1
-    );
-
-    updateStats();
-
-}
-
-
-function getListenTime(){
-
-    return Number(
-        localStorage.getItem(
-            "sedatur_listen_time"
-        ) || 0
-    );
-
-}
-
-
-function addListenTime(sec){
-
-    if(
-        !isFinite(sec) ||
-        sec <= 0 ||
-        sec > 3
-    ) return;
-
-    localStorage.setItem(
-        "sedatur_listen_time",
-        Math.floor(
-            getListenTime() + sec
-        )
-    );
-
-    updateStats();
-
-}
-
-
-function updateStats(){
-
-    statSongs.textContent =
-        songs.length;
-
-    statPlays.textContent =
-        getPlays();
-
-    statFav.textContent =
-        getFavorites().length;
-
-    const minutes =
-        Math.floor(
-            getListenTime() / 60
-        );
-
-    statTime.textContent =
-        minutes > 0
-        ? minutes + "m"
-        : "0m";
-
-}
-
-
-/* =====================================================
-   LOAD PLAYLIST
-===================================================== */
-
-async function loadPlaylist(){
-
-    try{
-
-        const response =
-            await fetch(
-                "playlist.json?x=" +
-                Date.now()
-            );
-
-        if(!response.ok)
-            throw new Error("Playlist error");
-
-        const data =
-            await response.json();
-
-        if(!Array.isArray(data))
-            throw new Error("JSON bukan array");
-
-        songs = data;
-
-        if(!songs.length){
-
-            status.textContent =
-                "⚠️ Playlist kosong";
-
-            return;
-
-        }
-
-        buatKategori();
-        tampilPlaylist();
-        updateStats();
-
-        loadSong(false);
-
-    }catch(error){
-
-        console.error(error);
-
-        status.textContent =
-            "⚠️ Playlist gagal dimuat";
-
-        list.innerHTML = `
-            <div style="
-                padding:20px;
-                text-align:center;
-                color:#94a3b8;
-            ">
-                ⚠️ playlist.json gagal dimuat
-            </div>
-        `;
-
-    }
-
-}
-
-
-/* =====================================================
-   CATEGORY
-===================================================== */
-
-function buatKategori(){
-
-    cat.innerHTML = `
-        <option value="all">
-            🎤 Semua Artis
-        </option>
-    `;
-
-    const categories =
-        [...new Set(
-            songs
-                .map(x => x.category)
-                .filter(Boolean)
-        )];
-
-    categories.forEach(name => {
-
-        const option =
-            document.createElement("option");
-
-        option.value = name;
-        option.textContent = "🎤 " + name;
-
-        cat.appendChild(option);
-
-    });
-
-}
-
-
-/* =====================================================
-   PLAYLIST
-===================================================== */
-
-function tampilPlaylist(){
-
-    list.innerHTML = "";
+    playlist.innerHTML = "";
 
     const keyword =
-        (search.value || "")
-        .trim()
-        .toLowerCase();
+        search.value
+            .trim()
+            .toLowerCase();
 
-    let found = 0;
+    let count = 0;
 
-    songs.forEach((song,i)=>{
+    songs.forEach((song,index)=>{
 
         const text =
             (
@@ -1926,34 +1187,56 @@ function tampilPlaylist(){
                 (song.category || "")
             ).toLowerCase();
 
+
         if(
-            cat.value !== "all" &&
-            song.category !== cat.value
-        ) return;
+            category.value !== "all" &&
+            song.category !== category.value
+        ){
+
+            return;
+
+        }
+
 
         if(
             keyword &&
             !text.includes(keyword)
-        ) return;
+        ){
 
-        found++;
+            return;
+
+        }
+
+
+        count++;
+
 
         const item =
             document.createElement("div");
 
-        item.className = "song";
+        item.className =
+            "song";
 
-        if(i === index)
-            item.classList.add("active");
 
-        const fav =
-            isFavorite(i);
+        if(index === currentIndex){
+
+            item.classList.add(
+                "active"
+            );
+
+        }
+
+
+        const favorite =
+            isFavorite(index);
+
 
         item.innerHTML = `
 
             <img
-                src="${escapeHTML(
-                    song.cover || "logo.png"
+                src="${safeText(
+                    song.cover ||
+                    "logo.png"
                 )}"
                 onerror="
                     this.onerror=null;
@@ -1964,14 +1247,14 @@ function tampilPlaylist(){
             <div class="song-info">
 
                 <b>
-                    ${escapeHTML(
+                    ${safeText(
                         song.title ||
                         "Tanpa Judul"
                     )}
                 </b>
 
                 <small>
-                    ${escapeHTML(
+                    ${safeText(
                         song.artist ||
                         "Unknown Artist"
                     )}
@@ -1980,42 +1263,50 @@ function tampilPlaylist(){
             </div>
 
             <button
-                class="fav-btn ${fav ? "active" : ""}"
+                class="fav ${
+                    favorite ? "active" : ""
+                }"
             >
-                ${fav ? "♥" : "♡"}
+                ${favorite ? "♥" : "♡"}
             </button>
 
         `;
 
-        item.onclick = () => {
 
-            index = i;
+        item.onclick = ()=>{
+
+            currentIndex =
+                index;
+
             loadSong(true);
 
         };
 
+
         item.querySelector(
-            ".fav-btn"
-        ).onclick = e => {
+            ".fav"
+        ).onclick = event => {
 
-            e.stopPropagation();
+            event.stopPropagation();
 
-            toggleFavorite(i);
+            toggleFavorite(index);
 
         };
 
-        list.appendChild(item);
+
+        playlist.appendChild(item);
 
     });
 
 
-    if(!found){
+    if(count === 0){
 
-        list.innerHTML = `
+        playlist.innerHTML = `
             <div style="
                 padding:20px;
                 text-align:center;
                 color:#94a3b8;
+                font-size:12px;
             ">
                 🔎 Lagu tidak ditemukan
             </div>
@@ -2027,30 +1318,39 @@ function tampilPlaylist(){
 
 
 /* =====================================================
-   FILTER
+   SEARCH + FILTER
 ===================================================== */
 
-search.oninput =
-    tampilPlaylist;
+search.addEventListener(
+    "input",
+    renderPlaylist
+);
 
-cat.onchange =
-    tampilPlaylist;
+category.addEventListener(
+    "change",
+    renderPlaylist
+);
 
 
 /* =====================================================
-   LOAD SONG
+   LOAD LAGU
 ===================================================== */
 
-function loadSong(autoplay=false){
+function loadSong(autoplay){
 
-    if(!songs.length) return;
+    if(!songs.length)
+        return;
+
 
     const song =
-        songs[index];
+        songs[currentIndex];
+
+
+    if(!song)
+        return;
+
 
     audio.pause();
-
-    audio.currentTime = 0;
 
     audio.src =
         song.file || "";
@@ -2058,30 +1358,40 @@ function loadSong(autoplay=false){
     audio.load();
 
 
-    /* RESET VIDEO */
+    /* VIDEO DI-RESET */
 
     stopVideo();
 
 
-    /* INFO */
+    /* COVER */
 
     cover.src =
-        song.cover || "logo.png";
+        song.cover ||
+        "logo.png";
 
-    cover.onerror = () => {
+
+    cover.onerror = ()=>{
 
         cover.onerror = null;
-        cover.src = "logo.png";
+
+        cover.src =
+            "logo.png";
 
     };
 
+
+    /* INFO */
+
     title.textContent =
-        song.title || "Tanpa Judul";
+        song.title ||
+        "Tanpa Judul";
 
     artist.textContent =
-        song.artist || "Unknown Artist";
+        song.artist ||
+        "Unknown Artist";
 
-    run.textContent =
+
+    marqueeText.textContent =
         "🎵 " +
         (song.title || "") +
         " • " +
@@ -2092,10 +1402,16 @@ function loadSong(autoplay=false){
     status.textContent =
         "⏸ Siap diputar";
 
+
+    /* SEEK */
+
     seek.value = 0;
 
-    cur.textContent = "00:00";
-    dur.textContent = "00:00";
+    currentTime.textContent =
+        "00:00";
+
+    duration.textContent =
+        "00:00";
 
 
     /* VIDEO BUTTON */
@@ -2105,14 +1421,16 @@ function loadSong(autoplay=false){
         String(song.lyricsVideo).trim()
     ){
 
-        lyricsBtn.disabled = false;
-        lyricsBtn.textContent =
+        videoBtn.disabled = false;
+
+        videoBtn.textContent =
             "🎬 Lirik Video";
 
     }else{
 
-        lyricsBtn.disabled = true;
-        lyricsBtn.textContent =
+        videoBtn.disabled = true;
+
+        videoBtn.textContent =
             "🎬 Video Tidak Tersedia";
 
     }
@@ -2120,85 +1438,133 @@ function loadSong(autoplay=false){
 
     localStorage.setItem(
         "sedatur_song",
-        index
+        currentIndex
     );
 
-    lastTrackedTime = 0;
 
-    tampilPlaylist();
-    updateMediaSession();
+    renderPlaylist();
+    updateStats();
 
 
-    if(autoplay)
-        startPlaying();
+    if(autoplay){
+
+        playAudio();
+
+    }
 
 }
 
 
 /* =====================================================
-   PLAY / PAUSE
+   PLAY AUDIO
 ===================================================== */
 
-function startPlaying(){
+function playAudio(){
 
-    audio.play().catch(()=>{
+    audio.play()
+        .catch(error => {
 
-        status.textContent =
-            "▶️ Tekan Play untuk memutar";
+            console.log(
+                "Play diblokir:",
+                error
+            );
 
-    });
+            status.textContent =
+                "▶️ Tekan Play untuk memutar";
+
+        });
 
 }
 
 
-function pausePlaying(){
+/* =====================================================
+   PAUSE AUDIO
+===================================================== */
+
+function pauseAudio(){
 
     audio.pause();
 
 }
 
 
-play.onclick = () => {
-
-    if(audio.paused)
-        startPlaying();
-    else
-        pausePlaying();
-
-};
 /* =====================================================
-   AUDIO EVENTS
+   PLAY BUTTON
 ===================================================== */
 
-audio.addEventListener("play",()=>{
+playBtn.onclick = ()=>{
 
-    play.textContent = "⏸";
+    if(!audio.src){
 
-    status.textContent =
-        "🟢 Sedang Diputar";
-
-    vinyl.classList.add("spin");
-
-    addPlay();
-
-});
-
-
-audio.addEventListener("pause",()=>{
-
-    play.textContent = "▶";
-
-    vinyl.classList.remove("spin");
-
-    if(!audio.ended){
-
-        status.textContent =
-            "⏸ Dijeda";
+        loadSong(false);
 
     }
 
-});
 
+    if(audio.paused){
+
+        playAudio();
+
+    }else{
+
+        pauseAudio();
+
+    }
+
+};
+
+
+/* =====================================================
+   AUDIO PLAY
+===================================================== */
+
+audio.addEventListener(
+    "play",
+    ()=>{
+
+        playBtn.textContent =
+            "⏸";
+
+        status.textContent =
+            "🟢 Sedang Diputar";
+
+        vinyl.classList.add(
+            "spin"
+        );
+
+    }
+);
+
+
+/* =====================================================
+   AUDIO PAUSE
+===================================================== */
+
+audio.addEventListener(
+    "pause",
+    ()=>{
+
+        playBtn.textContent =
+            "▶";
+
+        vinyl.classList.remove(
+            "spin"
+        );
+
+        if(!audio.ended){
+
+            status.textContent =
+                "⏸ Dijeda";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   METADATA AUDIO
+===================================================== */
 
 audio.addEventListener(
     "loadedmetadata",
@@ -2209,7 +1575,7 @@ audio.addEventListener(
             seek.max =
                 audio.duration;
 
-            dur.textContent =
+            duration.textContent =
                 formatTime(
                     audio.duration
                 );
@@ -2221,7 +1587,7 @@ audio.addEventListener(
 
 
 /* =====================================================
-   PROGRESS + VIDEO SYNC
+   PROGRESS
 ===================================================== */
 
 audio.addEventListener(
@@ -2231,64 +1597,24 @@ audio.addEventListener(
         if(!isFinite(audio.duration))
             return;
 
+
         seek.max =
             audio.duration;
 
         seek.value =
             audio.currentTime;
 
-        cur.textContent =
+
+        currentTime.textContent =
             formatTime(
                 audio.currentTime
             );
 
-        dur.textContent =
+
+        duration.textContent =
             formatTime(
                 audio.duration
             );
-
-
-        /* STATISTIK WAKTU */
-
-        const diff =
-            audio.currentTime -
-            lastTrackedTime;
-
-        if(diff > 0 && diff < 3){
-
-            addListenTime(diff);
-
-        }
-
-        lastTrackedTime =
-            audio.currentTime;
-
-
-        /* VIDEO HARUS MENGIKUTI AUDIO */
-
-        if(
-            videoVisible &&
-            lyricsVideo
-        ){
-
-            const gap =
-                Math.abs(
-                    lyricsVideo.currentTime -
-                    audio.currentTime
-                );
-
-            if(gap > 0.25){
-
-                try{
-
-                    lyricsVideo.currentTime =
-                        audio.currentTime;
-
-                }catch{}
-
-            }
-
-        }
 
     }
 );
@@ -2302,25 +1628,8 @@ seek.addEventListener(
     "input",
     ()=>{
 
-        if(!isFinite(audio.duration))
-            return;
-
         audio.currentTime =
             Number(seek.value);
-
-        if(
-            videoVisible &&
-            lyricsVideo.readyState >= 2
-        ){
-
-            try{
-
-                lyricsVideo.currentTime =
-                    audio.currentTime;
-
-            }catch{}
-
-        }
 
     }
 );
@@ -2330,16 +1639,16 @@ seek.addEventListener(
    VOLUME
 ===================================================== */
 
-vol.addEventListener(
+volume.addEventListener(
     "input",
     ()=>{
 
         audio.volume =
-            Number(vol.value);
+            Number(volume.value);
 
         localStorage.setItem(
             "sedatur_volume",
-            vol.value
+            volume.value
         );
 
     }
@@ -2355,47 +1664,56 @@ function nextSong(){
     if(!songs.length)
         return;
 
-    if(shuf){
+
+    if(shuffleMode){
 
         if(songs.length === 1){
 
-            index = 0;
+            currentIndex = 0;
 
         }else{
 
-            let nextIndex;
+            let next;
 
             do{
 
-                nextIndex =
+                next =
                     Math.floor(
                         Math.random() *
                         songs.length
                     );
 
             }while(
-                nextIndex === index
+                next === currentIndex
             );
 
-            index =
-                nextIndex;
+            currentIndex =
+                next;
 
         }
 
     }else{
 
-        index++;
+        currentIndex++;
 
-        if(index >= songs.length)
-            index = 0;
+        if(
+            currentIndex >=
+            songs.length
+        ){
+
+            currentIndex = 0;
+
+        }
 
     }
+
 
     loadSong(true);
 
 }
 
-next.onclick =
+
+nextBtn.onclick =
     nextSong;
 
 
@@ -2408,6 +1726,7 @@ function previousSong(){
     if(!songs.length)
         return;
 
+
     if(audio.currentTime > 5){
 
         audio.currentTime = 0;
@@ -2416,16 +1735,23 @@ function previousSong(){
 
     }
 
-    index--;
 
-    if(index < 0)
-        index = songs.length - 1;
+    currentIndex--;
+
+    if(currentIndex < 0){
+
+        currentIndex =
+            songs.length - 1;
+
+    }
+
 
     loadSong(true);
 
 }
 
-prev.onclick =
+
+prevBtn.onclick =
     previousSong;
 
 
@@ -2433,18 +1759,19 @@ prev.onclick =
    SHUFFLE
 ===================================================== */
 
-shuffle.onclick = ()=>{
+shuffleBtn.onclick = ()=>{
 
-    shuf = !shuf;
+    shuffleMode =
+        !shuffleMode;
 
-    shuffle.classList.toggle(
+    shuffleBtn.classList.toggle(
         "active",
-        shuf
+        shuffleMode
     );
 
     localStorage.setItem(
         "sedatur_shuffle",
-        shuf
+        shuffleMode
     );
 
 };
@@ -2454,36 +1781,37 @@ shuffle.onclick = ()=>{
    REPEAT
 ===================================================== */
 
-repeat.onclick = ()=>{
+repeatBtn.onclick = ()=>{
 
-    rep = !rep;
+    repeatMode =
+        !repeatMode;
 
-    repeat.classList.toggle(
+    repeatBtn.classList.toggle(
         "active",
-        rep
+        repeatMode
     );
 
     localStorage.setItem(
         "sedatur_repeat",
-        rep
+        repeatMode
     );
 
 };
 
 
 /* =====================================================
-   AUDIO ENDED
+   SONG SELESAI
 ===================================================== */
 
 audio.addEventListener(
     "ended",
     ()=>{
 
-        if(rep){
+        if(repeatMode){
 
             audio.currentTime = 0;
 
-            startPlaying();
+            playAudio();
 
         }else{
 
@@ -2493,23 +1821,53 @@ audio.addEventListener(
 
     }
 );
+/* =====================================================
+   PART 3 — VIDEO + SLEEP TIMER + STATISTIK
+===================================================== */
 
 
 /* =====================================================
-   VIDEO SYSTEM
+   VIDEO LIRIK
 ===================================================== */
 
-function startVideo(){
+function stopVideo(){
+
+    lyricsVideo.pause();
+
+    lyricsVideo.removeAttribute("src");
+
+    lyricsVideo.load();
+
+    videoBox.classList.remove(
+        "active"
+    );
+
+    vinyl.style.display =
+        "flex";
+
+    videoBtn.textContent =
+        "🎬 Lirik Video";
+
+}
+
+
+/* =====================================================
+   BUKA VIDEO
+===================================================== */
+
+videoBtn.onclick = ()=>{
 
     if(!songs.length)
         return;
 
+
     const song =
-        songs[index];
+        songs[currentIndex];
+
 
     if(
-        !song ||
-        !song.lyricsVideo
+        !song.lyricsVideo ||
+        !String(song.lyricsVideo).trim()
     ){
 
         return;
@@ -2518,143 +1876,47 @@ function startVideo(){
 
 
     /*
-       VIDEO TIDAK BOLEH PUNYA SUARA.
-       AUDIO UTAMA ADALAH SATU-SATUNYA
-       SUMBER SUARA.
+       Video selalu muted.
+       Audio utama tetap menjadi
+       satu-satunya sumber suara.
     */
 
     lyricsVideo.muted = true;
+
     lyricsVideo.volume = 0;
-
-
-    lyricsVideo.pause();
-
-    lyricsVideo.removeAttribute(
-        "src"
-    );
-
-    lyricsVideo.load();
 
 
     lyricsVideo.src =
         song.lyricsVideo;
 
+
     lyricsVideo.load();
 
 
-    videoVisible = true;
+    vinyl.style.display =
+        "none";
+
+    videoBox.classList.add(
+        "active"
+    );
+
+
+    videoBtn.textContent =
+        "✕ Tutup Video";
 
 
     /*
-       VINYL DIGANTI VIDEO
+       Mulai dari posisi audio
     */
 
-    visualStage.classList.add(
-        "video-active"
-    );
+    lyricsVideo.currentTime =
+        audio.currentTime || 0;
 
 
-    lyricsBtn.textContent =
-        "💿 Kembali ke Piringan";
+    if(!audio.paused){
 
-
-    const syncVideo = ()=>{
-
-        try{
-
-            lyricsVideo.currentTime =
-                audio.currentTime;
-
-        }catch{}
-
-
-        if(!audio.paused){
-
-            const p =
-                lyricsVideo.play();
-
-            if(p && p.catch)
-                p.catch(()=>{});
-
-        }
-
-    };
-
-
-    if(
-        lyricsVideo.readyState >= 2
-    ){
-
-        syncVideo();
-
-    }else{
-
-        lyricsVideo.addEventListener(
-            "loadedmetadata",
-            syncVideo,
-            {once:true}
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   STOP VIDEO
-===================================================== */
-
-function stopVideo(){
-
-    videoVisible = false;
-
-
-    visualStage.classList.remove(
-        "video-active"
-    );
-
-
-    if(lyricsVideo){
-
-        lyricsVideo.pause();
-
-        lyricsVideo.removeAttribute(
-            "src"
-        );
-
-        lyricsVideo.load();
-
-        lyricsVideo.muted = true;
-
-    }
-
-
-    if(
-        songs[index] &&
-        songs[index].lyricsVideo
-    ){
-
-        lyricsBtn.textContent =
-            "🎬 Lirik Video";
-
-    }
-
-}
-
-
-/* =====================================================
-   VIDEO BUTTON
-===================================================== */
-
-lyricsBtn.onclick = ()=>{
-
-    if(videoVisible){
-
-        stopVideo();
-
-    }else{
-
-        startVideo();
+        lyricsVideo.play()
+            .catch(()=>{});
 
     }
 
@@ -2662,7 +1924,78 @@ lyricsBtn.onclick = ()=>{
 
 
 /* =====================================================
-   AUDIO → VIDEO
+   TOMBOL VIDEO / TUTUP
+===================================================== */
+
+videoBtn.addEventListener(
+    "click",
+    ()=>{
+
+        if(
+            videoBox.classList.contains(
+                "active"
+            )
+        ){
+
+            stopVideo();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   SINKRON VIDEO DENGAN AUDIO
+===================================================== */
+
+audio.addEventListener(
+    "timeupdate",
+    ()=>{
+
+        if(
+            !videoBox.classList.contains(
+                "active"
+            )
+        )
+            return;
+
+
+        if(
+            !lyricsVideo.readyState
+        )
+            return;
+
+
+        const difference =
+            Math.abs(
+                lyricsVideo.currentTime -
+                audio.currentTime
+            );
+
+
+        /*
+           Jika delay lebih dari
+           0.35 detik, koreksi.
+        */
+
+        if(difference > 0.35){
+
+            try{
+
+                lyricsVideo.currentTime =
+                    audio.currentTime;
+
+            }catch{}
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   AUDIO PLAY → VIDEO PLAY
 ===================================================== */
 
 audio.addEventListener(
@@ -2670,10 +2003,17 @@ audio.addEventListener(
     ()=>{
 
         if(
-            !videoVisible ||
-            !lyricsVideo
+            !videoBox.classList.contains(
+                "active"
+            )
         )
             return;
+
+
+        /*
+           Pastikan posisi video sama
+           dengan audio.
+        */
 
         try{
 
@@ -2683,26 +2023,63 @@ audio.addEventListener(
         }catch{}
 
 
-        const p =
-            lyricsVideo.play();
+        lyricsVideo.muted =
+            true;
 
-        if(p && p.catch)
-            p.catch(()=>{});
+        lyricsVideo.play()
+            .catch(()=>{});
 
     }
 );
 
+
+/* =====================================================
+   AUDIO PAUSE → VIDEO PAUSE
+===================================================== */
 
 audio.addEventListener(
     "pause",
     ()=>{
 
         if(
-            videoVisible &&
-            lyricsVideo
-        ){
+            !videoBox.classList.contains(
+                "active"
+            )
+        )
+            return;
 
-            lyricsVideo.pause();
+
+        lyricsVideo.pause();
+
+    }
+);
+
+
+/* =====================================================
+   VIDEO SELESAI
+===================================================== */
+
+lyricsVideo.addEventListener(
+    "ended",
+    ()=>{
+
+        /*
+           Jangan menghentikan lagu.
+           Video cukup kembali ke posisi
+           audio saat ini.
+        */
+
+        if(!audio.paused){
+
+            try{
+
+                lyricsVideo.currentTime =
+                    audio.currentTime;
+
+                lyricsVideo.play()
+                    .catch(()=>{});
+
+            }catch{}
 
         }
 
@@ -2711,96 +2088,98 @@ audio.addEventListener(
 
 
 /* =====================================================
-   VIDEO ERROR
+   KETIKA GANTI LAGU
 ===================================================== */
 
-lyricsVideo.addEventListener(
-    "error",
-    ()=>{
+const originalLoadSong =
+    loadSong;
 
-        console.error(
-            "Video gagal:",
-            lyricsVideo.error
-        );
 
-        status.textContent =
-            "⚠️ Video gagal dimuat";
-
-    }
-);
+/*
+   loadSong() yang sudah ada tetap
+   digunakan. Setelah lagu berganti,
+   video akan dihentikan karena
+   loadSong() memanggil stopVideo().
+*/
 
 
 /* =====================================================
    SLEEP TIMER
 ===================================================== */
 
-function clearSleepTimer(){
+let sleepTimer = null;
 
-    if(sleepTimer){
+let sleepEnd = 0;
+
+
+const sleepSelect =
+    document.getElementById(
+        "sleepSelect"
+    );
+
+const sleepCountdown =
+    document.getElementById(
+        "sleepCountdown"
+    );
+
+
+sleepSelect.addEventListener(
+    "change",
+    ()=>{
 
         clearInterval(
             sleepTimer
         );
 
-    }
 
-    sleepTimer = null;
-    sleepEnd = 0;
+        sleepTimer = null;
 
-    if(sleepCountdown){
+        sleepEnd = 0;
+
+
+        const minutes =
+            Number(
+                sleepSelect.value
+            );
+
+
+        if(!minutes){
+
+            sleepCountdown.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        sleepEnd =
+            Date.now() +
+            minutes * 60 * 1000;
+
 
         sleepCountdown.style.display =
-            "none";
-
-        sleepCountdown.textContent =
-            "";
-
-    }
-
-}
+            "block";
 
 
-function startSleepTimer(minutes){
+        sleepTimer =
+            setInterval(
+                updateSleep,
+                1000
+            );
 
-    clearSleepTimer();
 
-    minutes =
-        Number(minutes);
-
-    if(
-        !minutes ||
-        minutes <= 0
-    ){
-
-        return;
+        updateSleep();
 
     }
-
-    sleepEnd =
-        Date.now() +
-        minutes * 60000;
+);
 
 
-    sleepCountdown.style.display =
-        "block";
+/* =====================================================
+   UPDATE SLEEP
+===================================================== */
 
-
-    updateSleepCountdown();
-
-
-    sleepTimer =
-        setInterval(
-            updateSleepCountdown,
-            1000
-        );
-
-}
-
-
-function updateSleepCountdown(){
-
-    if(!sleepEnd)
-        return;
+function updateSleep(){
 
     const remaining =
         sleepEnd -
@@ -2809,9 +2188,27 @@ function updateSleepCountdown(){
 
     if(remaining <= 0){
 
-        clearSleepTimer();
+        clearInterval(
+            sleepTimer
+        );
 
-        audio.pause();
+
+        sleepTimer = null;
+
+        sleepEnd = 0;
+
+
+        sleepSelect.value =
+            "0";
+
+
+        sleepCountdown.style.display =
+            "none";
+
+
+        pauseAudio();
+
+        stopVideo();
 
         status.textContent =
             "😴 Waktu tidur selesai";
@@ -2821,22 +2218,24 @@ function updateSleepCountdown(){
     }
 
 
-    const total =
+    const totalSeconds =
         Math.ceil(
             remaining / 1000
         );
 
+
     const minutes =
         Math.floor(
-            total / 60
+            totalSeconds / 60
         );
 
+
     const seconds =
-        total % 60;
+        totalSeconds % 60;
 
 
     sleepCountdown.textContent =
-        "😴 Berhenti dalam " +
+        "⏱️ Berhenti dalam " +
         minutes +
         ":" +
         String(seconds)
@@ -2845,48 +2244,345 @@ function updateSleepCountdown(){
 }
 
 
-if(sleepSelect){
+/* =====================================================
+   STATISTIK
+===================================================== */
 
-    sleepSelect.addEventListener(
-        "change",
-        ()=>{
+let totalPlays =
+    Number(
+        localStorage.getItem(
+            "sedatur_plays"
+        ) || 0
+    );
 
-            const minutes =
-                Number(
-                    sleepSelect.value
-                );
 
-            if(minutes <= 0){
+let totalSeconds =
+    Number(
+        localStorage.getItem(
+            "sedatur_time"
+        ) || 0
+    );
 
-                clearSleepTimer();
 
-            }else{
+function updateStats(){
 
-                startSleepTimer(
-                    minutes
-                );
+    const favorites =
+        getFavorites();
 
-            }
+
+    document.getElementById(
+        "statSongs"
+    ).textContent =
+        songs.length;
+
+
+    document.getElementById(
+        "statPlays"
+    ).textContent =
+        totalPlays;
+
+
+    document.getElementById(
+        "statFav"
+    ).textContent =
+        favorites.length;
+
+
+    const minutes =
+        Math.floor(
+            totalSeconds / 60
+        );
+
+
+    document.getElementById(
+        "statTime"
+    ).textContent =
+        minutes + "m";
+
+}
+
+
+/* =====================================================
+   HITUNG PLAY
+===================================================== */
+
+audio.addEventListener(
+    "play",
+    ()=>{
+
+        /*
+           Hanya dihitung ketika
+           lagu benar-benar mulai.
+        */
+
+        if(
+            audio.currentTime < 1
+        ){
+
+            totalPlays++;
+
+            localStorage.setItem(
+                "sedatur_plays",
+                totalPlays
+            );
+
+            updateStats();
 
         }
+
+    }
+);
+
+
+/* =====================================================
+   HITUNG WAKTU DENGAR
+===================================================== */
+
+let lastStatTime =
+    Date.now();
+
+
+setInterval(
+    ()=>{
+
+        if(
+            !audio.paused &&
+            audio.src
+        ){
+
+            totalSeconds++;
+
+            localStorage.setItem(
+                "sedatur_time",
+                totalSeconds
+            );
+
+            updateStats();
+
+        }
+
+    },
+    1000
+);
+
+
+/* =====================================================
+   RESTORE SETTINGS
+===================================================== */
+
+const savedVolume =
+    localStorage.getItem(
+        "sedatur_volume"
+    );
+
+
+if(savedVolume !== null){
+
+    volume.value =
+        savedVolume;
+
+    audio.volume =
+        Number(savedVolume);
+
+}
+
+
+const savedShuffle =
+    localStorage.getItem(
+        "sedatur_shuffle"
+    );
+
+
+if(savedShuffle === "true"){
+
+    shuffleMode = true;
+
+    shuffleBtn.classList.add(
+        "active"
     );
 
 }
 
+
+const savedRepeat =
+    localStorage.getItem(
+        "sedatur_repeat"
+    );
+
+
+if(savedRepeat === "true"){
+
+    repeatMode = true;
+
+    repeatBtn.classList.add(
+        "active"
+    );
+
+}
+
+
 /* =====================================================
-   MEDIA SESSION
+   RESTORE LAGU TERAKHIR
 ===================================================== */
 
-function updateMediaSession(){
+const savedSong =
+    Number(
+        localStorage.getItem(
+            "sedatur_song"
+        )
+    );
+
+
+if(
+    Number.isInteger(savedSong) &&
+    savedSong >= 0 &&
+    savedSong < songs.length
+){
+
+    currentIndex =
+        savedSong;
+
+}
+
+
+/* =====================================================
+   UPDATE STATISTIK AWAL
+===================================================== */
+
+updateStats();
+/* =====================================================
+   PART 4 — MEDIA SESSION + BACKGROUND PLAYBACK
+===================================================== */
+
+
+/* =====================================================
+   MEDIA SESSION
+   Kontrol layar kunci / notifikasi media
+===================================================== */
+
+function setupMediaSession(){
 
     if(!("mediaSession" in navigator))
         return;
 
-    if(!songs.length)
+
+    navigator.mediaSession.setActionHandler(
+        "play",
+        ()=>{
+            playAudio();
+        }
+    );
+
+
+    navigator.mediaSession.setActionHandler(
+        "pause",
+        ()=>{
+            pauseAudio();
+        }
+    );
+
+
+    navigator.mediaSession.setActionHandler(
+        "previoustrack",
+        ()=>{
+            previousSong();
+        }
+    );
+
+
+    navigator.mediaSession.setActionHandler(
+        "nexttrack",
+        ()=>{
+            nextSong();
+        }
+    );
+
+
+    /*
+       Beberapa browser mendukung
+       seek dari layar kunci.
+    */
+
+    try{
+
+        navigator.mediaSession.setActionHandler(
+            "seekbackward",
+            details => {
+
+                const offset =
+                    details.seekOffset || 10;
+
+                audio.currentTime =
+                    Math.max(
+                        0,
+                        audio.currentTime - offset
+                    );
+
+            }
+        );
+
+    }catch{}
+
+
+    try{
+
+        navigator.mediaSession.setActionHandler(
+            "seekforward",
+            details => {
+
+                const offset =
+                    details.seekOffset || 10;
+
+                audio.currentTime =
+                    Math.min(
+                        audio.duration || Infinity,
+                        audio.currentTime + offset
+                    );
+
+            }
+        );
+
+    }catch{}
+
+
+    try{
+
+        navigator.mediaSession.setActionHandler(
+            "stop",
+            ()=>{
+
+                pauseAudio();
+
+                audio.currentTime = 0;
+
+            }
+        );
+
+    }catch{}
+
+}
+
+
+/* =====================================================
+   UPDATE MEDIA SESSION
+===================================================== */
+
+function updateMediaSession(){
+
+    if(
+        !("mediaSession" in navigator) ||
+        !songs.length
+    )
         return;
 
+
     const song =
-        songs[index];
+        songs[currentIndex];
+
+
+    if(!song)
+        return;
+
 
     try{
 
@@ -2908,60 +2604,46 @@ function updateMediaSession(){
                     {
                         src:
                             song.cover ||
-                            "logo.png"
+                            "logo.png",
+
+                        sizes:"512x512",
+
+                        type:"image/png"
                     }
                 ]
 
             });
 
-    }catch{}
+    }catch(error){
+
+        console.log(
+            "Media Session:",
+            error
+        );
+
+    }
 
 }
 
 
 /* =====================================================
-   MEDIA SESSION CONTROLS
-===================================================== */
-
-if("mediaSession" in navigator){
-
-    navigator.mediaSession.setActionHandler(
-        "play",
-        ()=>startPlaying()
-    );
-
-    navigator.mediaSession.setActionHandler(
-        "pause",
-        ()=>pausePlaying()
-    );
-
-    navigator.mediaSession.setActionHandler(
-        "nexttrack",
-        ()=>nextSong()
-    );
-
-    navigator.mediaSession.setActionHandler(
-        "previoustrack",
-        ()=>previousSong()
-    );
-
-}
-
-
-/* =====================================================
-   UPDATE MEDIA SESSION STATE
+   MEDIA SESSION STATE
 ===================================================== */
 
 audio.addEventListener(
     "play",
     ()=>{
 
-        if("mediaSession" in navigator){
+        if(
+            "mediaSession" in navigator
+        ){
 
             navigator.mediaSession.playbackState =
                 "playing";
 
         }
+
+        updateMediaSession();
 
     }
 );
@@ -2971,7 +2653,9 @@ audio.addEventListener(
     "pause",
     ()=>{
 
-        if("mediaSession" in navigator){
+        if(
+            "mediaSession" in navigator
+        ){
 
             navigator.mediaSession.playbackState =
                 "paused";
@@ -2983,82 +2667,25 @@ audio.addEventListener(
 
 
 /* =====================================================
-   RESTORE SETTINGS
+   UPDATE METADATA SAAT LAGU BERGANTI
 ===================================================== */
 
-function restoreSettings(){
-
-    const savedSong =
-        Number(
-            localStorage.getItem(
-                "sedatur_song"
-            )
-        );
-
-    if(
-        Number.isInteger(savedSong) &&
-        savedSong >= 0 &&
-        savedSong < songs.length
-    ){
-
-        index = savedSong;
-
-    }
+const oldLoadSong =
+    loadSong;
 
 
-    shuf =
-        localStorage.getItem(
-            "sedatur_shuffle"
-        ) === "true";
+loadSong = function(
+    autoplay = false
+){
 
-
-    rep =
-        localStorage.getItem(
-            "sedatur_repeat"
-        ) === "true";
-
-
-    shuffle.classList.toggle(
-        "active",
-        shuf
-    );
-
-    repeat.classList.toggle(
-        "active",
-        rep
+    oldLoadSong(
+        autoplay
     );
 
 
-    const savedVolume =
-        localStorage.getItem(
-            "sedatur_volume"
-        );
+    updateMediaSession();
 
-    if(savedVolume !== null){
-
-        const volume =
-            Number(savedVolume);
-
-        if(
-            isFinite(volume) &&
-            volume >= 0 &&
-            volume <= 1
-        ){
-
-            vol.value = volume;
-
-            audio.volume = volume;
-
-        }
-
-    }else{
-
-        audio.volume =
-            Number(vol.value);
-
-    }
-
-}
+};
 
 
 /* =====================================================
@@ -3067,30 +2694,58 @@ function restoreSettings(){
 
 document.addEventListener(
     "keydown",
-    e => {
+    event => {
+
+        /*
+           Jangan ganggu input search.
+        */
 
         if(
-            e.target.tagName === "INPUT" ||
-            e.target.tagName === "SELECT"
-        )
+            event.target.tagName ===
+            "INPUT" ||
+            event.target.tagName ===
+            "SELECT"
+        ){
+
             return;
-
-
-        if(e.code === "Space"){
-
-            e.preventDefault();
-
-            if(audio.paused)
-                startPlaying();
-            else
-                pausePlaying();
 
         }
 
 
-        if(e.code === "ArrowRight"){
+        /* SPACE = PLAY / PAUSE */
 
-            if(isFinite(audio.duration)){
+        if(
+            event.code ===
+            "Space"
+        ){
+
+            event.preventDefault();
+
+            if(audio.paused){
+
+                playAudio();
+
+            }else{
+
+                pauseAudio();
+
+            }
+
+        }
+
+
+        /* PANAH KANAN */
+
+        if(
+            event.code ===
+            "ArrowRight"
+        ){
+
+            if(
+                isFinite(
+                    audio.duration
+                )
+            ){
 
                 audio.currentTime =
                     Math.min(
@@ -3103,7 +2758,12 @@ document.addEventListener(
         }
 
 
-        if(e.code === "ArrowLeft"){
+        /* PANAH KIRI */
+
+        if(
+            event.code ===
+            "ArrowLeft"
+        ){
 
             audio.currentTime =
                 Math.max(
@@ -3118,62 +2778,15 @@ document.addEventListener(
 
 
 /* =====================================================
-   VISIBILITY
+   VIDEO FULLSCREEN
+   Double tap / browser fullscreen
 ===================================================== */
 
-document.addEventListener(
-    "visibilitychange",
+lyricsVideo.addEventListener(
+    "dblclick",
     ()=>{
 
-        /*
-           Audio tetap berjalan ketika
-           pindah tab / layar mati jika
-           browser mengizinkannya.
-        */
-
         if(
-            document.hidden &&
-            videoVisible &&
-            !audio.paused
-        ){
-
-            const p =
-                lyricsVideo.play();
-
-            if(p && p.catch)
-                p.catch(()=>{});
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   VIDEO FULLSCREEN
-===================================================== */
-
-const fullscreenBtn =
-    document.getElementById(
-        "fullscreenBtn"
-    );
-
-
-if(fullscreenBtn){
-
-    fullscreenBtn.onclick = ()=>{
-
-        if(!lyricsVideo)
-            return;
-
-
-        if(
-            document.fullscreenElement
-        ){
-
-            document.exitFullscreen();
-
-        }else if(
             lyricsVideo.requestFullscreen
         ){
 
@@ -3181,113 +2794,47 @@ if(fullscreenBtn){
 
         }
 
-    };
-
-}
-
-
-/* =====================================================
-   CLOSE VIDEO
-===================================================== */
-
-const closeVideo =
-    document.getElementById(
-        "closeVideo"
-    );
-
-
-if(closeVideo){
-
-    closeVideo.onclick = ()=>{
-
-        stopVideo();
-
-    };
-
-}
-
-
-/* =====================================================
-   INIT
-===================================================== */
-
-async function init(){
-
-    /*
-       Pastikan volume sudah siap
-    */
-
-    const savedVolume =
-        localStorage.getItem(
-            "sedatur_volume"
-        );
-
-    if(savedVolume !== null){
-
-        audio.volume =
-            Number(savedVolume);
-
-        vol.value =
-            savedVolume;
-
     }
-
-
-    /*
-       Load playlist
-    */
-
-    await loadPlaylist();
-
-
-    /*
-       Restore setting setelah
-       playlist tersedia
-    */
-
-    restoreSettings();
-
-
-    /*
-       Load lagu terakhir
-    */
-
-    if(songs.length){
-
-        loadSong(false);
-
-    }
-
-
-    updateStats();
-
-}
+);
 
 
 /* =====================================================
-   START
-===================================================== */
-
-init();
-
-
-/* =====================================================
-   GLOBAL ERROR HANDLER
+   HENTIKAN VIDEO SAAT HALAMAN
+   DITUTUP / DITINGGALKAN
 ===================================================== */
 
 window.addEventListener(
-    "error",
-    event => {
+    "beforeunload",
+    ()=>{
 
-        console.error(
-            "Sedatur Music Hub Error:",
-            event.error || event.message
-        );
+        lyricsVideo.pause();
 
     }
 );
+
+
+/* =====================================================
+   INISIALISASI
+===================================================== */
+
+setupMediaSession();
+
+updateStats();
+
+
+/*
+   Playlist baru dibaca di sini.
+*/
+
+loadPlaylist();
+
+
+/* =====================================================
+   SELESAI
+===================================================== */
 
 </script>
 
 </body>
 </html>
+
