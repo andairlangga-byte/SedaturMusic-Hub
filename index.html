@@ -1909,8 +1909,9 @@ audio.addEventListener(
 
 /* ⬇️ TARUH PART 3 TEPAT DI BAWAH SINI */
 /* =====================================================
+   /* =====================================================
    SEDATUR MUSIC HUB — PART 3
-   VIDEO + SLEEP TIMER + RESTORE + START
+   VIDEO LIRIK + SLEEP TIMER + START
 ===================================================== */
 
 
@@ -1918,7 +1919,14 @@ audio.addEventListener(
    VIDEO LIRIK
 ===================================================== */
 
+let videoActive = false;
+
+
+/* STOP VIDEO */
+
 function stopVideo(){
+
+  videoActive = false;
 
   try{
     lyricsVideo.pause();
@@ -1930,8 +1938,12 @@ function stopVideo(){
 
   videoBox.classList.remove("active");
 
+  videoBtn.textContent = "🎬";
+
 }
 
+
+/* BUKA / TUTUP VIDEO */
 
 videoBtn.addEventListener(
   "click",
@@ -1951,11 +1963,9 @@ videoBtn.addEventListener(
     }
 
 
-    /* Tutup video */
+    /* TUTUP */
 
-    if(
-      videoBox.classList.contains("active")
-    ){
+    if(videoActive){
 
       stopVideo();
 
@@ -1964,18 +1974,83 @@ videoBtn.addEventListener(
     }
 
 
-    /* Buka video */
+    /* BUKA */
+
+    videoActive = true;
+
+    lyricsVideo.muted = true;
 
     lyricsVideo.src =
       song.lyricsVideo;
-
-    lyricsVideo.muted = true;
 
     lyricsVideo.load();
 
     videoBox.classList.add(
       "active"
     );
+
+    videoBtn.textContent = "❌";
+
+
+    /*
+      Video mengikuti posisi audio
+    */
+
+    lyricsVideo.addEventListener(
+      "loadedmetadata",
+      ()=>{
+
+        try{
+
+          lyricsVideo.currentTime =
+            audio.currentTime;
+
+        }catch(e){}
+
+
+        /*
+          Kalau audio sedang play,
+          video ikut play
+        */
+
+        if(!audio.paused){
+
+          lyricsVideo.play()
+            .catch(()=>{});
+
+        }
+
+      },
+      {once:true}
+    );
+
+  }
+);
+
+
+/* =====================================================
+   AUDIO → VIDEO PLAY
+===================================================== */
+
+audio.addEventListener(
+  "play",
+  ()=>{
+
+    if(!videoActive){
+      return;
+    }
+
+
+    /*
+      Samakan posisi sebelum play
+    */
+
+    try{
+
+      lyricsVideo.currentTime =
+        audio.currentTime;
+
+    }catch(e){}
 
 
     lyricsVideo.play()
@@ -1986,21 +2061,34 @@ videoBtn.addEventListener(
 
 
 /* =====================================================
-   VIDEO MENGIKUTI AUDIO
+   AUDIO → VIDEO PAUSE
+===================================================== */
+
+audio.addEventListener(
+  "pause",
+  ()=>{
+
+    if(!videoActive){
+      return;
+    }
+
+
+    lyricsVideo.pause();
+
+  }
+);
+
+
+/* =====================================================
+   AUDIO → VIDEO SYNC
 ===================================================== */
 
 audio.addEventListener(
   "timeupdate",
   ()=>{
 
-    if(
-      !videoBox.classList.contains(
-        "active"
-      )
-    ){
-
+    if(!videoActive){
       return;
-
     }
 
 
@@ -2022,7 +2110,12 @@ audio.addEventListener(
       );
 
 
-    if(difference > 0.5){
+    /*
+      Koreksi kalau video
+      mulai melenceng
+    */
+
+    if(difference > 0.4){
 
       try{
 
@@ -2038,59 +2131,46 @@ audio.addEventListener(
 
 
 /* =====================================================
-   VIDEO PAUSE / PLAY BERSAMA AUDIO
+   SEEK AUDIO → VIDEO
 ===================================================== */
 
-audio.addEventListener(
-  "play",
+seek.addEventListener(
+  "input",
   ()=>{
 
-    if(
-      videoBox.classList.contains(
-        "active"
-      )
-    ){
-
-      lyricsVideo.play()
-        .catch(()=>{});
-
+    if(!videoActive){
+      return;
     }
 
-  }
-);
 
+    try{
 
-audio.addEventListener(
-  "pause",
-  ()=>{
+      lyricsVideo.currentTime =
+        audio.currentTime;
 
-    if(
-      videoBox.classList.contains(
-        "active"
-      )
-    ){
-
-      lyricsVideo.pause();
-
-    }
+    }catch(e){}
 
   }
 );
 
 
 /* =====================================================
-   KETIKA LAGU BERGANTI
+   ERROR VIDEO
 ===================================================== */
 
-function prepareNewSong(){
+lyricsVideo.addEventListener(
+  "error",
+  ()=>{
 
-  stopVideo();
+    console.log(
+      "❌ Video lirik gagal dimuat"
+    );
 
-  resetPlayCounter();
 
-  lastAudioTime = 0;
+    stopVideo();
 
-}
+  }
+);
 
 
 /* =====================================================
@@ -2130,9 +2210,7 @@ sleepSelect.addEventListener(
 
 
     if(!minutes){
-
       return;
-
     }
 
 
@@ -2205,69 +2283,6 @@ sleepSelect.addEventListener(
 
 
 /* =====================================================
-   JAM REALTIME
-===================================================== */
-
-function updateClock(){
-
-  const time =
-    document.getElementById(
-      "time"
-    );
-
-
-  const date =
-    document.getElementById(
-      "date"
-    );
-
-
-  const now =
-    new Date();
-
-
-  if(time){
-
-    time.textContent =
-      now.toLocaleTimeString(
-        "id-ID",
-        {
-          hour:"2-digit",
-          minute:"2-digit",
-          second:"2-digit"
-        }
-      );
-
-  }
-
-
-  if(date){
-
-    date.textContent =
-      now.toLocaleDateString(
-        "id-ID",
-        {
-          weekday:"long",
-          day:"numeric",
-          month:"long",
-          year:"numeric"
-        }
-      );
-
-  }
-
-}
-
-
-updateClock();
-
-setInterval(
-  updateClock,
-  1000
-);
-
-
-/* =====================================================
    RESTORE LAGU TERAKHIR
 ===================================================== */
 
@@ -2305,45 +2320,149 @@ updateStats();
 
 
 /* =====================================================
-   RESET PLAY COUNTER SAAT GANTI LAGU
+   SELESAI
+   /* =====================================================
+   MEDIA SESSION — BACKGROUND PLAYER
 ===================================================== */
 
-const originalLoadSong =
-  loadSong;
+function updateMediaSession(){
+
+  if(!("mediaSession" in navigator)){
+    return;
+  }
+
+  const song = songs[currentIndex];
+  
+  if(!song){
+    return;
+    
+    updateMediaSession();
+  }
 
 
-loadSong = function(
-  autoplay = false
-){
+  navigator.mediaSession.metadata =
+    new MediaMetadata({
 
-  prepareNewSong();
+      title:
+        song.title || "Sedatur Music Hub",
 
-  originalLoadSong(
-    autoplay
-  );
+      artist:
+        song.artist || "Unknown Artist",
 
-};
+      album:
+        "Sedatur Music Hub",
 
+      artwork:[
+        {
+          src:
+            song.cover || "logo.png",
 
-/* =====================================================
-   LOAD ULANG LAGU TERAKHIR
-===================================================== */
+          sizes:
+            "512x512",
 
-if(songs.length > 0){
+          type:
+            "image/png"
+        }
+      ]
 
-  title.textContent =
-    songs[currentIndex].title;
-
-  artist.textContent =
-    songs[currentIndex].artist;
+    });
 
 }
 
 
 /* =====================================================
-   SELESAI
+   PLAY / PAUSE
 ===================================================== */
 
+if("mediaSession" in navigator){
+
+  navigator.mediaSession.setActionHandler(
+    "play",
+    ()=>{
+      playAudio();
+    }
+  );
+
+
+  navigator.mediaSession.setActionHandler(
+    "pause",
+    ()=>{
+      pauseAudio();
+    }
+  );
+
+
+  navigator.mediaSession.setActionHandler(
+    "nexttrack",
+    ()=>{
+      nextSong();
+    }
+  );
+
+
+  navigator.mediaSession.setActionHandler(
+    "previoustrack",
+    ()=>{
+      previousSong();
+    }
+  );
+
+}
+
+
+/* =====================================================
+   UPDATE SAAT LAGU BERUBAH
+===================================================== */
+
+audio.addEventListener(
+  "loadedmetadata",
+  ()=>{
+
+    updateMediaSession();
+
+  }
+);
+
+
+/* =====================================================
+   UPDATE STATUS MEDIA SESSION
+===================================================== */
+
+audio.addEventListener(
+  "play",
+  ()=>{
+
+    if("mediaSession" in navigator){
+
+      navigator.mediaSession.playbackState =
+        "playing";
+
+    }
+
+  }
+);
+
+
+audio.addEventListener(
+  "pause",
+  ()=>{
+
+    if("mediaSession" in navigator){
+
+      navigator.mediaSession.playbackState =
+        "paused";
+
+    }
+
+  }
+);
+===================================================== */
+
+console.log(
+  "🎵 Sedatur Music Hub aktif:",
+  songs.length,
+  "lagu"
+);
 console.log(
   "🎵 Sedatur Music Hub aktif:",
   songs.length,
@@ -2353,4 +2472,5 @@ console.log(
 </script>
 
 </body>
+</html>
 </html>
