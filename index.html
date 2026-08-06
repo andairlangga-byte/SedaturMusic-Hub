@@ -213,7 +213,6 @@ button{
 .song{
   display:flex;
   align-items:center;
-  justify-content:space-between;
   padding:12px;
   background:#141414;
   border:1px solid #222;
@@ -243,13 +242,6 @@ button{
   margin-top:3px;
 }
 
-.favorite{
-  background:none;
-  color:#fff;
-  font-size:20px;
-  padding:5px;
-}
-
 .empty{
   text-align:center;
   padding:20px;
@@ -261,10 +253,6 @@ button{
   #cover{
     width:150px;
     height:150px;
-  }
-
-  .controls{
-    gap:4px;
   }
 
 }
@@ -327,9 +315,7 @@ button{
 
   <div class="progress">
 
-    <span id="current">
-      00:00
-    </span>
+    <span id="current">00:00</span>
 
     <input
       id="seek"
@@ -339,37 +325,22 @@ button{
       value="0"
     >
 
-    <span id="duration">
-      00:00
-    </span>
+    <span id="duration">00:00</span>
 
   </div>
 
 
   <div class="controls">
 
-    <button id="prev">
-      ⏮
-    </button>
+    <button id="prev">⏮</button>
 
-    <button
-      id="play"
-      class="play"
-    >
-      ▶
-    </button>
+    <button id="play" class="play">▶</button>
 
-    <button id="next">
-      ⏭
-    </button>
+    <button id="next">⏭</button>
 
-    <button id="shuffle">
-      🔀
-    </button>
+    <button id="shuffle">🔀</button>
 
-    <button id="repeat">
-      🔁
-    </button>
+    <button id="repeat">🔁</button>
 
   </div>
 
@@ -380,17 +351,10 @@ button{
       🎬 Lirik Video
     </button>
 
-    <button id="favoriteBtn">
-      ♡ Favorit
-    </button>
-
   </div>
 
 
-  <div
-    id="videoBox"
-    class="video"
-  >
+  <div id="videoBox" class="video">
 
     <video
       id="lyricsVideo"
@@ -423,10 +387,7 @@ button{
 </section>
 
 
-<section
-  id="playlist"
-  class="playlist"
->
+<section id="playlist" class="playlist">
 
   <div class="empty">
     Memuat lagu...
@@ -437,248 +398,155 @@ button{
 </main>
 
 
-<audio
-  id="audio"
-  preload="metadata"
-></audio>
+<audio id="audio" preload="metadata"></audio>
 
 
 <script>
 
-/* ================================
-   PLAYLIST
-================================ */
+const audio =
+  document.getElementById("audio");
 
-const songs = [
+const cover =
+  document.getElementById("cover");
 
-{
-  title:"Dunia Yang Nanti",
-  artist:"Raim Laode",
-  file:"dunia-yang-nanti.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/Raim.Laode.-.Dunia.Yang.Nanti.Lirik.video.mp4"
-},
+const title =
+  document.getElementById("title");
 
-{
-  title:"Ini Abadi",
-  artist:"Perunggu",
-  file:"ini-abadi.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/vidssave.com.Perunggu.-.Ini.Abadi.Video.Lirik.360P.mp4"
-},
+const artist =
+  document.getElementById("artist");
 
-{
-  title:"Shape of My Heart",
-  artist:"Backstreet Boys",
-  file:"shape-of-my-heart.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/vidssave.com.Backstreet.Boys.-.Shape.Of.My.Heart.Official.HD.Video.360P.mp4"
-},
+const playBtn =
+  document.getElementById("play");
 
-{
-  title:"IQRO",
-  artist:"Raim Laode",
-  file:"iqro.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/IQRO.-.Raim.Laode._.Lirik.Lagu.mp4"
-},
+const prevBtn =
+  document.getElementById("prev");
 
-{
-  title:"What Makes You Beautiful",
-  artist:"One Direction",
-  file:"what-makes-you-beautiful.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/vidssave.com.One.Direction.-.What.Makes.You.Beautiful.Lyrics.360P.mp4"
-},
+const nextBtn =
+  document.getElementById("next");
 
-{
-  title:"33X",
-  artist:"Perunggu",
-  file:"33x.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/Perunggu.-.33x.Video.Lirik.mp4"
-},
+const shuffleBtn =
+  document.getElementById("shuffle");
 
-{
-  title:"Teh Hijau",
-  artist:"Tulus",
-  file:"teh-hijau.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/Teh.Hijau.-.Tulus._.Lirik.Lagu.mp4"
-},
+const repeatBtn =
+  document.getElementById("repeat");
 
-{
-  title:"1000 X",
-  artist:"Ghea Indrawari",
-  file:"1000x.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/1000x.-.Ghea.Indrawari._.Lirik.Lagu.mp4"
-},
+const seek =
+  document.getElementById("seek");
 
-{
-  title:"Lesung Pipi",
-  artist:"Raim Laode",
-  file:"lesung-pipi.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/lesung.pipi-video.lirik.mp4"
-},
+const current =
+  document.getElementById("current");
 
-{
-  title:"Everything U Are",
-  artist:"Hindia",
-  file:"everything-u-are.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/everything.u.are-video.lirik.mp4"
-},
+const duration =
+  document.getElementById("duration");
 
-{
-  title:"Kami Belum Tentu",
-  artist:".Feast",
-  file:"kami-belum-tentu.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/Kami.Belum.Tentu.Vertical.Video.Official.Music.Video.mp4"
-},
+const playlist =
+  document.getElementById("playlist");
 
-{
-  title:"Berapa Kali Kita Akan Saling Memaafkan",
-  artist:"Pamungkas",
-  file:"berapa-kali-kita-akan-saling-memaafkan.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/berapa-kali-kita-akan-saling-memaafkam_Video-lirik.mp4"
-},
+const search =
+  document.getElementById("search");
 
-{
-  title:"Nina",
-  artist:".Feast",
-  file:"nina.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/Feast.-.Nina.Official.Lyric.Video.mp4"
-},
+const category =
+  document.getElementById("category");
 
-{
-  title:"Buruh Tani",
-  artist:"Marjinal",
-  file:"buruh-tani.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/BURUH.TANI.-.MARJINAL.dengan.teks.11.April.2022.Mahasiswa.Bergerak.mp4"
-},
+const videoBtn =
+  document.getElementById("videoBtn");
 
-{
-  title:"Dia Masa Lalumu, Aku Masa Depanmu",
-  artist:"Vionita",
-  file:"dia-masa-lalumu-aku-masa-depanmu.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/Vionita.Sihombing.-.Dia.Masa.Lalumu.Aku.Masa.Depanmu.Lirik.mp4"
-},
+const videoBox =
+  document.getElementById("videoBox");
 
-{
-  title:"Sesi Potret",
-  artist:"Enau & Ari Lesmana",
-  file:"sesi-potret.mp3",
-  lyricsVideo:"https://github.com/andairlangga-byte/SedaturMusic-Hub/releases/download/Sedatur/enau.feat.Ari.Lesmana.-.Sesi.Potret.LIRIK.LAGU.mp4"
-}
-
-];
+const lyricsVideo =
+  document.getElementById("lyricsVideo");
 
 
-/* PART 1 SELESAI */
-/* ================================
-   PLAYER
-================================ */
-
-const audio = document.getElementById("audio");
-const cover = document.getElementById("cover");
-const title = document.getElementById("title");
-const artist = document.getElementById("artist");
-
-const playBtn = document.getElementById("play");
-const prevBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
-const shuffleBtn = document.getElementById("shuffle");
-const repeatBtn = document.getElementById("repeat");
-
-const seek = document.getElementById("seek");
-const current = document.getElementById("current");
-const duration = document.getElementById("duration");
-
-const playlist = document.getElementById("playlist");
-const search = document.getElementById("search");
-const category = document.getElementById("category");
+let songs = [];
 
 let currentIndex = 0;
+
 let shuffle = false;
+
 let repeat = false;
 
 
-/* ================================
-   FORMAT WAKTU
-================================ */
+/* FORMAT WAKTU */
 
 function time(sec){
 
-  if(!isFinite(sec)) return "00:00";
+  if(!isFinite(sec)){
+    return "00:00";
+  }
 
-  let m = Math.floor(sec / 60);
-  let s = Math.floor(sec % 60);
+  const m =
+    Math.floor(sec / 60);
 
-  return String(m).padStart(2,"0") + ":" +
-         String(s).padStart(2,"0");
+  const s =
+    Math.floor(sec % 60);
+
+  return String(m).padStart(2,"0")
+    + ":" +
+    String(s).padStart(2,"0");
 
 }
 
 
-/* ================================
-   LOAD LAGU
-================================ */
+/* LOAD LAGU */
 
 function loadSong(){
 
-  const song = songs[currentIndex];
+  const song =
+    songs[currentIndex];
 
-  if(!song) return;
+  if(!song){
+    return;
+  }
 
-  audio.src = song.file;
+  audio.src =
+    song.file;
 
-  title.textContent = song.title;
-  artist.textContent = song.artist;
+  title.textContent =
+    song.title;
 
-  cover.src = "logo.png";
+  artist.textContent =
+    song.artist;
 
-  current.textContent = "00:00";
-  duration.textContent = "00:00";
+  cover.src =
+    song.cover || "logo.png";
+
+  current.textContent =
+    "00:00";
+
+  duration.textContent =
+    "00:00";
 
   seek.value = 0;
 
   renderPlaylist();
 
+  updateMediaSession();
+
 }
 
-
-/* ================================
-   PLAY
-================================ */
+/* PLAY */
 
 function playSong(){
 
   audio.play()
-    .then(()=>{
-
-      playBtn.textContent = "⏸";
-      cover.classList.add("spin");
-
-    })
     .catch(error=>{
-
-      console.log(error);
-
+      console.log("Gagal memutar:",error);
     });
 
 }
 
 
-/* ================================
-   PAUSE
-================================ */
+/* PAUSE */
 
 function pauseSong(){
 
   audio.pause();
 
-  playBtn.textContent = "▶";
-
-  cover.classList.remove("spin");
-
 }
 
 
-/* ================================
-   PLAY / PAUSE
-================================ */
+/* PLAY / PAUSE */
 
 playBtn.onclick = ()=>{
 
@@ -695,11 +563,13 @@ playBtn.onclick = ()=>{
 };
 
 
-/* ================================
-   NEXT
-================================ */
+/* NEXT */
 
 function nextSong(){
+
+  if(!songs.length){
+    return;
+  }
 
   if(shuffle){
 
@@ -709,7 +579,8 @@ function nextSong(){
 
       next =
         Math.floor(
-          Math.random() * songs.length
+          Math.random() *
+          songs.length
         );
 
     }while(
@@ -724,9 +595,7 @@ function nextSong(){
     currentIndex++;
 
     if(currentIndex >= songs.length){
-
       currentIndex = 0;
-
     }
 
   }
@@ -737,22 +606,23 @@ function nextSong(){
 
 }
 
-nextBtn.onclick = nextSong;
+nextBtn.onclick =
+  nextSong;
 
 
-/* ================================
-   PREVIOUS
-================================ */
+/* PREVIOUS */
 
 prevBtn.onclick = ()=>{
+
+  if(!songs.length){
+    return;
+  }
 
   currentIndex--;
 
   if(currentIndex < 0){
-
     currentIndex =
       songs.length - 1;
-
   }
 
   loadSong();
@@ -762,13 +632,12 @@ prevBtn.onclick = ()=>{
 };
 
 
-/* ================================
-   SHUFFLE
-================================ */
+/* SHUFFLE */
 
 shuffleBtn.onclick = ()=>{
 
-  shuffle = !shuffle;
+  shuffle =
+    !shuffle;
 
   shuffleBtn.classList.toggle(
     "active",
@@ -778,13 +647,12 @@ shuffleBtn.onclick = ()=>{
 };
 
 
-/* ================================
-   REPEAT
-================================ */
+/* REPEAT */
 
 repeatBtn.onclick = ()=>{
 
-  repeat = !repeat;
+  repeat =
+    !repeat;
 
   repeatBtn.classList.toggle(
     "active",
@@ -794,9 +662,7 @@ repeatBtn.onclick = ()=>{
 };
 
 
-/* ================================
-   AUDIO EVENTS
-================================ */
+/* AUDIO */
 
 audio.addEventListener(
   "loadedmetadata",
@@ -813,11 +679,13 @@ audio.addEventListener(
   "timeupdate",
   ()=>{
 
-    if(!audio.duration) return;
+    if(!audio.duration){
+      return;
+    }
 
     seek.value =
-      (audio.currentTime /
-       audio.duration) * 100;
+      audio.currentTime /
+      audio.duration * 100;
 
     current.textContent =
       time(audio.currentTime);
@@ -830,9 +698,12 @@ audio.addEventListener(
   "play",
   ()=>{
 
-    playBtn.textContent = "⏸";
+    playBtn.textContent =
+      "⏸";
 
-    cover.classList.add("spin");
+    cover.classList.add(
+      "spin"
+    );
 
   }
 );
@@ -842,9 +713,12 @@ audio.addEventListener(
   "pause",
   ()=>{
 
-    playBtn.textContent = "▶";
+    playBtn.textContent =
+      "▶";
 
-    cover.classList.remove("spin");
+    cover.classList.remove(
+      "spin"
+    );
 
   }
 );
@@ -870,24 +744,23 @@ audio.addEventListener(
 );
 
 
-/* ================================
-   SEEK
-================================ */
+/* SEEK */
 
 seek.oninput = ()=>{
 
-  if(!audio.duration) return;
+  if(!audio.duration){
+    return;
+  }
 
   audio.currentTime =
-    (seek.value / 100) *
+    seek.value /
+    100 *
     audio.duration;
 
 };
 
 
-/* ================================
-   PLAYLIST
-================================ */
+/* PLAYLIST */
 
 function renderPlaylist(){
 
@@ -896,146 +769,152 @@ function renderPlaylist(){
   const keyword =
     search.value.toLowerCase();
 
-  songs.forEach((song,index)=>{
+  songs.forEach(
+    (song,index)=>{
 
-    if(
-      keyword &&
-      !(
-        song.title.toLowerCase()
-        .includes(keyword) ||
+      if(
+        keyword &&
+        !song.title
+          .toLowerCase()
+          .includes(keyword) &&
+        !song.artist
+          .toLowerCase()
+          .includes(keyword)
+      ){
 
-        song.artist.toLowerCase()
-        .includes(keyword)
-      )
-    ){
+        return;
 
-      return;
-
-    }
-
-
-    if(
-      category.value !== "all" &&
-      song.artist !== category.value
-    ){
-
-      return;
-
-    }
+      }
 
 
-    const item =
-      document.createElement("div");
+      if(
+        category.value !== "all" &&
+        song.artist !==
+        category.value
+      ){
 
-    item.className = "song";
+        return;
 
-
-    if(index === currentIndex){
-
-      item.classList.add("active");
-
-    }
+      }
 
 
-    item.innerHTML = `
+      const item =
+        document.createElement(
+          "div"
+        );
 
-      <div class="song-main">
+      item.className =
+        "song";
 
-        <div class="song-title">
-          ${song.title}
+
+      if(
+        index === currentIndex
+      ){
+
+        item.classList.add(
+          "active"
+        );
+
+      }
+
+
+      item.innerHTML = `
+
+        <div class="song-main">
+
+          <div class="song-title">
+            ${song.title}
+          </div>
+
+          <div class="song-artist">
+            ${song.artist}
+          </div>
+
         </div>
 
-        <div class="song-artist">
-          ${song.artist}
-        </div>
-
-      </div>
-
-    `;
+      `;
 
 
-    item.onclick = ()=>{
+      item.onclick = ()=>{
 
-      currentIndex = index;
+        currentIndex =
+          index;
 
-      loadSong();
+        loadSong();
 
-      playSong();
+        playSong();
 
-    };
+      };
 
 
-    playlist.appendChild(item);
+      playlist.appendChild(
+        item
+      );
 
-  });
+    }
+  );
 
 }
 
 
-/* ================================
-   SEARCH
-================================ */
+/* SEARCH */
 
 search.oninput =
   renderPlaylist;
 
 
-/* ================================
-   CATEGORY
-================================ */
+/* CATEGORY */
 
-const artists =
-  [...new Set(
-    songs.map(song => song.artist)
-  )];
+function makeCategories(){
 
+  const artists =
+    [
+      ...new Set(
+        songs.map(
+          song => song.artist
+        )
+      )
+    ];
 
-artists.forEach(name=>{
+  artists.forEach(
+    name=>{
 
-  const option =
-    document.createElement("option");
+      const option =
+        document.createElement(
+          "option"
+        );
 
-  option.value = name;
-  option.textContent = "🎤 " + name;
+      option.value =
+        name;
 
-  category.appendChild(option);
+      option.textContent =
+        "🎤 " + name;
 
-});
+      category.appendChild(
+        option
+      );
 
+    }
+  );
+
+}
 
 category.onchange =
   renderPlaylist;
 
 
-/* ================================
-   START
-================================ */
-
-loadSong();
-
-/* ================================
-   VIDEO LIRIK
-================================ */
-
-const videoBtn =
-  document.getElementById("videoBtn");
-
-const videoBox =
-  document.getElementById("videoBox");
-
-const lyricsVideo =
-  document.getElementById("lyricsVideo");
-
+/* VIDEO */
 
 function openVideo(){
 
   const song =
     songs[currentIndex];
 
-  if(!song || !song.lyricsVideo){
-
+  if(
+    !song ||
+    !song.lyricsVideo
+  ){
     return;
-
   }
 
   lyricsVideo.src =
@@ -1044,7 +923,9 @@ function openVideo(){
   lyricsVideo.currentTime =
     audio.currentTime || 0;
 
-  videoBox.classList.add("show");
+  videoBox.classList.add(
+    "show"
+  );
 
   if(!audio.paused){
 
@@ -1060,11 +941,15 @@ function closeVideo(){
 
   lyricsVideo.pause();
 
-  lyricsVideo.removeAttribute("src");
+  lyricsVideo.removeAttribute(
+    "src"
+  );
 
   lyricsVideo.load();
 
-  videoBox.classList.remove("show");
+  videoBox.classList.remove(
+    "show"
+  );
 
 }
 
@@ -1072,7 +957,9 @@ function closeVideo(){
 videoBtn.onclick = ()=>{
 
   if(
-    videoBox.classList.contains("show")
+    videoBox.classList.contains(
+      "show"
+    )
   ){
 
     closeVideo();
@@ -1086,26 +973,22 @@ videoBtn.onclick = ()=>{
 };
 
 
-/* ================================
-   VIDEO IKUT AUDIO
-================================ */
+/* VIDEO IKUT AUDIO */
 
 audio.addEventListener(
   "timeupdate",
   ()=>{
 
     if(
-      !videoBox.classList.contains("show")
+      !videoBox.classList.contains(
+        "show"
+      )
     ){
-
       return;
-
     }
 
     if(!lyricsVideo.duration){
-
       return;
-
     }
 
     if(
@@ -1129,7 +1012,9 @@ audio.addEventListener(
   ()=>{
 
     if(
-      videoBox.classList.contains("show")
+      videoBox.classList.contains(
+        "show"
+      )
     ){
 
       lyricsVideo.play()
@@ -1151,77 +1036,22 @@ audio.addEventListener(
 );
 
 
-/* ================================
-   NEXT / PREVIOUS
-   VIDEO IKUT GANTI
-================================ */
-
-function updateVideo(){
-
-  if(
-    !videoBox.classList.contains("show")
-  ){
-
-    return;
-
-  }
-
-  const song =
-    songs[currentIndex];
-
-  if(
-    !song ||
-    !song.lyricsVideo
-  ){
-
-    closeVideo();
-
-    return;
-
-  }
-
-  lyricsVideo.src =
-    song.lyricsVideo;
-
-  lyricsVideo.load();
-
-  lyricsVideo.onloadedmetadata = ()=>{
-
-    lyricsVideo.currentTime =
-      audio.currentTime || 0;
-
-    if(!audio.paused){
-
-      lyricsVideo.play()
-        .catch(()=>{});
-
-    }
-
-  };
-
-}
-
-
-/* ================================
-   MEDIA SESSION
-   BACKGROUND / LOCK SCREEN
-================================ */
+/* MEDIA SESSION */
 
 function updateMediaSession(){
 
   if(
     !("mediaSession" in navigator)
   ){
-
     return;
-
   }
 
   const song =
     songs[currentIndex];
 
-  if(!song) return;
-
+  if(!song){
+    return;
+  }
 
   navigator.mediaSession.metadata =
     new MediaMetadata({
@@ -1237,9 +1067,15 @@ function updateMediaSession(){
 
       artwork:[
         {
-          src:"logo.png",
-          sizes:"512x512",
-          type:"image/png"
+          src:
+            song.cover ||
+            "logo.png",
+
+          sizes:
+            "512x512",
+
+          type:
+            "image/png"
         }
       ]
 
@@ -1247,10 +1083,6 @@ function updateMediaSession(){
 
 }
 
-
-/* ================================
-   KONTROL LAYAR KUNCI
-================================ */
 
 if(
   "mediaSession" in navigator
@@ -1258,449 +1090,74 @@ if(
 
   navigator.mediaSession.setActionHandler(
     "play",
-    ()=>{
-      playSong();
-    }
+    playSong
   );
-
 
   navigator.mediaSession.setActionHandler(
     "pause",
-    ()=>{
-      pauseSong();
-    }
+    pauseSong
   );
-
 
   navigator.mediaSession.setActionHandler(
     "nexttrack",
-    ()=>{
-      nextSong();
-    }
+    nextSong
   );
-
 
   navigator.mediaSession.setActionHandler(
     "previoustrack",
-    ()=>{
-
-      currentIndex--;
-
-      if(currentIndex < 0){
-
-        currentIndex =
-          songs.length - 1;
-
-      }
-
-      loadSong();
-
-      playSong();
-
-    }
+    prevBtn.click
   );
 
 }
 
 
-/* ================================
-   UPDATE MEDIA SESSION
-================================ */
+/* LOAD PLAYLIST.JSON */
 
-const oldLoadSong =
-  loadSong;
+fetch("playlist.json")
 
-loadSong = function(){
+  .then(response=>{
 
-  oldLoadSong();
+    if(!response.ok){
 
-  updateMediaSession();
-
-  updateVideo();
-
-};
-
-/* ================================
-   FAVORIT
-================================ */
-
-const favoriteBtn =
-  document.getElementById("favoriteBtn");
-
-
-function getFavorites(){
-
-  try{
-
-    return JSON.parse(
-      localStorage.getItem(
-        "sedatur_favorites"
-      ) || "[]"
-    );
-
-  }catch{
-
-    return [];
-
-  }
-
-}
-
-
-function updateFavorite(){
-
-  const favorites =
-    getFavorites();
-
-  const active =
-    favorites.includes(currentIndex);
-
-  favoriteBtn.textContent =
-    active
-      ? "❤️ Favorit"
-      : "♡ Favorit";
-
-}
-
-
-favoriteBtn.onclick = ()=>{
-
-  let favorites =
-    getFavorites();
-
-
-  if(
-    favorites.includes(currentIndex)
-  ){
-
-    favorites =
-      favorites.filter(
-        i => i !== currentIndex
-      );
-
-  }else{
-
-    favorites.push(currentIndex);
-
-  }
-
-
-  localStorage.setItem(
-    "sedatur_favorites",
-    JSON.stringify(favorites)
-  );
-
-
-  updateFavorite();
-
-};
-
-
-/* ================================
-   SIMPAN LAGU TERAKHIR
-================================ */
-
-function savePlayer(){
-
-  localStorage.setItem(
-    "sedatur_song",
-    currentIndex
-  );
-
-}
-
-
-function loadLastSong(){
-
-  const saved =
-    Number(
-      localStorage.getItem(
-        "sedatur_song"
-      )
-    );
-
-
-  if(
-    Number.isInteger(saved) &&
-    saved >= 0 &&
-    saved < songs.length
-  ){
-
-    currentIndex = saved;
-
-  }
-
-}
-
-
-loadLastSong();
-
-
-/* ================================
-   SIMPAN POSISI LAGU
-================================ */
-
-audio.addEventListener(
-  "timeupdate",
-  ()=>{
-
-    if(
-      audio.currentTime > 0 &&
-      !audio.ended
-    ){
-
-      localStorage.setItem(
-        "sedatur_position",
-        audio.currentTime
+      throw new Error(
+        "playlist.json tidak ditemukan"
       );
 
     }
 
-  }
-);
+    return response.json();
 
+  })
 
-/* ================================
-   RESTORE POSISI
-================================ */
+  .then(data=>{
 
-audio.addEventListener(
-  "loadedmetadata",
-  ()=>{
+    songs = data;
 
-    const saved =
-      Number(
-        localStorage.getItem(
-          "sedatur_position"
-        )
+    if(!songs.length){
+
+      throw new Error(
+        "Playlist kosong"
       );
-
-
-    if(
-      saved > 0 &&
-      saved < audio.duration
-    ){
-
-      audio.currentTime = saved;
 
     }
 
-  }
-);
+    makeCategories();
 
+    loadSong();
 
-/* ================================
-   SIMPAN SETIAP GANTI LAGU
-================================ */
+  })
 
-const originalNext =
-  nextSong;
+  .catch(error=>{
 
-nextSong = function(){
+    console.error(error);
 
-  originalNext();
+    playlist.innerHTML = `
+      <div class="empty">
+        ❌ Playlist gagal dimuat
+      </div>
+    `;
 
-  savePlayer();
-  updateFavorite();
-
-};
-
-
-const originalLoad =
-  loadSong;
-
-loadSong = function(){
-
-  originalLoad();
-
-  savePlayer();
-  updateFavorite();
-
-  updateMediaSession();
-  updateVideo();
-
-};
-
-
-/* ================================
-   MEDIA SESSION
-================================ */
-
-  if(
-    !("mediaSession" in navigator)
-  ){
-
-    return;
-
-  }
-
-
-  const song =
-    songs[currentIndex];
-
-  if(!song) return;
-
-
-  navigator.mediaSession.metadata =
-    new MediaMetadata({
-
-      title:
-        song.title,
-
-      artist:
-        song.artist,
-
-      album:
-        "Sedatur Music Hub",
-
-      artwork:[
-        {
-          src:"logo.png",
-          sizes:"512x512",
-          type:"image/png"
-        }
-      ]
-
-    });
-
-}
-
-
-/* ================================
-   MEDIA SESSION BUTTON
-================================ */
-
-if(
-  "mediaSession" in navigator
-){
-
-  try{
-
-    navigator.mediaSession.setActionHandler(
-      "play",
-      ()=>{
-        playSong();
-      }
-    );
-
-    navigator.mediaSession.setActionHandler(
-      "pause",
-      ()=>{
-        pauseSong();
-      }
-    );
-
-    navigator.mediaSession.setActionHandler(
-      "nexttrack",
-      ()=>{
-        nextSong();
-      }
-    );
-
-    navigator.mediaSession.setActionHandler(
-      "previoustrack",
-      ()=>{
-
-        currentIndex--;
-
-        if(currentIndex < 0){
-
-          currentIndex =
-            songs.length - 1;
-
-        }
-
-        loadSong();
-        playSong();
-
-      }
-    );
-
-  }catch(e){
-
-    console.log(
-      "Media Session tidak tersedia"
-    );
-
-  }
-
-}
-
-
-/* ================================
-   UPDATE MEDIA SESSION
-================================ */
-
-updateMediaSession();
-updateFavorite();
-
-
-/* ================================
-   PERBAIKI VIDEO SAAT GANTI LAGU
-================================ */
-
-function updateVideo(){
-
-  if(
-    !videoBox.classList.contains("show")
-  ){
-
-    return;
-
-  }
-
-
-  const song =
-    songs[currentIndex];
-
-
-  if(
-    !song ||
-    !song.lyricsVideo
-  ){
-
-    closeVideo();
-
-    return;
-
-  }
-
-
-  lyricsVideo.pause();
-
-  lyricsVideo.src =
-    song.lyricsVideo;
-
-  lyricsVideo.load();
-
-
-  lyricsVideo.onloadedmetadata =
-    ()=>{
-
-      lyricsVideo.currentTime =
-        audio.currentTime || 0;
-
-
-      if(!audio.paused){
-
-        lyricsVideo.play()
-          .catch(()=>{});
-
-      }
-
-    };
-
-}
-
-
-/* ================================
-   FINAL LOAD
-================================ */
-
-loadSong();
-
-updateFavorite();
-updateMediaSession();
+  });
 
 </script>
 
